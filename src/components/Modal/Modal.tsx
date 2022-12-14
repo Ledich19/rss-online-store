@@ -1,11 +1,7 @@
 import React from "react";
 import "./Modal.css";
 
-type Props = {
-  children?: React.ReactNode;
-};
-
-const Modal = ({ children }: Props) => {
+const Modal = () => {
   return <div className="Modal">Modal</div>;
 };
 

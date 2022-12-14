@@ -1,11 +1,7 @@
 import React from "react";
 import "./Cart.css";
 
-type Props = {
-  children?: React.ReactNode;
-};
-
-const Cart = ({ children }: Props) => {
+const Cart = () => {
   return <div className="Cart">Cart</div>;
 };
 

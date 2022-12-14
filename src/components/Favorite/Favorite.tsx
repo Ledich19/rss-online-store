@@ -1,11 +1,7 @@
 import React from "react";
 import "./Favorite.css";
 
-type Props = {
-  children?: React.ReactNode;
-};
-
-const Favorite = ({ children }: Props) => {
+const Favorite = () => {
   return <div className="Favorite">Favorite</div>;
 };
 
