@@ -1,7 +1,6 @@
 import React from "react";
 import "./Main.css";
 
-import "./App.css";
 import { Routes, Route, Link } from "react-router-dom";
 import Error404 from "../../components/Error404/Error404";
 import Favorite from "../../components/Favorite/Favorite";
