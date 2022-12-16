@@ -34,15 +34,13 @@
 
     & {
       scrollbar-width: thin;
-      scrollbar-color: 
-      #D8D9CC #D8D9CC
+      scrollbar-color: #d8d9cc #d8d9cc;
     }
     &::-webkit-scrollbar {
       width: 5px;
     }
     &::-webkit-scrollbar-thumb {
-      background-color: 
-      #D8D9CC;
+      background-color: #d8d9cc;
       border-radius: 20px;
     }
   }
@@ -103,5 +101,29 @@
   }
   &__second {
     transform: rotate(-45deg);
+  }
+}
+
+@media (max-width: 450px) {
+  .cart {
+    &__main {
+    }
+    &__header {
+    }
+    &__body {
+    }
+
+    &__title {
+    }
+    &__icon {
+    }
+
+    &__cost {
+    }
+
+    &__total {
+    }
+    &__button {
+    }
   }
 }
