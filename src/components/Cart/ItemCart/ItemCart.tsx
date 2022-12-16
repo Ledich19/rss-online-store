@@ -1,4 +1,5 @@
 import React from 'react'
+import Amount from '../Amount/Amount'
 import './ItemCart.scss'
 
 const ItemCart = () => {
@@ -14,11 +15,7 @@ const ItemCart = () => {
           <div className="item-cart__size"></div>
         </div>
 
-        <div className="item-cart__amount amount">
-          <div className="amount__minus">-</div>
-          <div className="amount__data">0</div>
-          <div className="amount__plus">+</div>
-        </div>
+       <Amount productId='id' amount={9} />
 
         <div className="item-cart__price"><span></span> &euro;</div>
       </div>

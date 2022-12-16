@@ -31,7 +31,8 @@ export interface ProductInDb extends Product {
     "stock": number
   }[],
 }
-export interface ProductInCart extends Product {
+export interface ProductInCart extends Product{
+  amount: number,
   "size": "XS" | "S" | "M" | "L" | "Xl" | "XXl" | "3XL"
 }
 

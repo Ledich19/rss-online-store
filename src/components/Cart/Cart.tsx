@@ -1,6 +1,7 @@
 import React from "react";
 import "./Cart.scss";
 import { AiOutlineInbox } from "react-icons/ai";
+import ItemCart from "./ItemCart/ItemCart";
 
 const Cart = () => {
   return (
@@ -14,7 +15,9 @@ const Cart = () => {
           <div className="cart__title">Your shopping cart</div>
           <div className="cart__icon"><AiOutlineInbox className="cart__icon-img"/></div>
         </div>
-        <div className="cart__body"></div>
+        <div className="cart__body">
+          <ItemCart/>
+        </div>
         <div className="cart__footer">
           <div className="cart__cost">
             <span>
