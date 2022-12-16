@@ -1,0 +1,142 @@
+//variables
+$mainBg: #fff;
+$widthContainer: 1100px;
+//templates
+%textStyles{
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 19px;
+  color: #3C3F40;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.header{
+  background-color: $mainBg;
+  padding: 39px 0px;
+  border-bottom: 1px solid #00000022;
+  &__container{
+    max-width: $widthContainer;
+    margin: 0 auto;
+    padding: 0 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  &__picture{
+    max-width: 135px;
+    margin-top: 6px;
+  }
+  &__logo{
+    width: 100%;
+    object-fit: cover;
+  }
+  &__navigation{
+    flex: 0 1 410px;
+    position: relative;
+  }
+  &__list{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap
+  }
+  &__link{
+    @extend %textStyles;
+    transition: all 0.3s ease;
+    &:hover{
+      color: rgb(112, 112, 112);
+    }
+  }
+  &__icons{
+    display: flex;
+    order: 3;
+  }
+  &__cart{
+    width: 24px;
+    height: 24px;
+    background: url(./images/cart.svg)0 0 no-repeat;
+    transition: all 0.3s ease;
+    &:hover{
+      transform: scale(1.1);
+    }
+  }
+  &__favourite{
+    width: 24px;
+    height: 24px;
+    background: url(./images/favourite.svg)0 0 no-repeat;
+    margin-right: 15px;
+    transition: all 0.3s ease;
+    &:hover{
+      transform: scale(1.1);
+    }
+  }
+  &__burger{
+    display: none;
+    flex-direction: column;
+    gap: 2px;
+    max-width: 20px;
+    cursor: pointer;
+  }
+  &__span{
+    width: 16px;
+    height: 2px;
+    border-radius: 2px;
+    background-color: #3C3F40;
+    transition: all 0.3s ease;
+  }
+}
+
+
+@media(max-width:768px){
+  .header{
+    &__picture{
+      order: 1;
+    }
+    &__navigation{
+      position: absolute;
+      transform: translateX(-100vw);
+      transition: all 0.3s ease;
+    }
+    
+    &__list{
+      flex-direction: column;
+      gap: 20px;
+    }
+    &__burger{
+      display: flex;
+      z-index: 11;
+    }
+
+  }
+  .open{
+    position: fixed;
+    transform: translateX(0vw);
+    transition: all 0.3s ease;
+    width: 100vw;
+    background: #fff;
+    height: 100vh;
+    left: 0;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    bottom: 0;
+    transition: all .5s ease;
+  }
+  .top-span{
+    transform: rotate(45deg);
+    position: relative;
+    top: 3px;
+  }
+  .middle-span{
+    opacity: 0;
+  }
+  .bottom-span{
+    transform: rotate(-45deg);
+    position: relative;
+    top: -5px;
+  }
+  .fixed-burger{
+    position: fixed;
+  }
+}
