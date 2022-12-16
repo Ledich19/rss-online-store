@@ -4,23 +4,35 @@
   left: 0;
   height: 100vh;
   width: 100vw;
-  background:  #E5E5E5;;
+  background: #e5e5e5;
   margin-right: 20px;
+  z-index: 1000;
   &__main {
+    box-sizing: border-box;
     padding: 24px 23px;
     background: #ffffff;
-    max-height: 958px;
+    max-height: 100vh;
     max-width: 636px;
-    margin: 10% auto;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
   }
   &__header {
+    padding-bottom: 20px;
     display: flex;
     justify-content: space-between;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2)
   }
-  &__body{
+  &__body {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    flex: 1 1 auto;
     padding: 18px 0;
+    overflow: auto;
   }
- 
+
   &__title {
     font-weight: 500;
     font-size: 24px;
@@ -28,7 +40,7 @@
   }
   &__icon {
   }
- 
+
   &__cost {
     display: flex;
     justify-content: space-between;

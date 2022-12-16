@@ -39,3 +39,13 @@ export interface ProductInCart extends Product{
 export type ProductsState = ProductInDb[]
 
 export type CartState = ProductInCart[]
+
+export type ItemCartProps = {
+  id: string
+  name: string
+  color: string
+  size: string
+  amount: number
+  price: number
+  photo: string
+}
