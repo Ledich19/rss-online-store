@@ -1,0 +1,129 @@
+.cart {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  background: #e5e5e5;
+  margin-right: 20px;
+  z-index: 1000;
+  &__main {
+    box-sizing: border-box;
+    padding: 24px 23px;
+    background: #ffffff;
+    max-height: 100vh;
+    max-width: 636px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  &__header {
+    padding-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  }
+  &__body {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    flex: 1 1 auto;
+    padding: 18px 0;
+    overflow: auto;
+
+    & {
+      scrollbar-width: thin;
+      scrollbar-color: #d8d9cc #d8d9cc;
+    }
+    &::-webkit-scrollbar {
+      width: 5px;
+    }
+    &::-webkit-scrollbar-thumb {
+      background-color: #d8d9cc;
+      border-radius: 20px;
+    }
+  }
+
+  &__title {
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 28px;
+  }
+  &__icon {
+  }
+
+  &__cost {
+    display: flex;
+    justify-content: space-between;
+    font-weight: 300;
+    line-height: 140%;
+    color: #72736e;
+  }
+
+  &__total {
+    display: flex;
+    justify-content: space-between;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 16px;
+    color: #3c3f40;
+  }
+  &__button {
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 56px;
+    background: #d8d9cc;
+    border-radius: 20px;
+    cursor: pointer;
+    &:hover,
+    &:focus {
+      background: #bf9180;
+    }
+  }
+}
+
+.close {
+  position: relative;
+  &__first,
+  &__second {
+    top: 50%;
+    position: absolute;
+    display: block;
+    height: 2px;
+    width: 20px;
+    background: #000;
+  }
+  &__first {
+    transform: rotate(45deg);
+  }
+  &__second {
+    transform: rotate(-45deg);
+  }
+}
+
+@media (max-width: 450px) {
+  .cart {
+    &__main {
+    }
+    &__header {
+    }
+    &__body {
+    }
+
+    &__title {
+    }
+    &__icon {
+    }
+
+    &__cost {
+    }
+
+    &__total {
+    }
+    &__button {
+    }
+  }
+}
