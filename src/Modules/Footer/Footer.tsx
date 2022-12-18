@@ -1,5 +1,5 @@
 import React from "react";
-import footerLogo from "./images/logo.svg"
+import footerLogo from "../../images/logo.svg"
 import "./Footer.scss";
 
 const Footer = () => {
@@ -62,7 +62,7 @@ const Footer = () => {
                   <a href="#" className="footer__link">Stores</a>
                 </li>
                 <li className="footer__item">
-                  <a href="#" className="footer__link">Deliveres</a>
+                  <a href="#" className="footer__link">Delivers</a>
                 </li>
                 <li className="footer__item">
                   <a href="#" className="footer__link">Returns</a>
