@@ -72,19 +72,10 @@ const Header = () => {
             <div className={styleBottomSpan}></div>
           </div>
         <div className="header__icons">
-          <Link rel="stylesheet" to="/favourite" className="header__favourite" />
+          <Link rel="stylesheet" to="/favorite" className="header__favorite" />
           <Link rel="stylesheet" to="/cart" className="header__cart" />
         </div>
       </div>
-      <Routes>
-        {/* <Route path="/" element={<Home />} /> */}
-        <Route path="/error404" element={<Error404 />} />
-        <Route path="/favourite" element={<Favorite />} />
-        <Route path="/cart" element={<Cart />} />
-        <Route path="/modal" element={<Modal />} />
-        <Route path="/product/:id" element={<ProductDetails />} />
-        <Route path="/store" element={<Store />} />
-      </Routes>
     </div>
     );
 };

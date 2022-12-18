@@ -60,10 +60,10 @@ $widthContainer: 1100px;
       transform: scale(1.1);
     }
   }
-  &__favourite{
+  &__favorite{
     width: 24px;
     height: 24px;
-    background: url(../../images/favourite.svg)0 0 no-repeat;
+    background: url(../../images/favorite.svg)0 0 no-repeat;
     margin-right: 15px;
     transition: all 0.3s ease;
     &:hover{
