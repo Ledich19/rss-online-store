@@ -31,10 +31,21 @@ export interface ProductInDb extends Product {
     "stock": number
   }[],
 }
-export interface ProductInCart extends Product {
+export interface ProductInCart extends Product{
+  amount: number,
   "size": "XS" | "S" | "M" | "L" | "Xl" | "XXl" | "3XL"
 }
 
 export type ProductsState = ProductInDb[]
 
 export type CartState = ProductInCart[]
+
+export type ItemCartProps = {
+  id: string
+  name: string
+  color: string
+  size: string
+  amount: number
+  price: number
+  photo: string
+}
