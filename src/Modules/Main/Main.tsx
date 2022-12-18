@@ -40,8 +40,6 @@ const Main = () => {
         <Route path="/cart" element={<Cart />} />
         <Route path="/store" element={<Store />} />
         <Route path="/error404" element={<Error404 />} />
-
-
         <Route path="/product/:id" element={<ProductDetails />} />
         <Route path="/favorite" element={<Favorite />} />
         <Route path="/modal" element={<Modal />} />
