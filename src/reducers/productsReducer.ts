@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { ProductsState } from '../app/types'
 
-const initialState: ProductsState = [
+export const initialState: ProductsState = [
   {
     "id": "639aee9977d6280f12d9a935",
     "sex": "woman",

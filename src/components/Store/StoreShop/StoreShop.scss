@@ -1,7 +1,13 @@
 .shop {
   flex: 1 1 auto;
-  max-width: 1100px;
-  height: 100px;
-
-  background: rgb(73, 11, 216);
+  max-width: 820px;
+  gap: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+@media(max-width:976px){
+  .shop{
+    max-width: 100%;
+  };
 }

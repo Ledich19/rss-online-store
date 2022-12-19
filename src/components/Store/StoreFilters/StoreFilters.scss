@@ -1,5 +1,11 @@
 .filters {
   background: rgb(18, 215, 44);
   height: 100px;
-  width: 286px;
+  max-width: 255px;
+  flex: 1 0 255px;
+}
+@media(max-width:976px){
+  .filters{
+    max-width: 100%;
+  }
 }
