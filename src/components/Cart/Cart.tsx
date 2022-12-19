@@ -1,11 +1,10 @@
 import './Cart.scss'
 import { AiOutlineInbox } from 'react-icons/ai'
-import ItemCart from './ItemCart/ItemCart'
-import { useAppSelector } from '../../app/hooks'
+import OrderForm from './OrderForm/OrderForm'
+import DataForm from './DataForm/DataForm'
+//import { CartState } from "../../app/types"
 
 const Cart = () => {
-  const cartContent = useAppSelector(state => state.cart)
-  
   return (
     <div className="cart">
       <div className="cart__main">
@@ -19,24 +18,8 @@ const Cart = () => {
             <AiOutlineInbox size="25px" />
           </div>
         </div>
-        
-        <div className="cart__body">
-       
-          {cartContent.map((product) => {
-            return (
-              <ItemCart
-                key={product.id}
-                id={product.id}
-                name={product.title}
-                color={product.color}
-                size={product.size}
-                photo={product.thumbnail}
-                amount={product.amount}
-                price={product.price}
-              />
-            )
-          })}
-        </div>
+        {/* <OrderForm /> */}
+        <DataForm />
         <div className="cart__footer">
           <div className="cart__cost">
             <span>Shipping cost</span>
