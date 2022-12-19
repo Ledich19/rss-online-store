@@ -5,6 +5,7 @@ import mastercard from '../../../images/pay-siatem/mastercard.png'
 import maestro from '../../../images/pay-siatem/maestro.png'
 import jsb from '../../../images/pay-siatem/jcb.png'
 
+
 const DataForm = () => {
   const [cardNum, setCardNum] = useState('')
   const [cardValid, setCardValid] = useState('')
@@ -20,6 +21,7 @@ const DataForm = () => {
   } else if (cardNum[0] <= '9') {
     card = jsb
   }
+
   const handleCartNumber = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault()
     if (cardNum.length < 16) {
@@ -87,7 +89,7 @@ const DataForm = () => {
           ></input>
         </div>
       </div>
-      <button>111</button>
+      <button className="card__order-btn">Order</button>
     </form>
   )
 }

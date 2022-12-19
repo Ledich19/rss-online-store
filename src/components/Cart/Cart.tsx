@@ -2,9 +2,15 @@ import './Cart.scss'
 import { AiOutlineInbox } from 'react-icons/ai'
 import OrderForm from './OrderForm/OrderForm'
 import DataForm from './DataForm/DataForm'
+import { setIsOpenForm } from '../../reducers/modalsReducer'
+import { useAppDispatch, useAppSelector } from '../../app/hooks'
+import OrderFinish from './OrderFinish/OrderFinish'
+import CartFooter from './CartFooter/CartFooter'
 //import { CartState } from "../../app/types"
 
 const Cart = () => {
+  const modalState = useAppSelector((state) => state.modals)
+
   return (
     <div className="cart">
       <div className="cart__main">
@@ -18,19 +24,15 @@ const Cart = () => {
             <AiOutlineInbox size="25px" />
           </div>
         </div>
-        {/* <OrderForm /> */}
-        <DataForm />
-        <div className="cart__footer">
-          <div className="cart__cost">
-            <span>Shipping cost</span>
-            <span className="cart__price">40.00&euro;</span>
-          </div>
-          <div className="cart__total">
-            <span>ESTIMATE TOTAL</span>
-            <span className="cart__total-price">61.90&euro;</span>
-          </div>
-          <div className="cart__button">GO TO THE SHOPPING MARKET</div>
-        </div>
+        {modalState.isOderFinish ? (
+          <OrderFinish />
+        ) : modalState.isForm ? (
+          <DataForm />
+        ) : (
+          <OrderForm />
+        )}
+
+        <CartFooter />
       </div>
     </div>
   )
