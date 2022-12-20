@@ -6,11 +6,11 @@ import maestro from '../../../images/pay-siatem/maestro.png'
 import jsb from '../../../images/pay-siatem/jcb.png'
 import { useAppDispatch } from '../../../app/hooks'
 import { setIsOpenForm, setOpenOrderFinish } from '../../../reducers/modalsReducer'
-import {  useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { clearCart } from '../../../reducers/cartReducer'
 
 const DataForm = () => {
-  const navigate= useNavigate()
+  const navigate = useNavigate()
   const dispatch = useAppDispatch()
 
   const [isDirty, setIsDirty] = useState(false)
@@ -223,29 +223,24 @@ const DataForm = () => {
   }
 
   const handleSubmit = (e: React.SyntheticEvent) => {
-    setIsDirty(true)
     e.preventDefault()
-    nameValidate(phoneNumber)
-    emailValidate(email)
-    numberValidate(phoneNumber)
-    addressValidate(address)
-    cardNumberValidate(cardNum)
-    cardValidValidate(cardValid)
-    cardCvvValidate(cardCvv)
+
+    setIsDirty(true)
 
     if (
-      !nameError ||
-      !phoneNumberError ||
-      !emailError ||
-      !addressError ||
-      !cardNumError ||
-      !cardValidError ||
-      !cardCvvError
+      nameValidate(phoneNumber) ||
+      emailValidate(email) ||
+      numberValidate(phoneNumber) ||
+      addressValidate(address) ||
+      cardNumberValidate(cardNum) ||
+      cardValidValidate(cardValid) ||
+      cardCvvValidate(cardCvv)
     ) {
       dispatch(setOpenOrderFinish(true))
       window.setTimeout(() => {
         dispatch(setIsOpenForm(false))
         dispatch(setOpenOrderFinish(false))
+        setIsDirty(false)
         dispatch(clearCart())
         navigate('/store')
       }, 5000)
@@ -254,14 +249,16 @@ const DataForm = () => {
   return (
     <form onSubmit={handleSubmit} className="order">
       <div className="order__address">
-        {nameError && <div className="order__valid-error">{nameError}</div>}
-        <input
-          value={name}
-          onChange={nameHandler}
-          className="order__address-item order__address-item_wide"
-          type="text"
-          placeholder="Name"
-        />
+        <label className="order__label" htmlFor="">
+          {nameError && <div className="order__valid-error">{nameError}</div>}
+          <input
+            value={name}
+            onChange={nameHandler}
+            className="order__address-item order__address-item_wide"
+            type="text"
+            placeholder="Name"
+          />
+        </label>
 
         {emailError && <div className="order__valid-error">{emailError}</div>}
         <input

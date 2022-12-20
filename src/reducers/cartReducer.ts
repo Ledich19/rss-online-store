@@ -75,7 +75,6 @@ const cartSlice = createSlice({
       return []
     },
 
-
     plusAmount(state, action: {
       payload: string;
     }) {
