@@ -316,8 +316,6 @@ const DataForm = () => {
           ></input>
           </label>
 
-
-
         <div className="card__box">
         <label className="order__label card__card-valid-label" htmlFor="">
           

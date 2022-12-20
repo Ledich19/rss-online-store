@@ -87,6 +87,7 @@
 }
 
 .close {
+  cursor: pointer;
   position: relative;
   &__first,
   &__second {
@@ -102,6 +103,9 @@
   }
   &__second {
     transform: rotate(-45deg);
+  }
+  &:hover{
+    transform: scale(1.1);
   }
 }
 
