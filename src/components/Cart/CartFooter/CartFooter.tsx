@@ -1,6 +1,6 @@
 import './CartFooter.scss'
 import { useAppDispatch, useAppSelector } from '../../../app/hooks'
-import { setIsOpenForm, setOpenOrderFinish } from '../../../reducers/modalsReducer'
+import { setIsOpenForm } from '../../../reducers/modalsReducer'
 
 const CartFooter = () => {
   const cartContent = useAppSelector((state) => state.cart)
@@ -11,10 +11,7 @@ const CartFooter = () => {
     e.preventDefault()
     dispatch(setIsOpenForm(true))
   }
-  const handleOrder = (e: React.MouseEvent<HTMLElement>) => {
-    e.preventDefault()
-    dispatch(setOpenOrderFinish(true))
-  }
+
   return (
     <div className="cart__footer">
       <div className="cart__cost">
@@ -26,16 +23,12 @@ const CartFooter = () => {
         <span className="cart__total-price">61.90&euro;</span>
       </div>
 
-      {modalState.isOderFinish ? (
-        <div></div>
-      ) : modalState.isForm ? (
-        <div className="cart__button" onClick={handleOrder}>
-          ORDER
-        </div>
-      ) : (
+      {!modalState.isOderFinish && !modalState.isForm ? (
         <div className="cart__button" onClick={handleOrderMenu}>
           GO TO THE SHOPPING MARKET
         </div>
+      ) : (
+        <></>
       )}
     </div>
   )
