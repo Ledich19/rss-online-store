@@ -24,8 +24,8 @@ const DataForm = () => {
 
   const handleCartNumber = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault()
-    if (cardNum.length < 16) {
-      const value = e.target.value
+    const value = e.target.value
+    if (value.length <= 16) {
       setCardNum(value)
     }
   }
@@ -44,8 +44,8 @@ const DataForm = () => {
     }
   }
   const handleCartCvv = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (cardCvv.length < 3) {
-      const value = e.target.value
+    const value = e.target.value
+    if (value.length <= 3) {
       setCardCvv(value)
     }
   }
@@ -81,6 +81,7 @@ const DataForm = () => {
             placeholder="valid"
           ></input>
           <input
+          
             onChange={handleCartCvv}
             value={cardCvv}
             type="number"

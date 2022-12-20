@@ -85,19 +85,14 @@ const cartSlice = createSlice({
     minusAmount(state, action: {
       payload: string;
     }) {
-
       return state.map((product) => {
         if (product.id === action.payload && product.amount !== 0) {
           return { ...product, amount: product.amount - 1, }
         }
         return product
-
       })
     },
-
   },
-
-
 }
 )
 

@@ -17,3 +17,4 @@ const OrderFinish = () => {
 }
 
 export default OrderFinish
+
