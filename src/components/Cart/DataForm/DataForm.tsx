@@ -4,8 +4,15 @@ import visa from '../../../images/pay-siatem/visa.png'
 import mastercard from '../../../images/pay-siatem/mastercard.png'
 import maestro from '../../../images/pay-siatem/maestro.png'
 import jsb from '../../../images/pay-siatem/jcb.png'
+import { useAppDispatch } from '../../../app/hooks'
+import { setIsOpenForm, setOpenOrderFinish } from '../../../reducers/modalsReducer'
+import {  useNavigate } from 'react-router-dom'
+import { clearCart } from '../../../reducers/cartReducer'
 
 const DataForm = () => {
+  const navigate= useNavigate()
+  const dispatch = useAppDispatch()
+
   const [isDirty, setIsDirty] = useState(false)
 
   const [name, setName] = useState('')
@@ -235,8 +242,13 @@ const DataForm = () => {
       !cardValidError ||
       !cardCvvError
     ) {
-
-     
+      dispatch(setOpenOrderFinish(true))
+      window.setTimeout(() => {
+        dispatch(setIsOpenForm(false))
+        dispatch(setOpenOrderFinish(false))
+        dispatch(clearCart())
+        navigate('/store')
+      }, 5000)
     }
   }
   return (
