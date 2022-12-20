@@ -15,9 +15,7 @@
     padding: 12px 32px;
     height: 40px;
     background: #ffffff;
-    &_wide{
-      width: 100%;
-    }
+    width: 100%;
   }
   &__btn{
     cursor: pointer;
@@ -36,11 +34,17 @@
     }
   }
   &__valid-error{
+    top: -5px;left: 15px;
     position: absolute;
     color: red;
   }
+  
   &__label{
     position: relative;
+    &_wide{
+      white-space: nowrap;
+      width: 100%;
+    }
   }
 }
 .card {
@@ -53,9 +57,22 @@
   margin-top: 20px;
   background-repeat: no-repeat;
   background-position: 95% 95%;
+  &__card-number-label{
+    width: 100%;
+
+  }
+  &__card-valid-label{
+    max-width: 50%;
+
+  }
+  &__card-cvv-label{
+    max-width: 30%;
+
+  }
   &__number,
   &__valid,
   &__cv {
+    width: 100%;
     flex: 1 1 auto;
     box-sizing: border-box;
     border: 0.5px solid #d8d9cc;
@@ -69,19 +86,15 @@
       margin: 0;
     }
   }
+&__valid-error{
+margin-top: 10px;
+    color: red;
+}
 
-  &__number {
-    width: 100%;
-  }
   &__box {
     margin-top: 20px;
     display: flex;
     justify-content: space-between;
   }
-  &__valid {
-    max-width: 50%;
-  }
-  &__cv {
-    max-width: 30%;
-  }
+  
 }

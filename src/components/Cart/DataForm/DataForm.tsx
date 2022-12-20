@@ -104,14 +104,14 @@ const DataForm = () => {
     console.log(cardNum)
 
     if (cardNum === undefined || cardNum.length === 0) {
-      setCardNumError('must be filled')
+      setCardNumError('number: must be filled')
       console.log(11111)
 
       return false
     } else if (cardNum.length < 16) {
       console.log(22222)
 
-      setCardNumError('incorrect card number')
+      setCardNumError('number: incorrect card number')
       return false
     }
     setCardNumError('')
@@ -120,10 +120,10 @@ const DataForm = () => {
   const cardValidValidate = (cardValid: string) => {
     const cardValidArr = cardValid.split('/')
     if (cardValid === undefined || cardValid.length === 0) {
-      setCardValidError('must be filled')
+      setCardValidError('valid: must be filled')
       return false
     } else if (parseInt(cardValidArr[0]) > 12) {
-      setCardValidError('month cannot be more than 12')
+      setCardValidError('valid: month cannot be more than 12')
       return false
     }
     setCardValidError('')
@@ -131,10 +131,10 @@ const DataForm = () => {
   }
   const cardCvvValidate = (cardCvv: string) => {
     if (cardCvv === undefined || cardCvv.length === 0) {
-      setCardCvvError('must be filled')
+      setCardCvvError('cvv: must be filled')
       return false
     } else if (cardCvv.length < 3) {
-      setCardCvvError('must have at least three words')
+      setCardCvvError('cvv: must have at least three words')
       return false
     }
     setCardCvvError('')
@@ -249,26 +249,29 @@ const DataForm = () => {
   return (
     <form onSubmit={handleSubmit} className="order">
       <div className="order__address">
-        <label className="order__label" htmlFor="">
+        <label className="order__label order__label_wide" htmlFor="">
           {nameError && <div className="order__valid-error">{nameError}</div>}
           <input
             value={name}
             onChange={nameHandler}
-            className="order__address-item order__address-item_wide"
+            className="order__address-item "
             type="text"
             placeholder="Name"
           />
         </label>
-
+        <label className="order__label order__label_wide" htmlFor="">
         {emailError && <div className="order__valid-error">{emailError}</div>}
         <input
           value={email}
           onChange={emailHandler}
-          className="order__address-item order__address-item_wide"
+          className="order__address-item"
           type="email"
           placeholder="Email"
         />
 
+        </label>
+        <label className="order__label" htmlFor="">
+          
         {phoneNumberError && <div className="order__valid-error">{phoneNumberError}</div>}
         <input
           value={phoneNumber}
@@ -277,7 +280,9 @@ const DataForm = () => {
           type="tel"
           placeholder="Phone Number"
         />
-
+          </label>
+          <label className="order__label" htmlFor="">
+          
         <input
           value={postCode}
           onChange={postCodeHandler}
@@ -285,7 +290,9 @@ const DataForm = () => {
           type="number"
           placeholder="Postcode"
         />
-
+          </label>
+          <label className="order__label" htmlFor="">
+          
         {addressError && <div className="order__valid-error">{addressError}</div>}
         <input
           value={address}
@@ -294,31 +301,37 @@ const DataForm = () => {
           type="text"
           placeholder="Address"
         />
+          </label>
       </div>
 
       <div className="order__card card" style={{ backgroundImage: `url(${card})` }}>
-        {cardNumError && <div className="order__valid-error">{cardNumError}</div>}
+      <label className="order__label card__card-number-label" htmlFor="">
+          
         <input
           onChange={handleCartNumber}
           value={cardNum}
           type="number"
           className="card__number"
           placeholder="number"
-        ></input>
+          ></input>
+          </label>
 
-        {cardValidError && <div className="order__valid-error">{cardValidError}</div>}
+
 
         <div className="card__box">
+        <label className="order__label card__card-valid-label" htmlFor="">
+          
           <input
-            maxLength={5}
-            onChange={handleCartValid}
-            value={cardValid}
-            type="text"
-            className="card__valid"
-            placeholder="valid"
+          maxLength={5}
+          onChange={handleCartValid}
+          value={cardValid}
+          type="text"
+          className="card__valid"
+          placeholder="valid"
           ></input>
-
-          {cardCvvError && <div className="order__valid-error">{cardCvvError}</div>}
+          </label>
+          <label className="order__label card__card-cvv-label" htmlFor="">
+          
 
           <input
             onChange={handleCartCvv}
@@ -326,8 +339,12 @@ const DataForm = () => {
             type="number"
             className="card__cv"
             placeholder="cvv"
-          ></input>
+            ></input>
+          </label>
         </div>
+            {cardNumError && <div className="card__valid-error">{cardNumError}</div>}
+          {cardValidError && <div className="card__valid-error">{cardValidError}</div>}
+            {cardCvvError && <div className="card__valid-error">{cardCvvError}</div>}
       </div>
       <button className="order__btn">Order</button>
     </form>
