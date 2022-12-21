@@ -11,12 +11,12 @@ const CartFooter = () => {
   const dispatch = useAppDispatch()
   const modalState = useAppSelector((state) => state.modals)
 
-  const costCount = (): number => {
+  const costCount = (): string => {
     const cost = cartContent.reduce((sum, product) => sum + product.amount * product.price, 0)
     const discount = isPromoCodes
-      ? promoCodes.promoCodeUse.reduce((sum, code) => sum + code.discount, 0) / 100
+      ? (promoCodes.promoCodeUse.reduce((sum, code) => sum + code.discount, 0) / 100)
       : 1
-    return cost * discount
+    return (cost * discount).toFixed(2)
   }
 
   const handleOrderMenu = (e: React.MouseEvent<HTMLElement>) => {

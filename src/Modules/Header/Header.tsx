@@ -74,8 +74,10 @@ const Header = () => {
               {cartContent.reduce((sum, product) => sum + product.amount * product.price, 0)}&euro;
             </div>
             <div className="header__new-price">
-              {cartContent.reduce((sum, product) => sum + product.amount * product.price, 0) *
-                discount}
+              {(
+                cartContent.reduce((sum, product) => sum + product.amount * product.price, 0) *
+                discount
+              ).toFixed(2)}
               &euro;
             </div>
           </div>
