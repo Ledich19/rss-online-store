@@ -1,0 +1,44 @@
+.promo-codes {
+  &__promo {
+    position: relative;
+    margin-top: 10px;
+    display: flex;
+    width: 100%;
+  }
+  &__promo-write{
+    flex: 1 1 auto;
+    box-sizing: border-box;
+    border: 0.5px solid #d8d9cc;
+    border-radius: 20px;
+    padding: 12px 32px;
+    height: 40px;
+    background: #ffffff;
+  }
+&__promo-add{
+  
+  position: absolute;
+  right: 0;
+  width: 65px;
+    text-align: center;
+    height: 40px;
+    background: #d8d9cc;
+    border-radius: 20px;
+    cursor: pointer;
+    &:hover {
+      background: #bf9180;
+    }
+}
+  &__use {
+    display: flex;
+    gap: 10px;
+  }
+  &__use-item {
+    cursor: pointer;
+    &:hover{
+      color: #bf9180;
+    }
+  }
+
+
+
+}
