@@ -244,6 +244,8 @@ const DataForm = () => {
         dispatch(clearCart())
         navigate('/store')
       }, 5000)
+
+     window.localStorage.removeItem('shoppingCartContents')
     }
   }
   return (

@@ -58,6 +58,12 @@ const initialState: CartState = [
   }
 ]
 
+const addLocalstorege = (sate: CartState) => {
+  window.localStorage.setItem(
+  'shoppingCartContents', JSON.stringify(sate)
+  )
+}
+
 const cartSlice = createSlice({
   name: 'cart',
   initialState,
@@ -65,39 +71,50 @@ const cartSlice = createSlice({
     addProductToCart(state, action: {
       payload: ProductInCart; type: string;
     }): CartState {
-      return state.concat(action.payload)
+      const newState = state.concat(action.payload)
+      addLocalstorege(newState)
+      return newState
     },
 
     removeProductFromCart(state, action: {
       payload: string;
     }): CartState {
-      return state.filter((product) => product.id !== action.payload)
+      const newState = state.filter((product) => product.id !== action.payload)
+      addLocalstorege(newState)
+      return newState
     },
 
     clearCart(): CartState {
+     window.localStorage.removeItem('shoppingCartContents')
       return []
     },
 
     plusAmount(state, action: {
       payload: string;
     }) {
-      return state.map((product) => {
+  
+      const newState = state.map((product) => {
         if (product.id === action.payload && product.amount !== product.amountAll) {
           return { ...product, amount: product.amount + 1, }
         }
         return product
       })
+      addLocalstorege(newState)
+      return newState
     },
 
     minusAmount(state, action: {
       payload: string;
     }) {
-      return state.map((product) => {
+      const newState = state.map((product) => {
         if (product.id === action.payload && product.amount !== 0) {
           return { ...product, amount: product.amount - 1, }
         }
         return product
       }).filter(product => product.amount !== 0)
+
+      addLocalstorege(newState)
+      return newState
     },
   },
 }
