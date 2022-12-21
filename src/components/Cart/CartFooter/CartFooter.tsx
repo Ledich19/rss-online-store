@@ -16,12 +16,15 @@ const CartFooter = () => {
     <div className="cart__footer">
       <div className="cart__cost">
         <span>Shipping cost</span>
-        <span className="cart__price">40.00&euro;</span>
+        <span className="cart__price">10.00&euro;</span>
       </div>
       <div className="cart__total">
         <span>ESTIMATE TOTAL</span>
-        <span className="cart__total-price">61.90&euro;</span>
+        <span className="cart__total-price">
+          {cartContent.reduce((sum, product) => sum + product.amount * product.price, 0)}&euro;
+        </span>
       </div>
+      <input type="text" className="cart__promo" placeholder='PROMO CODE'/>
 
       {!modalState.isOderFinish && !modalState.isForm ? (
         <div className="cart__button" onClick={handleOrderMenu}>

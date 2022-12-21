@@ -70,20 +70,7 @@
     line-height: 16px;
     color: #3c3f40;
   }
-  &__button {
-    margin-top: 40px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 56px;
-    background: #d8d9cc;
-    border-radius: 20px;
-    cursor: pointer;
-    &:hover,
-    &:focus {
-      background: #bf9180;
-    }
-  }
+ 
 }
 
 .close {
