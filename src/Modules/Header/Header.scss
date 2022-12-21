@@ -52,6 +52,7 @@ $widthContainer: 1100px;
     order: 3;
   }
   &__cart{
+    position: relative;
     width: 24px;
     height: 24px;
     background: url(../../images/cart.svg)0 0 no-repeat;
@@ -60,6 +61,23 @@ $widthContainer: 1100px;
       transform: scale(1.1);
     }
   }
+  &__price-all{
+    margin-right: 15px;
+    font-weight: 500;
+  }
+  &__amount{
+    bottom: -10px;
+    left: -10px;
+    font-weight: 700;
+    font-size: 13px;
+    position: absolute;
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    background: #D8D9CC;
+  }
+
+
   &__favorite{
     width: 24px;
     height: 24px;

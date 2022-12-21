@@ -1,9 +1,12 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
+import { useAppSelector } from '../../app/hooks'
 import headerLogo from '../../images/logo.svg'
 import './Header.scss'
 
 const Header = () => {
+  const cartContent = useAppSelector((state) => state.cart)
+
   const [navClass, setNavClass] = useState('header__navigation')
   const [isClicked, setIsClicked] = useState(false)
   const [styleTopSpan, setStyleTopSpan] = useState('header__span')
@@ -61,8 +64,15 @@ const Header = () => {
           <div className={styleBottomSpan}></div>
         </div>
         <div className="header__icons">
+          <div className="header__price-all">
+            {cartContent.reduce((sum, product) => sum + product.amount * product.price, 0)}&euro;
+          </div>
           <Link rel="stylesheet" to="/favorite" className="header__favorite" />
-          <Link rel="stylesheet" to="/cart" className="header__cart" />
+          <Link rel="stylesheet" to="/cart" className="header__cart">
+            <div className="header__amount">
+              {cartContent.reduce((sum, product) => sum + product.amount, 0)}
+            </div>
+          </Link>
         </div>
       </div>
     </div>
