@@ -7,16 +7,52 @@ import OrderFinish from './OrderFinish/OrderFinish'
 import CartFooter from './CartFooter/CartFooter'
 import { useNavigate } from 'react-router-dom'
 import { setIsOpenForm, setOpenOrderFinish } from '../../reducers/modalsReducer'
+import { useState, useEffect } from 'react'
+import { AiOutlineCaretLeft } from "react-icons/ai";
+import { AiOutlineCaretRight } from "react-icons/ai";
 
 const Cart = () => {
+  const [page, setPage] = useState(0)
+  const [limit, setLimit] = useState(0)
   const modalState = useAppSelector((state) => state.modals)
+  const cartContent = useAppSelector((state) => state.cart)
+  const showCartContent =
+    limit === 0 ? cartContent : cartContent.slice(page * limit, page * limit + limit)
+
+  useEffect(() => {
+    const length = limit === 0 ? 1 : Math.ceil(cartContent.length / limit)
+    if ((page + 1) > length) {
+      setPage(length - 1)
+    }
+  },[cartContent.length, limit]);
+
+
   const navigate = useNavigate()
   const dispatch = useAppDispatch()
 
+  // arr.slice([ begin [, end ]]);
   const clickHandle = () => {
     navigate('/store')
     dispatch(setIsOpenForm(false))
-        dispatch(setOpenOrderFinish(false))
+    dispatch(setOpenOrderFinish(false))
+  }
+
+  const handleLimit = (e: React.ChangeEvent<HTMLInputElement>) => {
+    e.preventDefault()
+    const value = parseInt(e.target.value)
+    setLimit(value)
+  }
+  const handlePrev = (e: React.MouseEvent<HTMLElement>) => {
+    e.preventDefault()
+    if (page !== 0) {
+    setPage(page - 1)
+    }
+  }
+  const handleNext = (e: React.MouseEvent<HTMLElement>) => {
+    e.preventDefault()
+    if (page + 1 !== Math.ceil(cartContent.length / limit) && limit !== 0) {
+      setPage(page + 1)
+    }
   }
 
   return (
@@ -27,7 +63,28 @@ const Cart = () => {
             <span className="close__first"></span>
             <span className="close__second"></span>
           </div>
-          <div className="cart__title">Your shopping cart</div>
+          <div className="cart__title">Your cart</div>
+
+          <input
+            value={limit}
+            onChange={handleLimit}
+            type="number"
+            min={0}
+            max={99}
+            className="cart__limit"
+          />
+          <div className="page">
+            <div className="page__prev" onClick={handlePrev}>
+              <AiOutlineCaretLeft/>
+            </div>
+            <div className="page__value">
+              {page + 1} from {limit === 0 ? 1 : Math.ceil(cartContent.length / limit)}
+            </div>
+            <div className="page__next" onClick={handleNext}>
+              <AiOutlineCaretRight/>
+            </div>
+          </div>
+
           <div className="cart__icon">
             <AiOutlineInbox size="25px" />
           </div>
@@ -37,7 +94,7 @@ const Cart = () => {
         ) : modalState.isForm ? (
           <DataForm />
         ) : (
-          <OrderForm />
+          <OrderForm showCartContent={showCartContent} />
         )}
 
         <CartFooter />

@@ -70,7 +70,22 @@
     line-height: 16px;
     color: #3c3f40;
   }
- 
+  &__limit {
+    width: 100px;
+    box-sizing: border-box;
+    border: 0.5px solid #d8d9cc;
+    border-radius: 20px;
+    padding: 12px 32px;
+    height: 40px;
+    background: #ffffff;
+    outline: 0;
+    outline-offset: 0;
+    &:active,
+    &:hover,
+    &:focus {
+      border: 0.5px solid #bf9180;
+    }
+  }
 }
 
 .close {
@@ -91,8 +106,35 @@
   &__second {
     transform: rotate(-45deg);
   }
-  &:hover{
+  &:hover {
     transform: scale(1.1);
+  }
+}
+
+.page {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 0.5px solid #d8d9cc;
+  border-radius: 20px;
+  &__prev {
+    display: flex;
+    align-items: center;
+    padding: 0 15px;
+    cursor: pointer;
+    height: 100%;
+    border-right: 0.5px solid #d8d9cc;
+  }
+  &__value {
+    padding: 0 10px;
+  }
+  &__next {
+    border-left: 0.5px solid #d8d9cc;
+    display: flex;
+    align-items: center;
+    padding: 0 15px;
+    cursor: pointer;
+    height: 100%;
   }
 }
 

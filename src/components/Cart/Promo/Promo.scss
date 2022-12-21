@@ -13,6 +13,13 @@
     padding: 12px 32px;
     height: 40px;
     background: #ffffff;
+    outline: 0;
+    outline-offset: 0;
+    &:active,
+    &:hover,
+    &:focus {
+      border: 0.5px solid #bf9180;
+    }
   }
 &__promo-add{
   

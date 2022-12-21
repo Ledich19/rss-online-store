@@ -11,7 +11,6 @@ const Header = () => {
   const discount = isPromoCodes
     ? promoCodes.promoCodeUse.reduce((sum, code) => sum + code.discount, 0) / 100
     : 1
-
   const [navClass, setNavClass] = useState('header__navigation')
   const [isClicked, setIsClicked] = useState(false)
   const [styleTopSpan, setStyleTopSpan] = useState('header__span')
