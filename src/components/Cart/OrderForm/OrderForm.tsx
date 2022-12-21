@@ -13,12 +13,15 @@ const OrderForm = () => {
           <ItemCart
             key={product.id}
             id={product.id}
-            name={product.title}
+            title={product.title}
+            brand={product.brand}
+category={product.category}
             color={product.color}
             size={product.size}
             photo={product.thumbnail}
             amount={product.amount}
             price={product.price}
+            amountAll={product.amountAll}
           />
         )
       })}

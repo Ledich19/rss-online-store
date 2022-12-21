@@ -33,6 +33,7 @@ export interface ProductInDb extends Product {
 }
 export interface ProductInCart extends Product{
   amount: number,
+  amountAll: number,
   "size": "XS" | "S" | "M" | "L" | "Xl" | "XXl" | "3XL"
 }
 
@@ -42,10 +43,13 @@ export type CartState = ProductInCart[]
 
 export type ItemCartProps = {
   id: string
-  name: string
+  title: string
+  brand: string
+  category: string
   color: string
   size: string
   amount: number
+  amountAll: number
   price: number
   photo: string
 }
