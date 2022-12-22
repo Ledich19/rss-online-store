@@ -295,7 +295,7 @@ const DataForm = () => {
           placeholder="Postcode"
         />
           </label>
-          <label className="order__label" htmlFor="">
+          <label className="order__label order__label_wide" htmlFor="">
           
         {addressError && <div className="order__valid-error">{addressError}</div>}
         <input
