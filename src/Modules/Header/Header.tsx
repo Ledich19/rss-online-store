@@ -1,9 +1,16 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
+import { useAppSelector } from '../../app/hooks'
 import headerLogo from '../../images/logo.svg'
 import './Header.scss'
 
 const Header = () => {
+  const cartContent = useAppSelector((state) => state.cart)
+  const promoCodes = useAppSelector((state) => state.promoCodes)
+  const isPromoCodes = promoCodes.promoCodeUse.length > 0 ? true : false
+  const discount = isPromoCodes
+    ? promoCodes.promoCodeUse.reduce((sum, code) => sum + code.discount, 0) / 100
+    : 1
   const [navClass, setNavClass] = useState('header__navigation')
   const [isClicked, setIsClicked] = useState(false)
   const [styleTopSpan, setStyleTopSpan] = useState('header__span')
@@ -30,6 +37,7 @@ const Header = () => {
       setFixedBurger('header__burger')
     }
   }
+
   return (
     <div className="header">
       <div className="header__container">
@@ -61,8 +69,25 @@ const Header = () => {
           <div className={styleBottomSpan}></div>
         </div>
         <div className="header__icons">
+          <div className="header__price-all">
+            <div style={{ textDecoration: isPromoCodes ? 'line-through' : 'none' }}>
+              {cartContent.reduce((sum, product) => sum + product.amount * product.price, 0)}&euro;
+            </div>
+            <div className="header__new-price">
+              {(
+                cartContent.reduce((sum, product) => sum + product.amount * product.price, 0) *
+                discount
+              ).toFixed(2)}
+              &euro;
+            </div>
+          </div>
           <Link rel="stylesheet" to="/favorite" className="header__favorite" />
-          <Link rel="stylesheet" to="/cart" className="header__cart" />
+          <Link rel="stylesheet" to="/cart" className="header__cart">
+            <div className="header__amount">
+              <div></div>
+              {cartContent.reduce((sum, product) => sum + product.amount, 0)}
+            </div>
+          </Link>
         </div>
       </div>
     </div>
