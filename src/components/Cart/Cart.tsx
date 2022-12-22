@@ -16,15 +16,13 @@ const Cart = () => {
   const [limit, setLimit] = useState(0)
   const navigate = useNavigate()
   const dispatch = useAppDispatch()
-
   const modalState = useAppSelector((state) => state.modals)
   const cartContent = useAppSelector((state) => state.cart)
   const showCartContent =
     limit === 0 ? cartContent : cartContent.slice(page * limit, page * limit + limit)
+
   useEffect(() => {
     const paginationCartJSON = window.localStorage.getItem('paginationCart')
-    console.log(paginationCartJSON);
-    
     if (paginationCartJSON) {
       const paginationCart = JSON.parse(paginationCartJSON)
       setPage(paginationCart.page)
@@ -52,7 +50,6 @@ const Cart = () => {
     const value = parseInt(e.target.value)
     setLimit(value)
     window.localStorage.setItem('paginationCart', JSON.stringify({ page: page, limit: limit }))
-
   }
   const handlePrev = (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault()
@@ -105,7 +102,6 @@ const Cart = () => {
               </div>
             </>
           )}
-
           <div className="cart__icon">
             <AiOutlineInbox size="25px" />
           </div>
@@ -117,7 +113,6 @@ const Cart = () => {
         ) : (
           <OrderForm showCartContent={showCartContent} />
         )}
-
         <CartFooter />
       </div>
     </div>

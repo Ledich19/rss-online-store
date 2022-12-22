@@ -46,12 +46,14 @@ const CartFooter = () => {
         <></>
       )}
 
-<Promo />
 
       {!modalState.isOderFinish && !modalState.isForm ? (
+<>
+<Promo />
         <div className="cart__button" onClick={handleOrderMenu}>
           GO TO THE SHOPPING MARKET
         </div>
+</>
       ) : (
         <></>
       )}

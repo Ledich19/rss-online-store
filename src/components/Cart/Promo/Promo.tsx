@@ -26,13 +26,35 @@ const Promo = () => {
   return (
     <div className="promo-codes">
       <label className="promo-codes__promo" htmlFor="">
-      <input value={promoCode} onChange={writePromoHandler} type="text" className="promo-codes__promo-write" placeholder="PROMO CODE" />
-      <input onClick={addPromoHandler} type="button" className="promo-codes__promo-add" value="ADD" />
+        <input
+          value={promoCode}
+          onChange={writePromoHandler}
+          type="text"
+          className="promo-codes__promo-write"
+          placeholder="PROMO CODE"
+        />
+        <input
+          onClick={addPromoHandler}
+          type="button"
+          className="promo-codes__promo-add"
+          value="ADD"
+        />
       </label>
 
       <div className="promo-codes__use">
         {promoCodeUse.map((code) => {
-          return <span onClick={() => {deletePromoHandler(code.code)}} className="promo-codes__use-item" key={code.code}> {code.code}</span>
+          return (
+            <span
+              onClick={() => {
+                deletePromoHandler(code.code)
+              }}
+              className="promo-codes__use-item"
+              key={code.code}
+            >
+              {' '}
+              {code.code}
+            </span>
+          )
         })}
       </div>
     </div>

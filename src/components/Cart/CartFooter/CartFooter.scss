@@ -6,6 +6,10 @@
 }
 
 .cart {
+  &__footer {
+    border-top: 1px solid rgba(0, 0, 0, 0.2);
+  }
+
   &__button {
     margin-top: 15px;
     display: flex;
@@ -20,5 +24,4 @@
       background: #bf9180;
     }
   }
-  
 }

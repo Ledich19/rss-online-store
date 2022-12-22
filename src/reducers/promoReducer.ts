@@ -22,7 +22,7 @@ const initialState: PromoCodeState = {
       discount: 50
     },
     {
-      code: 'EMP',
+      code: 'EPM',
       discount: 5
     },
   ]

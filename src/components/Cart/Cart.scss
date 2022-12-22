@@ -89,6 +89,7 @@
 }
 
 .close {
+  width: 20px;
   cursor: pointer;
   position: relative;
   &__first,
@@ -135,6 +136,43 @@
     padding: 0 15px;
     cursor: pointer;
     height: 100%;
+  }
+}
+
+@media (max-width: 600px) {
+  .cart {
+    &__main {
+      padding: 5px;
+    }
+    &__header {
+      padding-bottom: 5px;
+    }
+    &__body {
+    }
+
+    &__title {
+      display: none;
+    }
+    &__icon {
+      display: none;
+    }
+
+    &__cost {
+    }
+
+    &__total {
+    }
+    &__limit {
+    }
+  }
+
+  .page {
+    &__prev {
+    }
+    &__value {
+    }
+    &__next {
+    }
   }
 }
 
