@@ -20,6 +20,9 @@ const Cart = () => {
   const cartContent = useAppSelector((state) => state.cart)
   const showCartContent =
     limit === 0 ? cartContent : cartContent.slice(page * limit, page * limit + limit)
+  const promoCodes = useAppSelector((state) => state.promoCodes)
+
+  const isPromoCodes = promoCodes.promoCodeUse.length > 0 ? true : false
 
   useEffect(() => {
     const paginationCartJSON = window.localStorage.getItem('paginationCart')
@@ -36,7 +39,6 @@ const Cart = () => {
       setPage(length - 1)
     }
     navigate(`/cart?page=${page + 1}&limit=${limit}`)
-
   }, [cartContent.length, limit, page])
 
   const clickHandle = () => {
@@ -44,7 +46,13 @@ const Cart = () => {
     dispatch(setIsOpenForm(false))
     dispatch(setOpenOrderFinish(false))
   }
-
+  const costCount = (): string => {
+    const cost = cartContent.reduce((sum, product) => sum + product.amount * product.price, 0)
+    const discount = isPromoCodes
+      ? promoCodes.promoCodeUse.reduce((sum, code) => sum + code.discount, 0) / 100
+      : 1
+    return (cost * discount).toFixed(2)
+  }
   const handleLimit = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault()
     const value = parseInt(e.target.value)
@@ -102,8 +110,24 @@ const Cart = () => {
               </div>
             </>
           )}
-          <div className="cart__icon">
-            <AiOutlineInbox size="25px" />
+
+          <div className="cart__prices">
+            <div className="cart__cost">
+              <span
+                className="cart__price"
+                style={{ textDecoration: isPromoCodes ? 'line-through' : 'none' }}
+              >
+                {cartContent.reduce((sum, product) => sum + product.amount * product.price, 0)}
+                &euro;
+              </span>
+            </div>
+            {isPromoCodes ? (
+              <div className="cart__total">
+                <span className="cart__total-price">{costCount()}&euro;</span>
+              </div>
+            ) : (
+              <></>
+            )}
           </div>
         </div>
         {modalState.isOderFinish ? (
