@@ -21,6 +21,7 @@ const Main = () => {
         <Route path="/product/:id" element={<ProductDetails />} />
         <Route path="/favorite" element={<Favorite />} />
         <Route path="/modal" element={<Modal />} />
+        <Route path="/404" element={<Error404 />} />
       </Routes>
     </div>
   );
