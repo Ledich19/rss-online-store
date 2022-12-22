@@ -73,13 +73,17 @@ const Header = () => {
             <div style={{ textDecoration: isPromoCodes ? 'line-through' : 'none' }}>
               {cartContent.reduce((sum, product) => sum + product.amount * product.price, 0)}&euro;
             </div>
-            <div className="header__new-price">
-              {(
-                cartContent.reduce((sum, product) => sum + product.amount * product.price, 0) *
-                discount
-              ).toFixed(2)}
-              &euro;
-            </div>
+            {isPromoCodes ? (
+              <div className="header__new-price">
+                {(
+                  cartContent.reduce((sum, product) => sum + product.amount * product.price, 0) *
+                  discount
+                ).toFixed(2)}
+                &euro;
+              </div>
+            ) : (
+              <></>
+            )}
           </div>
           <Link rel="stylesheet" to="/favorite" className="header__favorite" />
           <Link rel="stylesheet" to="/cart" className="header__cart">
