@@ -30,17 +30,17 @@ export const Card = (props:arrayProps) => {
   }
 
   return (
-    <div className="shop__card card">
-      <div className="card__picture">
-        <img src={initialState[`${props.index}`].images[0]} alt="image card" className="card__img" />
+    <div className="shop__card card-item">
+      <div className="card-item__picture">
+        <img src={initialState[`${props.index}`].images[0]} alt="image card" className="card-item__img" />
       </div>
-      <h4 className="card__title">{initialState[`${props.index}`].title}</h4>
-      <p className="card__desc">{initialState[`${props.index}`].description}</p>
-      <div className="card__footer">
-        <span className="card__price">{initialState[`${props.index}`].price}&euro;</span>
-        <div className="card__icons">
-          <img src={toFavorite} alt="" className="card__icon" />
-          <img src={UrlIcon} alt="" className="card__icon" onClick={changeUrl} />
+      <h4 className="card-item__title">{initialState[`${props.index}`].title}</h4>
+      <p className="card-item__desc">{initialState[`${props.index}`].description}</p>
+      <div className="card-item__footer">
+        <span className="card-item__price">{initialState[`${props.index}`].price}&euro;</span>
+        <div className="card-item__icons">
+          <img src={toFavorite} alt="" className="card-item__icon" />
+          <img src={UrlIcon} alt="" className="card-item__icon" onClick={changeUrl} />
         </div>
       </div>
     </div>
