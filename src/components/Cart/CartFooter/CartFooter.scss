@@ -1,0 +1,27 @@
+.order-finis {
+  &__bold {
+  }
+  &__bold {
+  }
+}
+
+.cart {
+  &__footer {
+    border-top: 1px solid rgba(0, 0, 0, 0.2);
+  }
+
+  &__button {
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 56px;
+    background: #d8d9cc;
+    border-radius: 20px;
+    cursor: pointer;
+    &:hover,
+    &:focus {
+      background: #bf9180;
+    }
+  }
+}
