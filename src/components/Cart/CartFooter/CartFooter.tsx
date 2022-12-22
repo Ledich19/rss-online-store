@@ -26,7 +26,7 @@ const CartFooter = () => {
         <>
           <Promo />
           <div className="cart__button" onClick={handleOrderMenu}>
-            GO TO THE SHOPPING MARKET
+            MAKE A PURCHASE
           </div>
         </>
       ) : (
@@ -37,7 +37,7 @@ const CartFooter = () => {
         <>
           <Promo />
           <div className="cart__button" onClick={handleBeak}>
-            beack
+            BACK TO CART
           </div>
         </>
       ) : (
