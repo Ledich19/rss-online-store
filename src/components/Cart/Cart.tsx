@@ -1,5 +1,4 @@
 import './Cart.scss'
-import { AiOutlineInbox } from 'react-icons/ai'
 import OrderForm from './OrderForm/OrderForm'
 import DataForm from './DataForm/DataForm'
 import { useAppDispatch, useAppSelector } from '../../app/hooks'
@@ -21,9 +20,6 @@ const Cart = () => {
   const cartContent = useAppSelector((state) => state.cart)
   const showCartContent =
     limit === 0 ? cartContent : cartContent.slice(page * limit, page * limit + limit)
-  const promoCodes = useAppSelector((state) => state.promoCodes)
-
-  const isPromoCodes = promoCodes.promoCodeUse.length > 0 ? true : false
 
   useEffect(() => {
     const paginationCartJSON = window.localStorage.getItem('paginationCart')
@@ -47,18 +43,12 @@ const Cart = () => {
     dispatch(setIsOpenForm(false))
     dispatch(setOpenOrderFinish(false))
   }
-  const costCount = (): string => {
-    const cost = cartContent.reduce((sum, product) => sum + product.amount * product.price, 0)
-    const discount = isPromoCodes
-      ? promoCodes.promoCodeUse.reduce((sum, code) => sum + code.discount, 0) / 100
-      : 1
-    return (cost * discount).toFixed(2)
-  }
+  
   const handleLimit = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault()
     const value = parseInt(e.target.value)
     setLimit(value)
-    window.localStorage.setItem('paginationCart', JSON.stringify({ page: page, limit: limit }))
+    window.localStorage.setItem('paginationCart', JSON.stringify({ page: page, limit: value }))
   }
   const handlePrev = (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault()
