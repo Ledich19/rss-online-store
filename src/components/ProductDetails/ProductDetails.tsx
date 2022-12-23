@@ -36,11 +36,13 @@ const ProductDetails = () => {
         </div>
         <div className="product__body item">
           <div className="item__pictures">
-            <img src={urlToImage} alt="head picture" className="item__img item__img_head" />
+            <div className="item__big">
+              <img src={urlToImage} alt="head picture" className="item__head" />
+            </div>
             <div className="item__small-images">
-              <img src={initialState[0].images[1]} onClick={changeHeadImage} alt="first img" className="item__img" />
-              <img src={initialState[0].images[2]} alt="second img" className="item__img" onClick={changeHeadImage}/>
-              <img src={initialState[0].images[3]} alt="third img" className="item__img" onClick={changeHeadImage}/>
+              <img src={initialState[0].images[0]} onClick={changeHeadImage} alt="first img" className="item__img" />
+              <img src={initialState[0].images[1]} alt="second img" className="item__img" onClick={changeHeadImage}/>
+              <img src={initialState[0].images[2]} alt="third img" className="item__img" onClick={changeHeadImage}/>
             </div>
           </div>
           <div className="item__info">
