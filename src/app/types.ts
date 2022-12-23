@@ -1,13 +1,26 @@
+export interface Checkbox {
+  option: string
+  isCheck: boolean
+}
+export interface Range {
+  min: number
+  max: number
+}
+
 export type FiltersState = {
-  "sex": string,
-  "size": string,
-  "stock": string,
-  "brand": string,
-  "color": string,
-  "price": number,
-  "rating": string,
-  "category": string,
-  "search": string,
+  multiply: {
+    "sex": Checkbox[],
+    "size": Checkbox[],
+    "brand": Checkbox[],
+    "color": Checkbox[],
+    "category": Checkbox[],
+  },
+  ranges: {
+    "rating": Range[],
+    "stock": Range[],
+    "price": Range[],
+  }
+  "search": string
 }
 
 export type Product = {
@@ -64,3 +77,7 @@ export type PromoCodeState = {
     discount: number;
   }[],
 }
+
+export type FilterItemState = { filters: string[], title: string }
+
+

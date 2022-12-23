@@ -7,11 +7,11 @@ const Amount = ({ productId , amount}: {productId: string, amount: number}) => {
   const dispatch = useAppDispatch()
   const handleMinusAmount = (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault()
-    dispatch(minusAmount(productId ))
+    dispatch(minusAmount(productId))
   }
   const handlePlusAmount = (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault()
-    dispatch(plusAmount(productId ))
+    dispatch(plusAmount(productId))
   }
   
   return (

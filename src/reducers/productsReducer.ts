@@ -603,7 +603,7 @@ export const initialState: ProductsState = [
       "https://m.media-amazon.com/images/I/91X0xIFhP-L._AC_UX342_.jpg"
     ],
     "rating": "4.01",
-    "category": "pullover ",
+    "category": "pullover",
     "createdAt": "2011-12-22T15:03:14.677Z",
     "thumbnail": "https://m.media-amazon.com/images/I/81ctEHlJrDL._AC_UX342_.jpg",
     "description": "Labore do irure non commodo adipisicing commodo eiusmod ullamco consectetur aute adipisicing id dolore. Mollit sint amet veniam elit Lorem eiusmod ipsum aliqua nulla occaecat reprehenderit exercitation.",
@@ -705,7 +705,7 @@ export const initialState: ProductsState = [
       "https://m.media-amazon.com/images/I/71wuarf9GiL._AC_SY445._SX._UX._SY._UY_.jpg"
     ],
     "rating": "1.13",
-    "category": "dress ",
+    "category": "dress",
     "createdAt": "2010-10-13T03:27:54.120Z",
     "thumbnail": "https://m.media-amazon.com/images/I/819rtQ9K6mL._AC_UY445_.jpg",
     "description": "Nisi ex culpa voluptate labore sit do ex elit sunt. Ut dolore pariatur enim reprehenderit.",
