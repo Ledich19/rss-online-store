@@ -5,15 +5,21 @@
   text-align: left;
   display: flex;
   flex-direction: column;
+
   &__picture{
     margin-bottom: 24px;
     max-width: 100%;
     height: 262px;
+    
   }
   &__img{
     width: 100%;
     height: 100%;
     object-fit: contain;
+    transition: all 0.3s ease;
+    &:hover{
+      transform: scale(1.1);
+    }
   }
   &__title{
     font-weight: 500;

@@ -9,9 +9,11 @@ console.log(Link);
 
 const ProductDetails = () => {
   const id = useParams().id;
+  
+  
   const [btnState, setBtnState] = useState('Add to cart');
   const [isClicked, setIsClicked] = useState(false);
-  const [urlToImage, setUrlToImage] = useState(initialState[0].images[0])
+  const [urlToImage, setUrlToImage] = useState(initialState[Number(id)].images[0])
   const addToCart = () =>{
     if(!isClicked){
       setBtnState('Remove from cart');
@@ -29,10 +31,10 @@ const ProductDetails = () => {
     <div className="product">
       <div className="product__container">
         <div className="product__way">
-          <span className="product__span">Home / </span>
-          <span className="product__span">{initialState[0].category} / </span>
-          <span className="product__span">{initialState[0].brand} / </span>
-          <span className="product__span">{initialState[0].title} </span>
+          <span className="product__span">Store / </span>
+          <span className="product__span">{initialState[Number(id)].category} / </span>
+          <span className="product__span">{initialState[Number(id)].brand} / </span>
+          <span className="product__span">{initialState[Number(id)].title} </span>
         </div>
         <div className="product__body item">
           <div className="item__pictures">
@@ -40,25 +42,25 @@ const ProductDetails = () => {
               <img src={urlToImage} alt="head picture" className="item__head" />
             </div>
             <div className="item__small-images">
-              <img src={initialState[0].images[0]} onClick={changeHeadImage} alt="first img" className="item__img" />
-              <img src={initialState[0].images[1]} alt="second img" className="item__img" onClick={changeHeadImage}/>
-              <img src={initialState[0].images[2]} alt="third img" className="item__img" onClick={changeHeadImage}/>
+              <img src={initialState[Number(id)].images[0]} onClick={changeHeadImage} alt="first img" className="item__img" />
+              <img src={initialState[Number(id)].images[1]} alt="second img" className="item__img" onClick={changeHeadImage}/>
+              <img src={initialState[Number(id)].images[2]} alt="third img" className="item__img" onClick={changeHeadImage}/>
             </div>
           </div>
           <div className="item__info">
-            <h3 className="item__title">{initialState[0].title}</h3>
-            <p className="item__price">{initialState[0].price}$</p>
+            <h3 className="item__title">{initialState[Number(id)].title}</h3>
+            <p className="item__price">{initialState[Number(id)].price}$</p>
             <div className="item__prop">
               <h5 className="item__label">Description:</h5>
-              <p className="item__text">{initialState[0].description}</p>
+              <p className="item__text">{initialState[Number(id)].description}</p>
             </div>
             <div className="item__prop">
               <h5 className="item__label">Category:</h5>
-              <p className="item__text">{initialState[0].category}</p>
+              <p className="item__text">{initialState[Number(id)].category}</p>
             </div>
             <div className="item__prop">
               <h5 className="item__label">Brand:</h5>
-              <p className="item__text">{initialState[0].brand}</p>
+              <p className="item__text">{initialState[Number(id)].brand}</p>
             </div>
             <div className="item__prop">
               <h5 className="item__label">Size:</h5>
