@@ -1,0 +1,26 @@
+.cart-price {
+  &__cost {
+    display: flex;
+    justify-content: space-between;
+    font-weight: 300;
+    line-height: 140%;
+    color: #72736e;
+  }
+
+  &__total {
+    display: flex;
+    justify-content: space-between;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 16px;
+    color: #3c3f40;
+  }
+
+  &__price-all{
+    margin-right: 15px;
+    font-weight: 500;
+  }
+  &__new-price{
+    position: absolute;
+  }
+}

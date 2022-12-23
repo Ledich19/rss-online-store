@@ -10,6 +10,7 @@ import { setIsOpenForm, setOpenOrderFinish } from '../../reducers/modalsReducer'
 import { useState, useEffect } from 'react'
 import { AiOutlineCaretLeft } from 'react-icons/ai'
 import { AiOutlineCaretRight } from 'react-icons/ai'
+import PriceProductsInCart from './PriceProductsInCart/PriceProductsInCart'
 
 const Cart = () => {
   const [page, setPage] = useState(0)
@@ -111,24 +112,7 @@ const Cart = () => {
             </>
           )}
 
-          <div className="cart__prices">
-            <div className="cart__cost">
-              <span
-                className="cart__price"
-                style={{ textDecoration: isPromoCodes ? 'line-through' : 'none' }}
-              >
-                {cartContent.reduce((sum, product) => sum + product.amount * product.price, 0)}
-                &euro;
-              </span>
-            </div>
-            {isPromoCodes ? (
-              <div className="cart__total">
-                <span className="cart__total-price">{costCount()}&euro;</span>
-              </div>
-            ) : (
-              <></>
-            )}
-          </div>
+          <PriceProductsInCart />
         </div>
         {modalState.isOderFinish ? (
           <OrderFinish />

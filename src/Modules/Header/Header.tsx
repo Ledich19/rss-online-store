@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useAppSelector } from '../../app/hooks'
+import PriceProductsInCart from '../../components/Cart/PriceProductsInCart/PriceProductsInCart'
 import headerLogo from '../../images/logo.svg'
 import './Header.scss'
 
@@ -69,22 +70,7 @@ const Header = () => {
           <div className={styleBottomSpan}></div>
         </div>
         <div className="header__icons">
-          <div className="header__price-all">
-            <div style={{ textDecoration: isPromoCodes ? 'line-through' : 'none' }}>
-              {cartContent.reduce((sum, product) => sum + product.amount * product.price, 0)}&euro;
-            </div>
-            {isPromoCodes ? (
-              <div className="header__new-price">
-                {(
-                  cartContent.reduce((sum, product) => sum + product.amount * product.price, 0) *
-                  discount
-                ).toFixed(2)}
-                &euro;
-              </div>
-            ) : (
-              <></>
-            )}
-          </div>
+          <PriceProductsInCart/>
           <Link rel="stylesheet" to="/favorite" className="header__favorite" />
           <Link rel="stylesheet" to="/cart" className="header__cart">
             <div className="header__amount">

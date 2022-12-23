@@ -56,22 +56,6 @@
   &__icon {
   }
 
-  &__cost {
-    display: flex;
-    justify-content: space-between;
-    font-weight: 300;
-    line-height: 140%;
-    color: #72736e;
-  }
-
-  &__total {
-    display: flex;
-    justify-content: space-between;
-    font-weight: 700;
-    font-size: 14px;
-    line-height: 16px;
-    color: #3c3f40;
-  }
   &__limit {
     width: 100px;
     box-sizing: border-box;
