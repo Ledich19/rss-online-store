@@ -16,9 +16,9 @@ export type FiltersState = {
     "category": Checkbox[],
   },
   ranges: {
-    "rating": Range[],
-    "stock": Range[],
-    "price": Range[],
+    "rating": Range,
+    "stock": Range,
+    "price": Range,
   }
   "search": string
 }

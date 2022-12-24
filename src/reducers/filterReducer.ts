@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { Checkbox, FiltersState } from '../app/types'
+import { Checkbox, FiltersState, Range } from '../app/types'
 
 const initialState: FiltersState = {
   multiply: {
@@ -10,9 +10,9 @@ const initialState: FiltersState = {
     "category": [],
   },
   ranges: {
-    "rating": [],
-    "stock": [],
-    "price": [],
+    "rating": {min: 0, max: 100},
+    "stock": {min: 0, max: 100},
+    "price": {min: 0, max: 100},
   },
   "search": ''
 }
@@ -29,18 +29,28 @@ const filterSlice = createSlice({
 
     setFilterMultiply(state, action: {
       payload: {
-  
           key: string,
           params: Checkbox[]
-       
       }; type: string;
     }): FiltersState {
       const key = action.payload.key as keyof typeof state
       const newMultiply = {...state.multiply, [key]: action.payload.params}
       console.log(state.multiply);
-      
         return {
           ...state, multiply: newMultiply
+        }
+    },
+
+    setFilterRange(state, action: {
+      payload: {
+          key: string,
+          params: Range
+      }; type: string;
+    }): FiltersState {
+      const key = action.payload.key as keyof typeof state
+      const newRanges = {...state.ranges, [key]: action.payload.params}
+        return {
+          ...state, ranges: newRanges
         }
     },
 
@@ -88,7 +98,7 @@ const filterSlice = createSlice({
 }
 )
 
-export const { setSearch, setFilterMultiply, removeFilter, clearFilter } = filterSlice.actions
+export const { setSearch, setFilterMultiply, removeFilter, clearFilter, setFilterRange } = filterSlice.actions
 export default filterSlice.reducer
 
 
