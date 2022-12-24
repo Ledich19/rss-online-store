@@ -4,8 +4,6 @@ import { useParams } from "react-router-dom";
 import { initialState } from "../../reducers/productsReducer";
 import { JSXElement } from "@babel/types";
 import { Link } from 'react-router-dom'
-console.log(Link);
-
 
 const ProductDetails = () => {
   const id = useParams().id;

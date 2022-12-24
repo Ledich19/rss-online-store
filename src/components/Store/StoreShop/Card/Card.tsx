@@ -20,12 +20,9 @@ export const Card = (props:arrayProps) => {
     if(!inCart){
       setUrlIcon(onCart);
       setInCart(true)
-      console.log(inCart);
-      
     } else {
       setUrlIcon(toCart);
       setInCart(false);
-      console.log(inCart);
     }
   }
 

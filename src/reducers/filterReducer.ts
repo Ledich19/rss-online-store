@@ -4,15 +4,17 @@ import { Checkbox, FiltersState, Range } from '../app/types'
 const initialState: FiltersState = {
   multiply: {
     "sex": [],
-    "size": [],
-    "brand": [],
-    "color": [],
     "category": [],
+    "brand": [],
+    //TODO Поки робимо тільки верхні
+    "size": [],
+    "color": [],
   },
   ranges: {
-    "rating": {min: 0, max: 100},
+    "price": {min: 0, max: 0},
+    "rating": {min: 0, max: 0},
+    //TODO Поки робимо тільки верхні
     "stock": {min: 0, max: 100},
-    "price": {min: 0, max: 100},
   },
   "search": ''
 }
@@ -35,7 +37,6 @@ const filterSlice = createSlice({
     }): FiltersState {
       const key = action.payload.key as keyof typeof state
       const newMultiply = {...state.multiply, [key]: action.payload.params}
-      console.log(state.multiply);
         return {
           ...state, multiply: newMultiply
         }
@@ -64,7 +65,6 @@ const filterSlice = createSlice({
       const fild = state[key]
 
       if (Array.isArray(fild)) {
-        console.log(state[key]);
         return {
           ...state, [key]: fild.filter((f) => f !== action.payload.value)
         }

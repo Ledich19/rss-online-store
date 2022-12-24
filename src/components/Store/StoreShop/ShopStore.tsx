@@ -6,8 +6,7 @@ import { initialState } from "../../../reducers/productsReducer";
 
 const StoreShop = () => {
   const products = initialState;
-  console.log(products);
-  
+
   return (
 
   <div className="store__shop shop">

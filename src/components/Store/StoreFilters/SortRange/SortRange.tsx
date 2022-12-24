@@ -18,8 +18,6 @@ const SortRange = ({ min, max, title }: { min: number; max: number; title: strin
   const minVal = filtersState.min
   const maxVal = filtersState.max
 
-  const onChange = ({ min, max }: { min: number; max: number }) =>
-    console.log(`min = ${min}, max = ${max}`)
   const getPercent = useCallback(
     (value: number) => Math.round(((value - min) / (max - min)) * 100),
     [min, max]
