@@ -2,24 +2,19 @@ export interface Checkbox {
   option: string
   isCheck: boolean
 }
+export type RangeValue = { min: number, max: number }
 export interface Range {
-  min: number
-  max: number
+  name: string,
+  value: RangeValue
+}
+export interface Multiply {
+  name: string,
+  value: Checkbox[]
 }
 
 export type FiltersState = {
-  multiply: {
-    "sex": Checkbox[],
-    "size": Checkbox[],
-    "brand": Checkbox[],
-    "color": Checkbox[],
-    "category": Checkbox[],
-  },
-  ranges: {
-    "rating": Range,
-    "stock": Range,
-    "price": Range,
-  }
+  multiply: Multiply[],
+  ranges: Range[]
   "search": string
 }
 

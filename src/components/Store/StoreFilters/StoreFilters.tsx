@@ -24,12 +24,12 @@ const StoreFilters = () => {
 
   return (
     <div className="store__filters filters">
-      <SortItem filters={['man', 'wuman', 'kids']} title="sex" />
+      <SortItem filters={['man', 'woman', 'kids']} title="sex" />
       <SortItem filters={categorys} title="category" />
       <SortItem filters={brands} title="brand" />
       <SortItem filters={sizes} title="size" />
-      <SortRange min={1} max={5000} title="price" />
-      <SortRange min={1} max={5000} title="rating" />
+      <SortRange min={1} max={5000} step={1} title="price" />
+      <SortRange min={1} max={5} step={0.1} title="rating" />
     </div>
   )
 }

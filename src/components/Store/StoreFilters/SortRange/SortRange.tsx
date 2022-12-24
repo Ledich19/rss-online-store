@@ -7,16 +7,20 @@ import { setFilterMultiply, setFilterRange } from '../../../../reducers/filterRe
 import Slider from '@mui/material/Slider'
 import PropTypes from 'prop-types'
 
-const SortRange = ({ min, max, title }: { min: number; max: number; title: string }) => {
+const SortRange = ({ min, max, title , step}: { min: number; max: number; title: string, step: number }) => {
   const minValRef = useRef(min)
   const maxValRef = useRef(max)
   const range = useRef<HTMLInputElement>(null)
   const dispatch = useAppDispatch()
+  // const filtersState = useAppSelector(
+  //   (state) => state.filters.ranges[title as keyof typeof state.filters.ranges]
+  // )
   const filtersState = useAppSelector(
-    (state) => state.filters.ranges[title as keyof typeof state.filters.ranges]
+    (state) => state.filters.ranges.find((f) => f.name === title)
   )
-  const minVal = filtersState.min
-  const maxVal = filtersState.max
+ 
+  const minVal = filtersState ? filtersState.value.min : 0
+  const maxVal = filtersState ? filtersState.value.max : 0
 
   const getPercent = useCallback(
     (value: number) => Math.round(((value - min) / (max - min)) * 100),
@@ -53,10 +57,6 @@ const SortRange = ({ min, max, title }: { min: number; max: number; title: strin
   }, [maxVal, getPercent])
 
   useEffect(() => {
-    onChange({ min: minVal, max: maxVal })
-  }, [minVal, maxVal, onChange])
-
-  useEffect(() => {
     setRangeParams(min, max, title)
   }, [])
 
@@ -68,7 +68,7 @@ const SortRange = ({ min, max, title }: { min: number; max: number; title: strin
     } else if (number < maxVal) {
       setRangeParams(number, maxVal, title)
     } else {
-      setRangeParams(maxVal - 1, maxVal, title)
+      setRangeParams(maxVal - step, maxVal, title)
     }
   }
   const handleRightValue = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -79,7 +79,7 @@ const SortRange = ({ min, max, title }: { min: number; max: number; title: strin
     } else if (minVal < number) {
       setRangeParams(minVal, number, title)
     } else {
-      setRangeParams(minVal, minVal + 1, title)
+      setRangeParams(minVal, minVal + step, title)
     }
   }
 
@@ -106,8 +106,9 @@ const SortRange = ({ min, max, title }: { min: number; max: number; title: strin
           min={min}
           max={max}
           value={minVal}
+          step={step}
           onChange={(event) => {
-            const value = Math.min(Number(event.target.value), maxVal - 1)
+            const value = Math.min(Number(event.target.value), maxVal - step)
             setRangeParams(value, maxVal, title)
             minValRef.current = value
           }}
@@ -119,8 +120,9 @@ const SortRange = ({ min, max, title }: { min: number; max: number; title: strin
           min={min}
           max={max}
           value={maxVal}
+          step={step}
           onChange={(event) => {
-            const value = Math.max(Number(event.target.value), minVal + 1)
+            const value = Math.max(Number(event.target.value), minVal + step)
             setRangeParams(minVal, value, title)
             maxValRef.current = value
           }}
