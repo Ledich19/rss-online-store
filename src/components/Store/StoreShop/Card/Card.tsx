@@ -3,6 +3,7 @@ import { initialState } from "../../../../reducers/productsReducer";
 import toFavorite from "../../../../images/addToFavorite.svg";
 import toCart from "../../../../images/addToCart.svg";
 import onCart from "../../../../images/inCart.png";
+import { Link } from "react-router-dom";
 
 
 import "./Card.scss";
@@ -20,20 +21,17 @@ export const Card = (props:arrayProps) => {
     if(!inCart){
       setUrlIcon(onCart);
       setInCart(true)
-      console.log(inCart);
-      
     } else {
       setUrlIcon(toCart);
       setInCart(false);
-      console.log(inCart);
     }
   }
-
+  
   return (
     <div className="shop__card card-item">
-      <div className="card-item__picture">
+      <Link to={`/product/${props.index}`} className="card-item__picture">
         <img src={initialState[`${props.index}`].images[0]} alt="image card" className="card-item__img" />
-      </div>
+      </Link>
       <h4 className="card-item__title">{initialState[`${props.index}`].title}</h4>
       <p className="card-item__desc">{initialState[`${props.index}`].description}</p>
       <div className="card-item__footer">
