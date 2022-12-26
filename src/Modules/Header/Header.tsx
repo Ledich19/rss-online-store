@@ -1,11 +1,18 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { useAppSelector } from '../../app/hooks'
+import { useAppDispatch, useAppSelector } from '../../app/hooks'
 import PriceProductsInCart from '../../components/Cart/PriceProductsInCart/PriceProductsInCart'
 import headerLogo from '../../images/logo.svg'
+import { setFilterMultiply } from '../../reducers/filterReducer'
 import './Header.scss'
 
 const Header = () => {
+  const filtersState = useAppSelector((state) =>
+    state.filters.multiply.find((f) => f.name === 'sex')
+  )
+  const filtersOption = filtersState ? filtersState.value : []
+
+  const dispatch = useAppDispatch()
   const cartContent = useAppSelector((state) => state.cart)
   const promoCodes = useAppSelector((state) => state.promoCodes)
   const isPromoCodes = promoCodes.promoCodeUse.length > 0 ? true : false
@@ -39,6 +46,28 @@ const Header = () => {
     }
   }
 
+  const hendleSetfilter = (peolpleType: string) => {
+    const values = filtersOption.map((e) => {
+      if (e.option === peolpleType) {
+        return {
+          option: e.option,
+          isCheck: true,
+        }
+      } else {
+        return {
+          option: e.option,
+          isCheck: false,
+        }
+      }
+    })
+    dispatch(
+      setFilterMultiply({
+        key: 'sex',
+        params: values,
+      })
+    )
+  }
+
   return (
     <div className="header">
       <div className="header__container">
@@ -47,16 +76,36 @@ const Header = () => {
         </Link>
         <nav className={navClass}>
           <ul className="header__list">
-            <Link rel="stylesheet" to="/store" className="header__link">
-              New
+            <Link
+              onClick={() => hendleSetfilter('')}
+              rel="stylesheet"
+              to="/store"
+              className="header__link"
+            >
+              All
             </Link>
-            <Link rel="stylesheet" to="/store" className="header__link">
+            <Link
+              onClick={() => hendleSetfilter('woman')}
+              rel="stylesheet"
+              to="/store"
+              className="header__link"
+            >
               Woman
             </Link>
-            <Link rel="stylesheet" to="/store" className="header__link">
+            <Link
+              onClick={() => hendleSetfilter('man')}
+              rel="stylesheet"
+              to="/store"
+              className="header__link"
+            >
               Man
             </Link>
-            <Link rel="stylesheet" to="/store" className="header__link">
+            <Link
+              onClick={() => hendleSetfilter('kids')}
+              rel="stylesheet"
+              to="/store"
+              className="header__link"
+            >
               Kids
             </Link>
             <Link rel="stylesheet" to="/store" className="header__link">
@@ -70,7 +119,7 @@ const Header = () => {
           <div className={styleBottomSpan}></div>
         </div>
         <div className="header__icons">
-          <PriceProductsInCart/>
+          <PriceProductsInCart />
           <Link rel="stylesheet" to="/favorite" className="header__favorite" />
           <Link rel="stylesheet" to="/cart" className="header__cart">
             <div className="header__amount">
