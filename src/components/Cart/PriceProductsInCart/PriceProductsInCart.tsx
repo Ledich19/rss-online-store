@@ -17,12 +17,11 @@ const PriceProductsInCart = () => {
 
   return (
     <div className="cart-price__price-all">
-
-      <div style={{ textDecoration: (isPromoCodes && isCartContent) ? 'line-through' : 'none' }}>
+      <div style={{ textDecoration: isPromoCodes && isCartContent ? 'line-through' : 'none' }}>
         {cartContent.reduce((sum, product) => sum + product.amount * product.price, 0)}&euro;
       </div>
 
-      {(isPromoCodes && isCartContent) ? (
+      {isPromoCodes && isCartContent ? (
         <div className="cart-price__new-price">
           {costCount()}
           &euro;
