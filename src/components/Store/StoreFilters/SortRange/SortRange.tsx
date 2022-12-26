@@ -1,20 +1,14 @@
-import { useCallback, useEffect, useState, useRef } from 'react'
-import './SortRange.scss'
-import { FaAngleUp, FaAngleDown } from 'react-icons/fa'
-import { FilterItemState } from '../../../../app/types'
+import { useCallback, useEffect, useRef } from 'react'
 import { useAppDispatch, useAppSelector } from '../../../../app/hooks'
-import { setFilterMultiply, setFilterRange } from '../../../../reducers/filterReducer'
-import Slider from '@mui/material/Slider'
-import PropTypes from 'prop-types'
+import { setFilterRange } from '../../../../reducers/filterReducer'
+import './SortRange.scss'
 
 const SortRange = ({ min, max, title , step}: { min: number; max: number; title: string, step: number }) => {
   const minValRef = useRef(min)
   const maxValRef = useRef(max)
   const range = useRef<HTMLInputElement>(null)
   const dispatch = useAppDispatch()
-  // const filtersState = useAppSelector(
-  //   (state) => state.filters.ranges[title as keyof typeof state.filters.ranges]
-  // )
+
   const filtersState = useAppSelector(
     (state) => state.filters.ranges.find((f) => f.name === title)
   )
@@ -113,7 +107,6 @@ const SortRange = ({ min, max, title , step}: { min: number; max: number; title:
             minValRef.current = value
           }}
           className="thumb thumb--left"
-          //style={{ zIndex: minVal > max - 100 && '5' }}
         />
         <input
           type="range"
