@@ -1,24 +1,20 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../../app/hooks'
+import { Link } from 'react-router-dom'
+
 import PriceProductsInCart from '../../components/Cart/PriceProductsInCart/PriceProductsInCart'
 import headerLogo from '../../images/logo.svg'
 import { setFilterMultiply } from '../../reducers/filterReducer'
 import './Header.scss'
 
 const Header = () => {
+  const dispatch = useAppDispatch()
+  const { cart } = useAppSelector((state) => state)
   const filtersState = useAppSelector((state) =>
     state.filters.multiply.find((f) => f.name === 'sex')
   )
   const filtersOption = filtersState ? filtersState.value : []
 
-  const dispatch = useAppDispatch()
-  const cartContent = useAppSelector((state) => state.cart)
-  const promoCodes = useAppSelector((state) => state.promoCodes)
-  const isPromoCodes = promoCodes.promoCodeUse.length > 0 ? true : false
-  const discount = isPromoCodes
-    ? promoCodes.promoCodeUse.reduce((sum, code) => sum + code.discount, 0) / 100
-    : 1
   const [navClass, setNavClass] = useState('header__navigation')
   const [isClicked, setIsClicked] = useState(false)
   const [styleTopSpan, setStyleTopSpan] = useState('header__span')
@@ -46,9 +42,9 @@ const Header = () => {
     }
   }
 
-  const hendleSetfilter = (peolpleType: string) => {
+  const handleSetFilter = (humanType: string) => {
     const values = filtersOption.map((e) => {
-      if (e.option === peolpleType) {
+      if (e.option === humanType) {
         return {
           option: e.option,
           isCheck: true,
@@ -77,7 +73,7 @@ const Header = () => {
         <nav className={navClass}>
           <ul className="header__list">
             <Link
-              onClick={() => hendleSetfilter('')}
+              onClick={() => handleSetFilter('')}
               rel="stylesheet"
               to="/store"
               className="header__link"
@@ -85,7 +81,7 @@ const Header = () => {
               All
             </Link>
             <Link
-              onClick={() => hendleSetfilter('woman')}
+              onClick={() => handleSetFilter('woman')}
               rel="stylesheet"
               to="/store"
               className="header__link"
@@ -93,7 +89,7 @@ const Header = () => {
               Woman
             </Link>
             <Link
-              onClick={() => hendleSetfilter('man')}
+              onClick={() => handleSetFilter('man')}
               rel="stylesheet"
               to="/store"
               className="header__link"
@@ -101,7 +97,7 @@ const Header = () => {
               Man
             </Link>
             <Link
-              onClick={() => hendleSetfilter('kids')}
+              onClick={() => handleSetFilter('kids')}
               rel="stylesheet"
               to="/store"
               className="header__link"
@@ -124,7 +120,7 @@ const Header = () => {
           <Link rel="stylesheet" to="/cart" className="header__cart">
             <div className="header__amount">
               <div></div>
-              {cartContent.reduce((sum, product) => sum + product.amount, 0)}
+              {cart.reduce((sum, product) => sum + product.amount, 0)}
             </div>
           </Link>
         </div>
