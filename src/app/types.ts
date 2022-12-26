@@ -11,10 +11,13 @@ export interface Multiply {
   name: string,
   value: Checkbox[]
 }
+export type SortByType = "price" | "discountPercentage" | 'rating' | ''
 
 export type FiltersState = {
   multiply: Multiply[],
   ranges: Range[]
+  "isSortDESC": boolean
+  'sortBy': SortByType
   "search": string
 }
 

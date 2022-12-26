@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { Checkbox, FiltersState, Range, RangeValue } from '../app/types'
+import { Checkbox, FiltersState, Range, RangeValue, SortByType } from '../app/types'
 
 const initialState: FiltersState = {
   multiply: [
@@ -15,9 +15,6 @@ const initialState: FiltersState = {
       name: "brand",
       value: []
     }
-    //TODO Поки робимо тільки верхні
-    //"size": [],
-    //"color": [], 
   ]
   ,
   ranges: [
@@ -29,10 +26,10 @@ const initialState: FiltersState = {
       name: "rating",
       value: { min: 0, max: 0 }
     }
-    //TODO Поки робимо тільки верхні
-    //"stock": { min: 0, max: 100 },
   ],
-  "search": ''
+  "isSortDESC": false,
+  'sortBy': '',
+  "search": '',
 }
 
 const filterSlice = createSlice({
@@ -43,6 +40,16 @@ const filterSlice = createSlice({
       payload: string; type: string;
     }): FiltersState {
       return { ...state, search: action.payload }
+    },
+    setSortBy(state, action: {
+      payload: SortByType ; type: string;
+    }): FiltersState {
+      return { ...state, sortBy: action.payload }
+    },
+    setSortDirection(state, action: {
+      payload: boolean; type: string;
+    }): FiltersState {
+      return { ...state, isSortDESC: action.payload }
     },
 
     setFilterMultiply(state, action: {
@@ -100,27 +107,11 @@ const filterSlice = createSlice({
       // }
     },
 
-    clearFilter(state, action: {
-      payload: {
-        key: string;
-        value: string;
-      }; type: string;
-    }): FiltersState {
-      const key = action.payload.key as keyof typeof state
-      const fild = state[key]
-
-      if (Array.isArray(fild)) {
-        return {
-          ...state, [key]: []
-        }
-      }
-      return state
-    }
   },
 }
 )
 
-export const { setSearch, setFilterMultiply, clearFilter, setFilterRange } = filterSlice.actions
+export const { setSearch, setFilterMultiply, setFilterRange , setSortDirection} = filterSlice.actions
 export default filterSlice.reducer
 
 
