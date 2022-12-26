@@ -59,6 +59,10 @@ const ProductDetails = () => {
               <p className="item__text">{initialState[0].brand}</p>
             </div>
             <div className="item__prop">
+              <h5 className="item__label">Rate:</h5>
+              <p className="item__text">{initialState[0].rating}</p>
+            </div>
+            <div className="item__prop">
               <h5 className="item__label">Size:</h5>
               <select className="item__select"> 
                 <option className="item__size">S</option>
