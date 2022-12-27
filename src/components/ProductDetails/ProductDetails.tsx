@@ -96,7 +96,7 @@ const ProductDetails = () => {
             </div>
             <div className="item__prop">
               <h5 className="item__label">Rate:</h5>
-              <p className="item__text">{initialState[0].rating}</p>
+              <p className="item__text">{initialState[Number(id)].rating}</p>
             </div>
             <div className="item__prop">
               <h5 className="item__label">Size:</h5>
