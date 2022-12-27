@@ -24,6 +24,7 @@
     display: flex;
     justify-content: space-between;
     border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    align-items: center;
   }
   &__body {
     display: flex;
@@ -32,6 +33,7 @@
     flex: 1 1 auto;
     padding: 18px 0;
     overflow: auto;
+    margin-bottom: 20px;
 
     & {
       scrollbar-width: thin;
@@ -54,22 +56,6 @@
   &__icon {
   }
 
-  &__cost {
-    display: flex;
-    justify-content: space-between;
-    font-weight: 300;
-    line-height: 140%;
-    color: #72736e;
-  }
-
-  &__total {
-    display: flex;
-    justify-content: space-between;
-    font-weight: 700;
-    font-size: 14px;
-    line-height: 16px;
-    color: #3c3f40;
-  }
   &__limit {
     width: 100px;
     box-sizing: border-box;
@@ -142,10 +128,10 @@
 @media (max-width: 600px) {
   .cart {
     &__main {
-      padding: 5px;
+      
     }
     &__header {
-      padding-bottom: 5px;
+
     }
     &__body {
     }
@@ -183,13 +169,16 @@
     &__header {
     }
     &__body {
+      gap: 40px;
     }
 
     &__title {
     }
     &__icon {
     }
-
+    &__limit{
+      display: none;
+    }
     &__cost {
     }
 

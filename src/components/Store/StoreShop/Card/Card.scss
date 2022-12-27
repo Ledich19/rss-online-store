@@ -1,15 +1,25 @@
-.card{
+.card-item{
   min-width: 200px;
+  max-height: 450px;
   flex: 1 1 30%;
   text-align: left;
   display: flex;
   flex-direction: column;
+
   &__picture{
     margin-bottom: 24px;
     max-width: 100%;
+    height: 262px;
+    
   }
   &__img{
     width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: all 0.3s ease;
+    &:hover{
+      transform: scale(1.1);
+    }
   }
   &__title{
     font-weight: 500;
@@ -26,6 +36,7 @@
     color: #3C3F40;
     margin-bottom: 16px;
     flex: 1 1 auto;
+
     & {
       scrollbar-width: thin;
       scrollbar-color: #d8d9cc #d8d9cc;
@@ -37,6 +48,10 @@
       background-color: #d8d9cc;
       border-radius: 20px;
     }
+
+    max-height: 80px;
+    overflow: auto;
+
   }
   &__footer{
     display: flex;

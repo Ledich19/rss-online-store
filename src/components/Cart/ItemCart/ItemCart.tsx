@@ -4,7 +4,18 @@ import Amount from '../Amount/Amount'
 import './ItemCart.scss'
 import { useNavigate } from 'react-router-dom'
 
-const ItemCart = ({ id, title, color, size, amount, price, photo , amountAll, brand, category}: ItemCartProps) => {
+const ItemCart = ({
+  id,
+  title,
+  color,
+  size,
+  amount,
+  price,
+  photo,
+  amountAll,
+  brand,
+  category,
+}: ItemCartProps) => {
   const navigate = useNavigate()
   const handleShowProduct = (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault()
@@ -25,9 +36,9 @@ const ItemCart = ({ id, title, color, size, amount, price, photo , amountAll, br
             <div className="item-cart__color">color: {color}</div>
             <div className="item-cart__size">size: {size}</div>
           </div>
-            <div className="item-cart__size">amount all: {amountAll}</div>
-            <div className="item-cart__size">brand: {brand}</div>
-            <div className="item-cart__size">category: {category}</div>
+          <div className="item-cart__size">amount all: {amountAll}</div>
+          <div className="item-cart__size">brand: {brand}</div>
+          <div className="item-cart__size">category: {category}</div>
 
           <Amount productId={id} amount={amount} />
         </div>

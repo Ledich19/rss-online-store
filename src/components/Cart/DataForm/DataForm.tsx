@@ -102,16 +102,11 @@ const DataForm = () => {
     return true
   }
   const cardNumberValidate = (cardNum: string) => {
-    console.log(cardNum)
 
     if (cardNum === undefined || cardNum.length === 0) {
       setCardNumError('number: must be filled')
-      console.log(11111)
-
       return false
     } else if (cardNum.length < 16) {
-      console.log(22222)
-
       setCardNumError('number: incorrect card number')
       return false
     }

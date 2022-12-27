@@ -3,6 +3,7 @@ import { initialState } from "../../../../reducers/productsReducer";
 import toFavorite from "../../../../images/addToFavorite.svg";
 import toCart from "../../../../images/addToCart.svg";
 import onCart from "../../../../images/inCart.png";
+import { Link } from "react-router-dom";
 
 
 import "./Card.scss";
@@ -20,27 +21,24 @@ export const Card = (props:arrayProps) => {
     if(!inCart){
       setUrlIcon(onCart);
       setInCart(true)
-      console.log(inCart);
-      
     } else {
       setUrlIcon(toCart);
       setInCart(false);
-      console.log(inCart);
     }
   }
-
+  
   return (
-    <div className="shop__card card">
-      <div className="card__picture">
-        <img src={initialState[`${props.index}`].images[0]} alt="image card" className="card__img" />
-      </div>
-      <h4 className="card__title">{initialState[`${props.index}`].title}</h4>
-      <p className="card__desc">{initialState[`${props.index}`].description}</p>
-      <div className="card__footer">
-        <span className="card__price">{initialState[`${props.index}`].price}&euro;</span>
-        <div className="card__icons">
-          <img src={toFavorite} alt="" className="card__icon" />
-          <img src={UrlIcon} alt="" className="card__icon" onClick={changeUrl} />
+    <div className="shop__card card-item">
+      <Link to={`/product/${props.index}`} className="card-item__picture">
+        <img src={initialState[`${props.index}`].images[0]} alt="image card" className="card-item__img" />
+      </Link>
+      <h4 className="card-item__title">{initialState[`${props.index}`].title}</h4>
+      <p className="card-item__desc">{initialState[`${props.index}`].description}</p>
+      <div className="card-item__footer">
+        <span className="card-item__price">{initialState[`${props.index}`].price}&euro;</span>
+        <div className="card-item__icons">
+          <img src={toFavorite} alt="" className="card-item__icon" />
+          <img src={UrlIcon} alt="" className="card-item__icon" onClick={changeUrl} />
         </div>
       </div>
     </div>

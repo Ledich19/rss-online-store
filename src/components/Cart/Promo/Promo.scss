@@ -1,9 +1,10 @@
 .promo-codes {
+  margin-bottom: 15px;
   &__promo {
     position: relative;
-    margin-top: 10px;
     display: flex;
     width: 100%;
+    margin-bottom: 10px;
   }
   &__promo-write{
     flex: 1 1 auto;
@@ -15,10 +16,18 @@
     background: #ffffff;
     outline: 0;
     outline-offset: 0;
+    transition: all 0.3s ease;
     &:active,
     &:hover,
     &:focus {
       border: 0.5px solid #bf9180;
+    }
+    &:focus{
+      // transition: all 0.3s ease;
+      &::placeholder{
+        opacity: 0;
+        transition: all 0.5s ease;
+      }
     }
   }
 &__promo-add{
@@ -30,6 +39,7 @@
     height: 40px;
     background: #d8d9cc;
     border-radius: 20px;
+    transition: all 0.5s ease;
     cursor: pointer;
     &:hover {
       background: #bf9180;
@@ -41,6 +51,7 @@
   }
   &__use-item {
     cursor: pointer;
+    transition: all 0.3s ease;
     &:hover{
       color: #bf9180;
     }
