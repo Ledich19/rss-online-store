@@ -26,6 +26,17 @@
     color: #3C3F40;
     margin-bottom: 16px;
     flex: 1 1 auto;
+    & {
+      scrollbar-width: thin;
+      scrollbar-color: #d8d9cc #d8d9cc;
+    }
+    &::-webkit-scrollbar {
+      width: 5px;
+    }
+    &::-webkit-scrollbar-thumb {
+      background-color: #d8d9cc;
+      border-radius: 20px;
+    }
   }
   &__footer{
     display: flex;
