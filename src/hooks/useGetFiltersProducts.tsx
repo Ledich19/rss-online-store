@@ -1,11 +1,10 @@
 import { useAppSelector } from '../app/hooks'
-import { ProductsState, ProductInDb } from '../app/types'
+import { ProductsState } from '../app/types'
 
 const useGetFiltersProducts = () => {
   const productState = useAppSelector((state) => state.products)
   const { isSortDESC, sortBy, search, multiply, ranges } = useAppSelector((state) => state.filters)
   const getFilters = (): ProductsState => {
-    //!Сортировка по Мультиблокам
     const sortProductMultiply = productState.filter((product) => {
       //беру продукт продукту и проверяю соответсвует ли он каждому из фильтров
       const isProductValid = multiply.every((rule) => {
@@ -22,7 +21,7 @@ const useGetFiltersProducts = () => {
       // если соответствует возвращаю продукт
       return isProductValid ? product : null
     })
-    //!Сортировка по диапазонам
+
     const sortProductRanges = sortProductMultiply.filter((product) => {
       const isProductValid = ranges.every((rule) => {
         const min = rule.value.min
@@ -35,7 +34,7 @@ const useGetFiltersProducts = () => {
       })
       return isProductValid ? product : null
     })
-    //!Сортировка по возрастанию убиванию
+
     const sortProductDirection = sortProductRanges.sort((productA, productB) => {
       const param = sortBy as keyof typeof productA
       const valueA = productA[param]
@@ -49,9 +48,6 @@ const useGetFiltersProducts = () => {
       return 0
     })
 
-    //!Сортировка по вводимому тексту search поля
-    //? Здесь я не знаю как можно полностью абстрагироваться
-    //? в задании поиск всем полях кроме неинформативных
     const sortProductSearch = sortProductDirection.filter((product) => {
       const sortFelds = [
         'sex',
@@ -72,8 +68,6 @@ const useGetFiltersProducts = () => {
       return result ? product : null
     })
 
-    console.log(sortProductSearch);
-    //Возврат отфильтрованого обекта
     return sortProductSearch
   }
 
