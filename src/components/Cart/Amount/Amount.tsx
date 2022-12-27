@@ -1,6 +1,6 @@
 import React from 'react'
 import { useAppDispatch } from '../../../app/hooks'
-import { minusAmount, plusAmount } from '../../../reducers/cartReducer'
+import { minusAmount, plusAmount} from '../../../reducers/cartReducer'
 import './Amount.scss'
 
 const Amount = ({ productId , amount}: {productId: string, amount: number}) => {

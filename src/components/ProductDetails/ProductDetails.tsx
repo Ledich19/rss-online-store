@@ -1,31 +1,63 @@
 import React, {MouseEventHandler, ReactElement, useState} from "react";
 import "./ProductDetails.scss";
 import { useParams } from "react-router-dom";
-import { initialState } from "../../reducers/productsReducer";
 import { JSXElement } from "@babel/types";
-import { Link } from 'react-router-dom'
-console.log(Link);
+import { Link } from 'react-router-dom';
+import { useAppDispatch, useAppSelector } from '../../app/hooks'
+import { addProductToCart, removeProductFromCart } from '../../reducers/cartReducer'
+import { ProductInCart} from '../../app/types'
 
+import { setIsOpenForm } from '../../reducers/modalsReducer'
+interface myObj extends ProductInCart{
+  "amount" : number,
+  "amountAll": number,
+}
 
 const ProductDetails = () => {
   const id = useParams().id;
-  
-  
+  const dispatch = useAppDispatch()
+  const cartContent = useAppSelector(state => state.cart);
+  const initialState = useAppSelector(state => state.products);
+  const itemInCart = () =>{
+    for(let i = 0 ; i < cartContent.length; i++){
+      if(cartContent[i].id === initialState[Number(id)].id){
+        return true
+      } 
+    }
+    return false
+  }
+
   const [btnState, setBtnState] = useState('Add to cart');
-  const [isClicked, setIsClicked] = useState(false);
-  const [urlToImage, setUrlToImage] = useState(initialState[Number(id)].images[0])
+  const [urlToImage, setUrlToImage] = useState(initialState[Number(id)].images[0]);
+  const currentObj:myObj = JSON.parse(JSON.stringify(initialState[Number(id)]))
+  currentObj.amount = 1;
+  currentObj.amountAll = initialState[Number(id)].size[0].stock;
+  currentObj.size = initialState[Number(id)].size[0].size;
   const addToCart = () =>{
-    if(!isClicked){
+    if(!itemInCart()){
       setBtnState('Remove from cart');
-      setIsClicked(true);
+      dispatch(addProductToCart(currentObj))
     } else {
       setBtnState('Add to cart');
-      setIsClicked(false)
+      dispatch(removeProductFromCart(currentObj.id))
     }
+  }
+  const fastBuyItem = () => {
+    if(!itemInCart()){
+      setBtnState('Remove from cart');
+      dispatch(addProductToCart(currentObj))
+    }
+    dispatch(setIsOpenForm(true))
   }
   const changeHeadImage = (event:React.MouseEvent) => {
     const imageUrl = event.target as HTMLImageElement;
     setUrlToImage(imageUrl.src);
+  }
+  let button;
+  if(itemInCart()){
+    button = <button className="item__button" onClick={addToCart}>Remove from cart</button>
+  } else {
+    button = <button className="item__button" onClick={addToCart}>{btnState}</button>
   }
   return (
     <div className="product">
@@ -68,15 +100,15 @@ const ProductDetails = () => {
             </div>
             <div className="item__prop">
               <h5 className="item__label">Size:</h5>
-              <select className="item__select"> 
-                <option className="item__size">S</option>
-                <option className="item__size">M</option>
-                <option className="item__size">L</option>
+              <select defaultValue='1' className="item__select"> 
+                <option value='1' className="item__size">S</option>
+                <option value='2' className="item__size">M</option>
+                <option value='3' className="item__size">L</option>
               </select>
             </div>
             <div className="item__buttons">
-                <Link rel="stylesheet" to="/cart/buy-now" className="item__button">Buy now</Link>
-                <button className="item__button" onClick={addToCart}>{btnState}</button>
+                <Link rel="stylesheet" to="/cart" className="item__button" onClick={fastBuyItem}>Buy now</Link>
+                {button}
               </div>
           </div>
         </div>
