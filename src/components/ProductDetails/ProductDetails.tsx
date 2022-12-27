@@ -7,6 +7,7 @@ import { useAppDispatch, useAppSelector } from '../../app/hooks'
 import { addProductToCart, removeProductFromCart } from '../../reducers/cartReducer'
 import { ProductInCart} from '../../app/types'
 
+import { setIsOpenForm } from '../../reducers/modalsReducer'
 interface myObj extends ProductInCart{
   "amount" : number,
   "amountAll": number,
@@ -36,13 +37,17 @@ const ProductDetails = () => {
     if(!itemInCart()){
       setBtnState('Remove from cart');
       dispatch(addProductToCart(currentObj))
-      console.log(itemInCart());
-      
     } else {
       setBtnState('Add to cart');
-      console.log(itemInCart());
       dispatch(removeProductFromCart(currentObj.id))
     }
+  }
+  const fastBuyItem = () => {
+    if(!itemInCart()){
+      setBtnState('Remove from cart');
+      dispatch(addProductToCart(currentObj))
+    }
+    dispatch(setIsOpenForm(true))
   }
   const changeHeadImage = (event:React.MouseEvent) => {
     const imageUrl = event.target as HTMLImageElement;
@@ -102,7 +107,7 @@ const ProductDetails = () => {
               </select>
             </div>
             <div className="item__buttons">
-                <Link rel="stylesheet" to="/cart/buy-now" className="item__button">Buy now</Link>
+                <Link rel="stylesheet" to="/cart" className="item__button" onClick={fastBuyItem}>Buy now</Link>
                 {button}
               </div>
           </div>
