@@ -2,6 +2,7 @@ import React, {MouseEventHandler, ReactElement, useState} from "react";
 import "./ProductDetails.scss";
 import { useParams } from "react-router-dom";
 import { JSXElement } from "@babel/types";
+
 import { Link } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../app/hooks'
 import { addProductToCart, removeProductFromCart } from '../../reducers/cartReducer'

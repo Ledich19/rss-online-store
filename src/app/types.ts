@@ -1,13 +1,24 @@
+export interface Checkbox {
+  option: string
+  isCheck: boolean
+}
+export type RangeValue = { min: number, max: number }
+export interface Range {
+  name: string,
+  value: RangeValue
+}
+export interface Multiply {
+  name: string,
+  value: Checkbox[]
+}
+export type SortByType = "price" | "discountPercentage" | 'rating' | ''
+
 export type FiltersState = {
-  "sex": string,
-  "size": string,
-  "stock": string,
-  "brand": string,
-  "color": string,
-  "price": number,
-  "rating": string,
-  "category": string,
-  "search": string,
+  multiply: Multiply[],
+  ranges: Range[]
+  "isSortDESC": boolean
+  'sortBy': SortByType
+  "search": string
 }
 
 export type Product = {
@@ -64,3 +75,7 @@ export type PromoCodeState = {
     discount: number;
   }[],
 }
+
+export type FilterItemState = { filters: string[], title: string }
+
+
