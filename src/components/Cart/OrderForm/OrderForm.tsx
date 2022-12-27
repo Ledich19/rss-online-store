@@ -2,10 +2,8 @@ import './OrderForm.scss'
 
 import ItemCart from '../ItemCart/ItemCart'
 import {CartState} from '../../../app/types'
-import { useAppSelector } from '../../../app/hooks'
 
 const OrderForm = ({showCartContent}: {showCartContent: CartState}) => {
-  const cartContent = useAppSelector((state) => state.cart)
 
   return (
     <div className="cart__body">
