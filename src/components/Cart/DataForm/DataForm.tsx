@@ -243,7 +243,6 @@ const DataForm = () => {
       }, 5000)
 
      window.localStorage.removeItem('shoppingCartContents')
-     console.log('order and');
      
     }
   }

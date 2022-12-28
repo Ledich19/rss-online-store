@@ -61,7 +61,7 @@ const filterSlice = createSlice({
 
       const isFilter = state.multiply.find((f) => f.name === action.payload.key)
       let newMultiply = state.multiply
-      //const newMultiply = { ...state.multiply, [key]: action.payload.params }
+  
       const newFilter = {
         name: action.payload.key,
         value: action.payload.params
@@ -100,11 +100,7 @@ const filterSlice = createSlice({
       return {
         ...state, ranges: newRange
       }
-      // const key = action.payload.key as keyof typeof state
-      // const newRanges = { ...state.ranges, [key]: action.payload.params }
-      // return {
-      //   ...state, ranges: newRanges
-      // }
+  
     },
 
   },

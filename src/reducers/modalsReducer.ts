@@ -31,15 +31,11 @@ const modalsSlice = createSlice({
     setLimit(state, action: {
       payload: number; type: string;
     }) {
-      console.log('action',action.payload );
-      
       return { ...state, limit: action.payload }
     },
     setCartPage(state, action: {
       payload: number; type: string;
     }) {
-      console.log('action',action.payload );
-      
       return { ...state, page: action.payload }
     },
   },
