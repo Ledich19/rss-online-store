@@ -1,14 +1,16 @@
 import React from "react";
 import Card from "./Card/Card";
 import "./StoreShop.scss";
-import { initialState } from "../../../reducers/productsReducer";
+import useGetFiltersProducts from "../../../hooks/useGetFiltersProducts";
 
 const StoreShop = () => {
-  const products = initialState;
+
+  const getProducts = useGetFiltersProducts()
+  const showProduct = getProducts()
 
   return (
   <div className="store__shop shop">
-    {products.map((card,index) =><Card key={card.id} index={index}/>)}
+    {showProduct.map((card,index) =><Card key={card.id} card={card} index={index}/>)}
   </div>
   )
 };
