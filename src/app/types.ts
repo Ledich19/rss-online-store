@@ -16,7 +16,7 @@ export type SortByType = "price" | "discountPercentage" | 'rating' | ''
 export type FiltersState = {
   multiply: Multiply[],
   ranges: Range[]
-  "isSortDESC": boolean
+  "isSortDESC": boolean | null
   'sortBy': SortByType
   "search": string
 }

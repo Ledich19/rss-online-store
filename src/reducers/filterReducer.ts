@@ -18,16 +18,16 @@ const initialState: FiltersState = {
   ]
   ,
   ranges: [
-    {
-      name: "price",
-      value: { min: 0, max: 0 }
-    },
-    {
-      name: "rating",
-      value: { min: 0, max: 0 }
-    }
+    // {
+    //   name: "price",
+    //   value: { min: 0, max: 0 }
+    // },
+    // {
+    //   name: "rating",
+    //   value: { min: 0, max: 0 }
+    // }
   ],
-  "isSortDESC": false,
+  "isSortDESC": null,
   'sortBy': '',
   "search": '',
 }
