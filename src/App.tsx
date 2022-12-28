@@ -25,7 +25,6 @@ function App() {
 
   useEffect(() => {
     const params = new URLSearchParams()
-
     multiply.forEach((rule) => {
       const key = rule.name
       const value = rule.value.filter((r) => r.isCheck).map((r) => r.option)

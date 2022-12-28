@@ -4,7 +4,7 @@ import DataForm from './DataForm/DataForm'
 import { useAppDispatch, useAppSelector } from '../../app/hooks'
 import OrderFinish from './OrderFinish/OrderFinish'
 import CartFooter from './CartFooter/CartFooter'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useSearchParams } from 'react-router-dom'
 import { setIsOpenForm, setOpenOrderFinish } from '../../reducers/modalsReducer'
 import { useState, useEffect } from 'react'
 import { AiOutlineCaretLeft } from 'react-icons/ai'
@@ -12,6 +12,7 @@ import { AiOutlineCaretRight } from 'react-icons/ai'
 import PriceProductsInCart from './PriceProductsInCart/PriceProductsInCart'
 
 const Cart = () => {
+  const [searchParams, setSearchParams] = useSearchParams()
   const [page, setPage] = useState(0)
   const [limit, setLimit] = useState(0)
   const navigate = useNavigate()
@@ -31,11 +32,14 @@ const Cart = () => {
   }, [])
 
   useEffect(() => {
+    const params = new URLSearchParams()
     const length = limit === 0 ? 1 : Math.ceil(cartContent.length / limit)
     if (page + 1 > length) {
       setPage(length - 1)
     }
-    navigate(`/cart?page=${page + 1}&limit=${limit}`)
+    params.append('page', (page + 1).toString())
+    params.append('limit', limit.toString())
+    setSearchParams(params)
   }, [cartContent.length, limit, page])
 
   const clickHandle = () => {
