@@ -45,7 +45,7 @@ const useGetFiltersProducts = () => {
 
     const sortProductSearch = sortProductDirection.filter((product) => {
       const sortFelds = [
-        'sex',
+        'human',
         'brand',
         'price',
         'title',

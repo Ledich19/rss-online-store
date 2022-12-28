@@ -4,7 +4,7 @@ import { Checkbox, FiltersState, Range, RangeValue, SortByType } from '../app/ty
 const initialState: FiltersState = {
   multiply: [
     {
-      name: "sex",
+      name: "human",
       value: []
     },
     {

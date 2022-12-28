@@ -11,7 +11,7 @@ const Header = () => {
   const dispatch = useAppDispatch()
   const { cart } = useAppSelector((state) => state)
   const filtersState = useAppSelector((state) =>
-    state.filters.multiply.find((f) => f.name === 'sex')
+    state.filters.multiply.find((f) => f.name === 'human')
   )
   const filtersOption = filtersState ? filtersState.value : []
 
@@ -58,7 +58,7 @@ const Header = () => {
     })
     dispatch(
       setFilterMultiply({
-        key: 'sex',
+        key: 'human',
         params: values,
       })
     )

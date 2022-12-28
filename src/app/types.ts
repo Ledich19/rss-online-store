@@ -23,7 +23,7 @@ export type FiltersState = {
 
 export type Product = {
   "id": string,
-  "sex": "woman" | "man" | "kids",
+  "human": "woman" | "man" | "kids",
   "brand": string,
   "color": string,
   "price": number,
