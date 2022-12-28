@@ -7,21 +7,29 @@ import { useAppDispatch, useAppSelector } from './app/hooks'
 import { addProductToCart, clearCart } from './reducers/cartReducer'
 import { ProductInCart } from './app/types'
 import { useSearchParams } from 'react-router-dom'
+
 function App() {
   const dispatch = useAppDispatch()
   const [searchParams, setSearchParams] = useSearchParams()
   const { isSortDESC, sortBy, search, multiply, ranges } = useAppSelector((state) => state.filters)
+  const { cart } = useAppSelector((state) => state)
 
   useEffect(() => {
     const shoppingCartContentsJSON = window.localStorage.getItem('shoppingCartContents')
     if (shoppingCartContentsJSON) {
       const shoppingCartContents = JSON.parse(shoppingCartContentsJSON)
-      dispatch(clearCart())
       shoppingCartContents.forEach((product: ProductInCart) => {
         dispatch(addProductToCart(product))
       })
     }
   }, [])
+
+  useEffect(() => {
+    window.localStorage.setItem('shoppingCartContents', JSON.stringify(cart))
+    if (cart.length === 0) {
+      window.localStorage.removeItem('shoppingCartContents')
+    }
+  }, [cart])
 
   useEffect(() => {
     const params = new URLSearchParams()
@@ -41,10 +49,10 @@ function App() {
 
     if (isSortDESC !== null && sortBy) {
       const param = isSortDESC ? 'DESC' : 'ASC'
-      params.append('sort',[sortBy,param].join('-'))
+      params.append('sort', [sortBy, param].join('-'))
     }
     if (search) {
-      params.append('search',search)
+      params.append('search', search)
     }
     setSearchParams(params)
   }, [isSortDESC, sortBy, search, multiply, ranges])
