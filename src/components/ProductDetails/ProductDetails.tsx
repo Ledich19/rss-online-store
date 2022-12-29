@@ -8,10 +8,6 @@ import { addProductToCart, removeProductFromCart } from '../../reducers/cartRedu
 import { ProductInCart } from '../../app/types'
 
 import { setIsOpenForm } from '../../reducers/modalsReducer'
-interface myObj extends ProductInCart {
-  amount: number
-  amountAll: number
-}
 
 const ProductDetails = () => {
   const dispatch = useAppDispatch()
@@ -34,7 +30,7 @@ const ProductDetails = () => {
 
   const [btnState, setBtnState] = useState('Add to cart')
   const [urlToImage, setUrlToImage] = useState(product.images[0])
-  const currentObj: myObj = JSON.parse(JSON.stringify(product))
+  const currentObj: ProductInCart = JSON.parse(JSON.stringify(product))
   currentObj.amount = 1
   currentObj.amountAll = product.size[0].stock
   currentObj.size = product.size[0].size
