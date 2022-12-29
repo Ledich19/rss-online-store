@@ -59,13 +59,12 @@ const Promo = () => {
                   <span
                     data-tooltip={`${code.discount.toString()}%`}
                     className="promo-codes__promo-text"
-                    
                   >
                     {' '}
                     {code.code}
                   </span>
                   <span
-                  data-tooltip='delete'
+                    data-tooltip="delete"
                     className="promo-codes__remove"
                     onClick={() => {
                       deletePromoHandler(code.code)
