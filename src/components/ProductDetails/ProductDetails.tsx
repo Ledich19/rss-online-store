@@ -84,24 +84,17 @@ const ProductDetails = () => {
               <img src={urlToImage} alt="head picture" className="item__head" />
             </div>
             <div className="item__small-images">
-              <img
-                src={product.images[0]}
-                onClick={changeHeadImage}
-                alt="first img"
-                className="item__img"
-              />
-              <img
-                src={product.images[1]}
-                alt="second img"
-                className="item__img"
-                onClick={changeHeadImage}
-              />
-              <img
-                src={product.images[2]}
-                alt="third img"
-                className="item__img"
-                onClick={changeHeadImage}
-              />
+              {product.images.map((image) => {
+                return (
+                  <img
+                    key={image}
+                    src={image}
+                    onClick={changeHeadImage}
+                    alt="first img"
+                    className="item__img"
+                  />
+                )
+              })}
             </div>
           </div>
           <div className="item__info">
@@ -126,15 +119,13 @@ const ProductDetails = () => {
             <div className="item__prop">
               <h5 className="item__label">Size:</h5>
               <select defaultValue="1" className="item__select">
-                <option value="1" className="item__size">
-                  S
-                </option>
-                <option value="2" className="item__size">
-                  M
-                </option>
-                <option value="3" className="item__size">
-                  L
-                </option>
+                {product.size.map((size) => {
+                  return (
+                    <option key={size.size} value="1" className="item__size">
+                      {size.size}
+                    </option>
+                  )
+                })}
               </select>
             </div>
             <div className="item__buttons">
