@@ -104,6 +104,7 @@ const Cart = () => {
 
           <PriceProductsInCart />
         </div>
+
         {modalState.isOderFinish ? (
           <OrderFinish />
         ) : modalState.isForm ? (
@@ -111,6 +112,7 @@ const Cart = () => {
         ) : (
           <OrderForm showCartContent={showCartContent} />
         )}
+        
         <CartFooter />
       </div>
     </div>

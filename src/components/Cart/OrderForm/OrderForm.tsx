@@ -7,7 +7,9 @@ const OrderForm = ({showCartContent}: {showCartContent: CartState}) => {
 
   return (
     <div className="cart__body">
-      {showCartContent.map((product) => {
+      { showCartContent.length > 0 ? 
+
+      showCartContent.map((product) => {
         return (
           <ItemCart
             key={product.id}
@@ -23,7 +25,11 @@ const OrderForm = ({showCartContent}: {showCartContent: CartState}) => {
             amountAll={product.amountAll}
           />
         )
-      })}
+      }) : <div className="cart__empty">
+        Cart is Empty
+      </div>
+
+      }
     </div>
   )
 }
