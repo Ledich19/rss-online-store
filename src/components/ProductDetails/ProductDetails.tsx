@@ -13,7 +13,6 @@ const ProductDetails = () => {
   const dispatch = useAppDispatch()
   const cartContent = useAppSelector((state) => state.cart)
   const { products } = useAppSelector((state) => state)
-  const [btnState, setBtnState] = useState('Add to cart')
   const id = useParams().id
   const product = products.find((p) => p.id === id)
   const [urlToImage, setUrlToImage] = useState(product?.thumbnail)
@@ -33,47 +32,33 @@ const ProductDetails = () => {
 
   const createObject = () => {
     const currentObj: ProductInCart = JSON.parse(JSON.stringify(product))
-      const productSize = product.size.find((s) => s.size === size)
-      currentObj.amount = 1
-      currentObj.size = size
-      currentObj.amountAll = productSize ? productSize.stock : 0
-      return currentObj
+    const productSize = product.size.find((s) => s.size === size)
+    currentObj.amount = 1
+    currentObj.size = size
+    currentObj.amountAll = productSize ? productSize.stock : 0
+    return currentObj
   }
 
   const addToCart = () => {
-    if (!itemInCart()) {
-      setBtnState('Remove from cart')
-      dispatch(addProductToCart(createObject()))
-    } else {
-      setBtnState('Add to cart')
+    if (itemInCart()) {
       dispatch(removeProductFromCart(product.id))
+    } else {
+      dispatch(addProductToCart(createObject()))
     }
   }
+
   const fastBuyItem = () => {
     if (!itemInCart()) {
-      setBtnState('Remove from cart')
       dispatch(addProductToCart(createObject()))
     }
     dispatch(setIsOpenForm(true))
   }
+  
   const changeHeadImage = (event: React.MouseEvent) => {
     const imageUrl = event.target as HTMLImageElement
     setUrlToImage(imageUrl.src)
   }
-  let button
-  if (itemInCart()) {
-    button = (
-      <button className="item__button" onClick={addToCart}>
-        Remove from cart
-      </button>
-    )
-  } else {
-    button = (
-      <button className="item__button" onClick={addToCart}>
-        {btnState}
-      </button>
-    )
-  }
+
   return (
     <div className="product">
       <div className="product__container">
@@ -142,7 +127,9 @@ const ProductDetails = () => {
               <Link rel="stylesheet" to="/cart" className="item__button" onClick={fastBuyItem}>
                 Buy now
               </Link>
-              {button}
+              <button className="item__button" onClick={addToCart}>
+                {itemInCart() ? 'Remove from cart' : 'Add to cart'}
+              </button>
             </div>
           </div>
         </div>
