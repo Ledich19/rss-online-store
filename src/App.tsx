@@ -1,4 +1,4 @@
-import './App.css'
+import './App.scss'
 import Header from './Modules/Header/Header'
 import Footer from './Modules/Footer/Footer'
 import Main from './Modules/Main/Main'
@@ -20,9 +20,6 @@ function App() {
     }
   }, [])
 
-  // window.localStorage.setItem(
-  //   'shoppingCartContents', JSON.stringify(cart)
-  // )
   return (
     <div className="App">
       <Header />
