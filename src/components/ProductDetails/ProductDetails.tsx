@@ -1,20 +1,17 @@
 import React, { useState } from 'react'
-import './ProductDetails.scss'
-import { useParams } from 'react-router-dom'
+import { Link , useParams } from 'react-router-dom'
 
-import { Link } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../../app/hooks'
 import { addProductToCart, removeProductFromCart } from '../../reducers/cartReducer'
 import { ProductInCart, SizeType } from '../../app/types'
-
 import { setIsOpenForm } from '../../reducers/modalsReducer'
+import './ProductDetails.scss'
 
 const ProductDetails = () => {
   const dispatch = useAppDispatch()
   const cartContent = useAppSelector((state) => state.cart)
-  const { products } = useAppSelector((state) => state)
   const id = useParams().id
-  const product = products.find((p) => p.id === id)
+  const product = useAppSelector((state) => state.products.find((p) => p.id === id))
   const [urlToImage, setUrlToImage] = useState(product?.thumbnail)
   const [size, setSize] = useState(product ? product.size[0].size : '')
   if (!product) {
@@ -53,7 +50,7 @@ const ProductDetails = () => {
     }
     dispatch(setIsOpenForm(true))
   }
-  
+
   const changeHeadImage = (event: React.MouseEvent) => {
     const imageUrl = event.target as HTMLImageElement
     setUrlToImage(imageUrl.src)
