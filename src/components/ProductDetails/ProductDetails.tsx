@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../../app/hooks'
 import { addProductToCart, removeProductFromCart } from '../../reducers/cartReducer'
-import { ProductInCart } from '../../app/types'
+import { ProductInCart, SizeType } from '../../app/types'
 
 import { setIsOpenForm } from '../../reducers/modalsReducer'
 
@@ -13,8 +13,11 @@ const ProductDetails = () => {
   const dispatch = useAppDispatch()
   const cartContent = useAppSelector((state) => state.cart)
   const { products } = useAppSelector((state) => state)
+  const [btnState, setBtnState] = useState('Add to cart')
   const id = useParams().id
   const product = products.find((p) => p.id === id)
+  const [urlToImage, setUrlToImage] = useState(product?.thumbnail)
+  const [size, setSize] = useState(product ? product.size[0].size : '')
   if (!product) {
     return null
   }
@@ -28,26 +31,28 @@ const ProductDetails = () => {
     return false
   }
 
-  const [btnState, setBtnState] = useState('Add to cart')
-  const [urlToImage, setUrlToImage] = useState(product.images[0])
-  const currentObj: ProductInCart = JSON.parse(JSON.stringify(product))
-  currentObj.amount = 1
-  currentObj.amountAll = product.size[0].stock
-  currentObj.size = product.size[0].size
+  const createObject = () => {
+    const currentObj: ProductInCart = JSON.parse(JSON.stringify(product))
+      const productSize = product.size.find((s) => s.size === size)
+      currentObj.amount = 1
+      currentObj.size = size
+      currentObj.amountAll = productSize ? productSize.stock : 0
+      return currentObj
+  }
 
   const addToCart = () => {
     if (!itemInCart()) {
       setBtnState('Remove from cart')
-      dispatch(addProductToCart(currentObj))
+      dispatch(addProductToCart(createObject()))
     } else {
       setBtnState('Add to cart')
-      dispatch(removeProductFromCart(currentObj.id))
+      dispatch(removeProductFromCart(product.id))
     }
   }
   const fastBuyItem = () => {
     if (!itemInCart()) {
       setBtnState('Remove from cart')
-      dispatch(addProductToCart(currentObj))
+      dispatch(addProductToCart(createObject()))
     }
     dispatch(setIsOpenForm(true))
   }
@@ -118,10 +123,15 @@ const ProductDetails = () => {
             </div>
             <div className="item__prop">
               <h5 className="item__label">Size:</h5>
-              <select defaultValue="1" className="item__select">
+              <select
+                onChange={(e) => setSize(e.target.value as SizeType)}
+                value={size}
+                defaultValue={size}
+                className="item__select"
+              >
                 {product.size.map((size) => {
                   return (
-                    <option key={size.size} value="1" className="item__size">
+                    <option key={size.size} value={size.size} className="item__size">
                       {size.size}
                     </option>
                   )
