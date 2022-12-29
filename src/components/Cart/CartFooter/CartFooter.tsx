@@ -4,12 +4,8 @@ import { setIsOpenForm } from '../../../reducers/modalsReducer'
 import Promo from '../Promo/Promo'
 
 const CartFooter = () => {
-  const cartContent = useAppSelector((state) => state.cart)
-  const promoCodes = useAppSelector((state) => state.promoCodes)
-  const isPromoCodes = promoCodes.promoCodeUse.length > 0 ? true : false
-
   const dispatch = useAppDispatch()
-  const modalState = useAppSelector((state) => state.modals)
+  const { modals } = useAppSelector((state) => state)
 
   const handleOrderMenu = (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault()
@@ -22,26 +18,17 @@ const CartFooter = () => {
 
   return (
     <div className="cart__footer">
-      {!modalState.isOderFinish && !modalState.isForm ? (
-        <>
-          <Promo />
-          <div className="cart__button" onClick={handleOrderMenu}>
-            MAKE A PURCHASE
-          </div>
-        </>
-      ) : (
+      <Promo />
+      {modals.isOderFinish ? (
         <></>
-      )}
-
-      {!modalState.isOderFinish && modalState.isForm ? (
-        <>
-          <Promo />
-          <div className="cart__button" onClick={handleBeak}>
-            BACK TO CART
-          </div>
-        </>
+      ) : modals.isForm ? (
+        <div className="cart__button" onClick={handleBeak}>
+          BACK TO CART
+        </div>
       ) : (
-        <></>
+        <div className="cart__button" onClick={handleOrderMenu}>
+          MAKE A PURCHASE
+        </div>
       )}
     </div>
   )
