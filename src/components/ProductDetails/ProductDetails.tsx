@@ -108,7 +108,6 @@ const ProductDetails = () => {
               <select
                 onChange={(e) => setSize(e.target.value as SizeType)}
                 value={size}
-                defaultValue={size}
                 className="item__select"
               >
                 {product.size.map((size) => {
