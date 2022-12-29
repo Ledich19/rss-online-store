@@ -4,7 +4,7 @@ import { ProductsState } from '../app/types'
 const initialState: ProductsState = [
   {
     "id": "639aee997195cdffa4a3ad69",
-    "sex": "kids",
+    "human": "kids",
     "size": [
       {
         "size": "XS",
@@ -53,7 +53,7 @@ const initialState: ProductsState = [
   },
   {
     "id": "639aee99866a2696855e9a92",
-    "sex": "kids",
+    "human": "kids",
     "size": [
       {
         "size": "XS",
@@ -104,7 +104,7 @@ const initialState: ProductsState = [
   },
   {
     "id": "639aee997a12d37a20ad6983",
-    "sex": "man",
+    "human": "man",
     "size": [
       {
         "size": "XS",
@@ -154,7 +154,7 @@ const initialState: ProductsState = [
   },
   {
     "id": "639aee99fbaa7d6c5bdf3a22",
-    "sex": "kids",
+    "human": "kids",
     "size": [
       {
         "size": "XS",
@@ -205,7 +205,7 @@ const initialState: ProductsState = [
   },
   {
     "id": "639aee99addfa15fd6ae467f",
-    "sex": "man",
+    "human": "man",
     "size": [
       {
         "size": "XS",
@@ -254,7 +254,7 @@ const initialState: ProductsState = [
   },
   {
     "id": "639aee992a710855c9148af9",
-    "sex": "woman",
+    "human": "woman",
     "size": [
       {
         "size": "XS",
@@ -305,7 +305,7 @@ const initialState: ProductsState = [
   },
   {
     "id": "639aee99b5731d07d911c7eb",
-    "sex": "kids",
+    "human": "kids",
     "size": [
       {
         "size": "XS",
@@ -356,7 +356,7 @@ const initialState: ProductsState = [
   },
   {
     "id": "639aee992b7d93edfaf1c094",
-    "sex": "woman",
+    "human": "woman",
     "size": [
       {
         "size": "XS",
@@ -407,7 +407,7 @@ const initialState: ProductsState = [
   },
   {
     "id": "639aee99af27e646ff2f027f",
-    "sex": "woman",
+    "human": "woman",
     "size": [
       {
         "size": "XS",
@@ -458,7 +458,7 @@ const initialState: ProductsState = [
   },
   {
     "id": "639aee993bb7087f3b604958",
-    "sex": "man",
+    "human": "man",
     "size": [
       {
         "size": "XS",
@@ -509,7 +509,7 @@ const initialState: ProductsState = [
   },
   {
     "id": "639aee996e83c41d3fbed7e9",
-    "sex": "man",
+    "human": "man",
     "size": [
       {
         "size": "XS",
@@ -560,7 +560,7 @@ const initialState: ProductsState = [
   },
   {
     "id": "639aee994509d017b37f9f0a",
-    "sex": "woman",
+    "human": "woman",
     "size": [
       {
         "size": "XS",
@@ -611,7 +611,7 @@ const initialState: ProductsState = [
   },
   {
     "id": "639aee99723184eea0370a8f",
-    "sex": "woman",
+    "human": "woman",
     "size": [
       {
         "size": "XS",
@@ -662,7 +662,7 @@ const initialState: ProductsState = [
   },
   {
     "id": "639aee993bed5804430d983c",
-    "sex": "woman",
+    "human": "woman",
     "size": [
       {
         "size": "XS",
@@ -713,7 +713,7 @@ const initialState: ProductsState = [
   },
   {
     "id": "639aee99153aa8c1cf7636c1",
-    "sex": "kids",
+    "human": "kids",
     "size": [
       {
         "size": "XS",
@@ -764,7 +764,7 @@ const initialState: ProductsState = [
   },
   {
     "id": "639aee9957dfa6b85865b6c2",
-    "sex": "woman",
+    "human": "woman",
     "size": [
       {
         "size": "XS",
@@ -815,7 +815,7 @@ const initialState: ProductsState = [
   },
   {
     "id": "639aee99e07fa292d656734d",
-    "sex": "man",
+    "human": "man",
     "size": [
       {
         "size": "XS",
@@ -866,7 +866,7 @@ const initialState: ProductsState = [
   },
   {
     "id": "639aee995b7ecfb33b982d67",
-    "sex": "woman",
+    "human": "woman",
     "size": [
       {
         "size": "XS",
@@ -917,7 +917,7 @@ const initialState: ProductsState = [
   },
   {
     "id": "639aee99bb18aaded27e3642",
-    "sex": "kids",
+    "human": "kids",
     "size": [
       {
         "size": "XS",
@@ -967,7 +967,7 @@ const initialState: ProductsState = [
   },
   {
     "id": "639aee9937dc24d725036462",
-    "sex": "man",
+    "human": "man",
     "size": [
       {
         "size": "XS",
@@ -1018,7 +1018,7 @@ const initialState: ProductsState = [
   },
   { 
     "id": "639aee993b957b69e9a6396e",
-    "sex": "kids",
+    "human": "kids",
     "size": [
       {
         "size": "XS",
@@ -1067,7 +1067,7 @@ const initialState: ProductsState = [
     },
     {
     "id": "639aee9904898c35245420e8",
-    "sex": "woman",
+    "human": "woman",
     "size": [
       {
         "size": "XS",
@@ -1117,7 +1117,7 @@ const initialState: ProductsState = [
     },
     {
     "id": "639aee99e16d262a6178f990",
-    "sex": "kids",
+    "human": "kids",
     "size": [
       {
         "size": "XS",
@@ -1167,7 +1167,7 @@ const initialState: ProductsState = [
     },
     {
       "id": "639aee99518f526d5340a14b",
-      "sex": "kids",
+      "human": "kids",
       "size": [
         {
           "size": "XS",
@@ -1217,7 +1217,7 @@ const initialState: ProductsState = [
     },
     {
       "id": "639aee99812efe776aff80c9",
-      "sex": "man",
+      "human": "man",
       "size": [
         {
           "size": "XS",
@@ -1267,7 +1267,7 @@ const initialState: ProductsState = [
     },
     {
       "id": "639aee9913fbc03457ac3f27",
-      "sex": "kids",
+      "human": "kids",
       "size": [
         {
           "size": "XS",
@@ -1317,7 +1317,7 @@ const initialState: ProductsState = [
     },
     {
       "id": "639aee995d857134b67cccc8",
-      "sex": "kids",
+      "human": "kids",
       "size": [
         {
           "size": "XS",
@@ -1367,7 +1367,7 @@ const initialState: ProductsState = [
     },
     {
       "id": "639aee99c10193ee9a3ecf3d",
-      "sex": "man",
+      "human": "man",
       "size": [
         {
           "size": "XS",
@@ -1417,7 +1417,7 @@ const initialState: ProductsState = [
     },
     {
       "id": "639aee99c5f32d8f1af2214d",
-      "sex": "man",
+      "human": "man",
       "size": [
         {
           "size": "XS",
@@ -1467,7 +1467,7 @@ const initialState: ProductsState = [
     },
     {
       "id": "639aee9904ba238f8628fbb9",
-      "sex": "kids",
+      "human": "kids",
       "size": [
         {
           "size": "XS",
@@ -1517,7 +1517,7 @@ const initialState: ProductsState = [
     },
     {
       "id": "639aee99d3f4d47ae5c82d5d",
-      "sex": "woman",
+      "human": "woman",
       "size": [
         {
           "size": "XS",
@@ -1567,7 +1567,7 @@ const initialState: ProductsState = [
     },
     {
       "id": "639aee99066f48fc9e4f94f9",
-      "sex": "man",
+      "human": "man",
       "size": [
         {
           "size": "XS",
@@ -1617,7 +1617,7 @@ const initialState: ProductsState = [
     },
     {
       "id": "639aee99be33aff624ad4ee9",
-      "sex": "man",
+      "human": "man",
       "size": [
         {
           "size": "XS",
@@ -1651,7 +1651,7 @@ const initialState: ProductsState = [
       "brand": "Dior",
       "color": "#447D60",
       "price": 4617,
-      "title": "Unisex Combs Canvas",
+      "title": "Unihuman Combs Canvas",
       "images": [
         "https://m.media-amazon.com/images/I/81UbEhLLocL._AC_UL1500_.jpg",
         "https://m.media-amazon.com/images/I/71B7NdtWV6L._AC_UL1500_.jpg",
@@ -1667,7 +1667,7 @@ const initialState: ProductsState = [
     },
     {
       "id": "639aee9993a3e31aff177188",
-      "sex": "kids",
+      "human": "kids",
       "size": [
         {
           "size": "XS",
@@ -1717,7 +1717,7 @@ const initialState: ProductsState = [
     },
     {
       "id": "639aee99924bd00e1eb9c9ff",
-      "sex": "woman",
+      "human": "woman",
       "size": [
         {
           "size": "XS",
@@ -1766,7 +1766,7 @@ const initialState: ProductsState = [
     },
     {
       "id": "639aee996b80aa680fb442d7",
-      "sex": "kids",
+      "human": "kids",
       "size": [
         {
           "size": "XS",
@@ -1816,7 +1816,7 @@ const initialState: ProductsState = [
     },
     {
       "id": "639aee9945692c13dda7f300",
-      "sex": "man",
+      "human": "man",
       "size": [
         {
           "size": "XS",
@@ -1866,7 +1866,7 @@ const initialState: ProductsState = [
     },
     {
       "id": "639aee99f169417136ad4a2f",
-      "sex": "woman",
+      "human": "woman",
       "size": [
         {
           "size": "XS",
@@ -1916,7 +1916,7 @@ const initialState: ProductsState = [
     },
     {
       "id": "639aee9985edacbde92abe9d",
-      "sex": "woman",
+      "human": "woman",
       "size": [
         {
           "size": "XS",
@@ -1965,7 +1965,7 @@ const initialState: ProductsState = [
     },
     {
       "id": "639aee996889b88ad80543cf",
-      "sex": "man",
+      "human": "man",
       "size": [
         {
           "size": "XS",
@@ -2022,5 +2022,4 @@ const productsSlice = createSlice({
   }
 })
 
-// export const {  } = productsSlice.actions
 export default productsSlice.reducer
