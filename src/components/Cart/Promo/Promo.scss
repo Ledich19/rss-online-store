@@ -44,6 +44,10 @@
     &:hover {
       background: #bf9180;
     }
+    &:disabled {
+      background: #d8d9cc9a;
+      color: #3c3f407d;
+    }
 }
   &__use {
     display: flex;
