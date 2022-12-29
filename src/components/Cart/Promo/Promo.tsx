@@ -48,23 +48,31 @@ const Promo = () => {
               className="promo-codes__promo-add"
               disabled={isAddBtnDisable}
               value="ADD"
-              title='add promo code'
+              title="add promo code"
             />
           </label>
 
           <div className="promo-codes__use">
             {promoCodeUse.map((code) => {
               return (
-                <span
-                  onClick={() => {
-                    deletePromoHandler(code.code)
-                  }}
-                  data-tooltip={`${code.discount.toString()}%`}
-                  className="promo-codes__use-item"
-                  key={code.code}
-                >
-                  {' '}
-                  {code.code}
+                <span key={code.code} className="promo-codes__use-item">
+                  <span
+                    data-tooltip={`${code.discount.toString()}%`}
+                    className="promo-codes__promo-text"
+                    
+                  >
+                    {' '}
+                    {code.code}
+                  </span>
+                  <span
+                  data-tooltip='delete'
+                    className="promo-codes__remove"
+                    onClick={() => {
+                      deletePromoHandler(code.code)
+                    }}
+                  >
+                    &times;
+                  </span>
                 </span>
               )
             })}

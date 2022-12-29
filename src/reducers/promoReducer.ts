@@ -12,18 +12,22 @@ const initialState: PromoCodeState = {
       discount: 5
     },
     {
+      code: 'EPM',
+      discount: 10
+    },
+    {
       code: 'TEST',
-      discount: 50
+      discount: 25
     },
   ],
   promoCodeUse: [
     {
       code: 'TEST',
-      discount: 50
+      discount: 25
     },
     {
       code: 'EPM',
-      discount: 5
+      discount: 10
     },
   ]
 }
