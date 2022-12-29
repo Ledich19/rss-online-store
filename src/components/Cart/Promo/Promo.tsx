@@ -34,7 +34,7 @@ const Promo = () => {
     <>
       {!isOderFinish && !isForm ? (
         <div className="promo-codes">
-          <label className="promo-codes__promo" htmlFor="">
+          <label  className="promo-codes__promo" htmlFor="">
             <input
               value={promoCode}
               onChange={writePromoHandler}
@@ -48,7 +48,6 @@ const Promo = () => {
               className="promo-codes__promo-add"
               disabled={isAddBtnDisable}
               value="ADD"
-              title="add promo code"
             />
           </label>
 

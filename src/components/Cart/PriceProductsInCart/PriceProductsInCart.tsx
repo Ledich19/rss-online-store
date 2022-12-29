@@ -2,23 +2,22 @@ import { useAppSelector } from '../../../app/hooks'
 import './PriceProductsInCart.scss'
 
 const PriceProductsInCart = () => {
-  const cartContent = useAppSelector((state) => state.cart)
-  const promoCodes = useAppSelector((state) => state.promoCodes)
+  const {cart, promoCodes} = useAppSelector((state) => state)
   const isPromoCodes = promoCodes.promoCodeUse.length > 0 ? true : false
-  const isCartContent = cartContent.length > 0 ? true : false
+  const isCartContent = cart.length > 0 ? true : false
 
   const costCount = (): string => {
-    const cost = cartContent.reduce((sum, product) => sum + product.amount * product.price, 0)
+    const cost = cart.reduce((sum, product) => sum + product.amount * product.price, 0)
     const discount = isPromoCodes
       ? promoCodes.promoCodeUse.reduce((sum, code) => sum + code.discount, 0) / 100
       : 1
-    return (cost * (1 - discount)).toFixed(2)
+    return (cost * (1 - discount)).toFixed(1)
   }
 
   return (
     <div className="cart-price__price-all">
       <div style={{ textDecoration: isPromoCodes && isCartContent ? 'line-through' : 'none' }}>
-        {cartContent.reduce((sum, product) => sum + product.amount * product.price, 0)}&euro;
+        {cart.reduce((sum, product) => sum + product.amount * product.price, 0)}&euro;
       </div>
 
       {isPromoCodes && isCartContent ? (
@@ -27,7 +26,7 @@ const PriceProductsInCart = () => {
           &euro;
         </div>
       ) : (
-        <></>
+        null
       )}
     </div>
   )
