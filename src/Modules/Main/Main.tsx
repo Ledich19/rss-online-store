@@ -1,4 +1,3 @@
-import React from "react";
 import "./Main.css";
 
 import { Routes, Route } from "react-router-dom";
@@ -21,7 +20,7 @@ const Main = () => {
         <Route path="/product/:id" element={<ProductDetails />} />
         <Route path="/favorite" element={<Favorite />} />
         <Route path="/modal" element={<Modal />} />
-        <Route path="/404" element={<Error404 />} />
+        <Route path="/*" element={<Error404 />} />
       </Routes>
     </div>
   );
