@@ -21,7 +21,7 @@ const StoreFilters = () => {
 
   return (
     <div className="store__filters filters">
-      <SortItem filters={['man', 'woman', 'kids']} title="sex" />
+      <SortItem filters={['man', 'woman', 'kids']} title="human" />
       <SortItem filters={categories} title="category" />
       <SortItem filters={brands} title="brand" />
       <SortRange min={1} max={5000} step={1} title="price" />

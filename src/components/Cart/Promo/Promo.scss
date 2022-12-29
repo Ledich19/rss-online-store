@@ -22,9 +22,9 @@
     &:focus {
       border: 0.5px solid #bf9180;
     }
-    &:focus {
-      // transition: all 0.3s ease;
-      &::placeholder {
+
+    &:focus{
+      &::placeholder{
         opacity: 0;
         transition: all 0.5s ease;
       }

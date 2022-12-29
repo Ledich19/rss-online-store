@@ -16,14 +16,14 @@ export type SortByType = "price" | "discountPercentage" | 'rating' | ''
 export type FiltersState = {
   multiply: Multiply[],
   ranges: Range[]
-  "isSortDESC": boolean
+  "isSortDESC": boolean | null
   'sortBy': SortByType
   "search": string
 }
 
 export type Product = {
   "id": string,
-  "sex": "woman" | "man" | "kids",
+  "human": "woman" | "man" | "kids",
   "brand": string,
   "color": string,
   "price": number,
