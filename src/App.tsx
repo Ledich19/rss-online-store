@@ -20,9 +20,8 @@ function App() {
     }
   }, [])
 
-  // window.localStorage.setItem(
-  //   'shoppingCartContents', JSON.stringify(cart)
-  // )
+
+
   return (
     <div className="App">
       <Header />

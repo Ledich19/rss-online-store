@@ -25,11 +25,14 @@ const Cart = () => {
   const isPromoCodes = promoCodes.promoCodeUse.length > 0 ? true : false
 
   useEffect(() => {
+
+    dispatch(setCartPage(1))
     const paginationCartJSON = window.localStorage.getItem('paginationCart')
     if (paginationCartJSON) {
       const paginationCart = JSON.parse(paginationCartJSON)
-      setPage(paginationCart.page)
-      setLimit(paginationCart.limit)
+      dispatch(setLimit(paginationCart.limit))
+      dispatch(setCartPage(paginationCart.page))
+
     }
   }, [])
 
