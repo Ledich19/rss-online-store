@@ -1,5 +1,5 @@
 import React from "react";
-import "./Favorite.css";
+import "./Favorite.scss";
 
 const Favorite = () => {
   return <div className="Favorite">Favorite</div>;

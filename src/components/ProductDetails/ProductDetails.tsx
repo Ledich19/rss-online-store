@@ -1,73 +1,69 @@
-import React, {MouseEventHandler, ReactElement, useState} from "react";
-import "./ProductDetails.scss";
-import { useParams } from "react-router-dom";
-import { JSXElement } from "@babel/types";
+import React, { useState } from 'react'
+import { Link , useParams } from 'react-router-dom'
 
-import { Link } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../app/hooks'
 import { addProductToCart, removeProductFromCart } from '../../reducers/cartReducer'
-import { ProductInCart} from '../../app/types'
-
+import { ProductInCart, SizeType } from '../../app/types'
 import { setIsOpenForm } from '../../reducers/modalsReducer'
-interface myObj extends ProductInCart{
-  "amount" : number,
-  "amountAll": number,
-}
+import './ProductDetails.scss'
 
 const ProductDetails = () => {
-  const id = useParams().id;
   const dispatch = useAppDispatch()
-  const cartContent = useAppSelector(state => state.cart);
-  const initialState = useAppSelector(state => state.products);
-  const itemInCart = () =>{
-    for(let i = 0 ; i < cartContent.length; i++){
-      if(cartContent[i].id === initialState[Number(id)].id){
+  const cartContent = useAppSelector((state) => state.cart)
+  const id = useParams().id
+  const product = useAppSelector((state) => state.products.find((p) => p.id === id))
+  const [urlToImage, setUrlToImage] = useState(product?.thumbnail)
+  const [size, setSize] = useState(product ? product.size[0].size : '')
+  if (!product) {
+    return null
+  }
+
+  const itemInCart = () => {
+    for (let i = 0; i < cartContent.length; i++) {
+      if (cartContent[i].id === product.id) {
         return true
-      } 
+      }
     }
     return false
   }
 
-  const [btnState, setBtnState] = useState('Add to cart');
-  const [urlToImage, setUrlToImage] = useState(initialState[Number(id)].images[0]);
-  const currentObj:myObj = JSON.parse(JSON.stringify(initialState[Number(id)]))
-  currentObj.amount = 1;
-  currentObj.amountAll = initialState[Number(id)].size[0].stock;
-  currentObj.size = initialState[Number(id)].size[0].size;
-  const addToCart = () =>{
-    if(!itemInCart()){
-      setBtnState('Remove from cart');
-      dispatch(addProductToCart(currentObj))
+  const createObject = () => {
+    const currentObj: ProductInCart = JSON.parse(JSON.stringify(product))
+    const productSize = product.size.find((s) => s.size === size)
+    currentObj.amount = 1
+    currentObj.size = size
+    currentObj.amountAll = productSize ? productSize.stock : 0
+    return currentObj
+  }
+
+  const addToCart = () => {
+    if (itemInCart()) {
+      dispatch(removeProductFromCart(product.id))
     } else {
-      setBtnState('Add to cart');
-      dispatch(removeProductFromCart(currentObj.id))
+      dispatch(addProductToCart(createObject()))
     }
   }
+
   const fastBuyItem = () => {
-    if(!itemInCart()){
-      setBtnState('Remove from cart');
-      dispatch(addProductToCart(currentObj))
+    if (!itemInCart()) {
+      dispatch(addProductToCart(createObject()))
     }
     dispatch(setIsOpenForm(true))
   }
-  const changeHeadImage = (event:React.MouseEvent) => {
-    const imageUrl = event.target as HTMLImageElement;
-    setUrlToImage(imageUrl.src);
+
+  const changeHeadImage = (event: React.MouseEvent) => {
+    const imageUrl = event.target as HTMLImageElement
+    setUrlToImage(imageUrl.src)
   }
-  let button;
-  if(itemInCart()){
-    button = <button className="item__button" onClick={addToCart}>Remove from cart</button>
-  } else {
-    button = <button className="item__button" onClick={addToCart}>{btnState}</button>
-  }
+
   return (
     <div className="product">
       <div className="product__container">
         <div className="product__way">
           <span className="product__span">Store / </span>
-          <span className="product__span">{initialState[Number(id)].category} / </span>
-          <span className="product__span">{initialState[Number(id)].brand} / </span>
-          <span className="product__span">{initialState[Number(id)].title} </span>
+          <span className="product__span">{product.category} / </span>
+          <span className="product__span">{product.brand} / </span>
+          <span className="product__span">{product.title} </span>
         </div>
         <div className="product__body item">
           <div className="item__pictures">
@@ -75,47 +71,67 @@ const ProductDetails = () => {
               <img src={urlToImage} alt="head picture" className="item__head" />
             </div>
             <div className="item__small-images">
-              <img src={initialState[Number(id)].images[0]} onClick={changeHeadImage} alt="first img" className="item__img" />
-              <img src={initialState[Number(id)].images[1]} alt="second img" className="item__img" onClick={changeHeadImage}/>
-              <img src={initialState[Number(id)].images[2]} alt="third img" className="item__img" onClick={changeHeadImage}/>
+              {product.images.map((image) => {
+                return (
+                  <img
+                    key={image}
+                    src={image}
+                    onClick={changeHeadImage}
+                    alt="first img"
+                    className="item__img"
+                  />
+                )
+              })}
             </div>
           </div>
           <div className="item__info">
-            <h3 className="item__title">{initialState[Number(id)].title}</h3>
-            <p className="item__price">{initialState[Number(id)].price}$</p>
+            <h3 className="item__title">{product.title}</h3>
+            <p className="item__price">{product.price}$</p>
             <div className="item__prop">
               <h5 className="item__label">Description:</h5>
-              <p className="item__text">{initialState[Number(id)].description}</p>
+              <p className="item__text">{product.description}</p>
             </div>
             <div className="item__prop">
               <h5 className="item__label">Category:</h5>
-              <p className="item__text">{initialState[Number(id)].category}</p>
+              <p className="item__text">{product.category}</p>
             </div>
             <div className="item__prop">
               <h5 className="item__label">Brand:</h5>
-              <p className="item__text">{initialState[Number(id)].brand}</p>
+              <p className="item__text">{product.brand}</p>
             </div>
             <div className="item__prop">
               <h5 className="item__label">Rate:</h5>
-              <p className="item__text">{initialState[Number(id)].rating}</p>
+              <p className="item__text">{product.rating}</p>
             </div>
             <div className="item__prop">
               <h5 className="item__label">Size:</h5>
-              <select defaultValue='1' className="item__select"> 
-                <option value='1' className="item__size">S</option>
-                <option value='2' className="item__size">M</option>
-                <option value='3' className="item__size">L</option>
+              <select
+                onChange={(e) => setSize(e.target.value as SizeType)}
+                value={size}
+                className="item__select"
+              >
+                {product.size.map((size) => {
+                  return (
+                    <option key={size.size} value={size.size} className="item__size">
+                      {size.size}
+                    </option>
+                  )
+                })}
               </select>
             </div>
             <div className="item__buttons">
-                <Link rel="stylesheet" to="/cart" className="item__button" onClick={fastBuyItem}>Buy now</Link>
-                {button}
-              </div>
+              <Link rel="stylesheet" to="/cart" className="item__button" onClick={fastBuyItem}>
+                Buy now
+              </Link>
+              <button className="item__button" onClick={addToCart}>
+                {itemInCart() ? 'Remove from cart' : 'Add to cart'}
+              </button>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default ProductDetails;
+export default ProductDetails

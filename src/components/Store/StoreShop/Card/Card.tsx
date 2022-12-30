@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import "./Card.scss";
 import { ProductInDb } from "../../../../app/types";
 
-export const Card = ({ card , index}: {card: ProductInDb, index: number}) => {
+export const Card = ({ card }: {card: ProductInDb}) => {
   const [UrlIcon, setUrlIcon] = useState(toCart);
   const [inCart, setInCart] = useState(false);
 
@@ -23,7 +23,7 @@ export const Card = ({ card , index}: {card: ProductInDb, index: number}) => {
   
   return (
     <div className="shop__card card-item">
-      <Link to={`/product/${index}`} className="card-item__picture">
+      <Link to={`/product/${card.id}`} className="card-item__picture">
         <img src={card.thumbnail} alt="image card" className="card-item__img" />
       </Link>
       <h4 className="card-item__title">{card.title}</h4>

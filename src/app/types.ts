@@ -36,17 +36,19 @@ export type Product = {
   "description": string,
   "discountPercentage": number
 }
+export type SizeType = "XS" | "S" | "M" | "L" | "Xl" | "XXl" | "3XL" | ''
 export interface ProductInDb extends Product {
   "size": {
-    "size": "XS" | "S" | "M" | "L" | "Xl" | "XXl" | "3XL",
+    "size": SizeType ,
     "stock": number
   }[],
 }
 export interface ProductInCart extends Product {
   amount: number,
   amountAll: number,
-  "size": "XS" | "S" | "M" | "L" | "Xl" | "XXl" | "3XL"
+  "size": SizeType
 }
+
 
 export type ProductsState = ProductInDb[]
 

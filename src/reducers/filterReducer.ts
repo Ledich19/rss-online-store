@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { Checkbox, FiltersState, Range, RangeValue, SortByType } from '../app/types'
+import { Checkbox, FiltersState, RangeValue, SortByType } from '../app/types'
 
 const initialState: FiltersState = {
   multiply: [

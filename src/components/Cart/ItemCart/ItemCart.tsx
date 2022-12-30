@@ -19,7 +19,7 @@ const ItemCart = ({
   const navigate = useNavigate()
   const handleShowProduct = (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault()
-    navigate('/product/55')
+    navigate(`/product/${id}`)
   }
 
   return (

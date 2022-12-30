@@ -1,10 +1,10 @@
-import './App.css'
+import './App.scss'
 import Header from './Modules/Header/Header'
 import Footer from './Modules/Footer/Footer'
 import Main from './Modules/Main/Main'
 import { useEffect } from 'react'
 import { useAppDispatch, useAppSelector } from './app/hooks'
-import { addProductToCart, clearCart } from './reducers/cartReducer'
+import { addProductToCart } from './reducers/cartReducer'
 import { ProductInCart } from './app/types'
 import { useSearchParams } from 'react-router-dom'
 

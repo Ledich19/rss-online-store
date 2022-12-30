@@ -127,6 +127,7 @@ const Cart = () => {
         ) : (
           <OrderForm showCartContent={showCartContent} />
         )}
+        
         <CartFooter />
       </div>
     </div>

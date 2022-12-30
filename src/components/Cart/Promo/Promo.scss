@@ -6,7 +6,7 @@
     width: 100%;
     margin-bottom: 10px;
   }
-  &__promo-write{
+  &__promo-write {
     flex: 1 1 auto;
     box-sizing: border-box;
     border: 0.5px solid #d8d9cc;
@@ -22,6 +22,7 @@
     &:focus {
       border: 0.5px solid #bf9180;
     }
+
     &:focus{
       &::placeholder{
         opacity: 0;
@@ -29,11 +30,10 @@
       }
     }
   }
-&__promo-add{
-  
-  position: absolute;
-  right: 0;
-  width: 65px;
+  &__promo-add {
+    position: absolute;
+    right: 0;
+    width: 65px;
     text-align: center;
     height: 40px;
     background: #d8d9cc;
@@ -43,19 +43,32 @@
     &:hover {
       background: #bf9180;
     }
-}
+    &:disabled {
+      background: #d8d9cc9a;
+      color: #3c3f407d;
+    }
+  }
   &__use {
     display: flex;
     gap: 10px;
   }
   &__use-item {
-    cursor: pointer;
-    transition: all 0.3s ease;
-    &:hover{
+    margin-right: 10px;
+    position: relative;
+  }
+  &__promo-text {
+    &:hover {
       color: #bf9180;
     }
   }
-
-
-
+  &__remove {
+    transition: all 0.3s ease;
+    cursor: pointer;
+    top: -5px;
+    position: absolute;
+    margin-right: 5px;
+    &:hover {
+      color: #bf9180;
+    }
+  }
 }
