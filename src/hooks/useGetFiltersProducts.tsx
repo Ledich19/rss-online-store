@@ -6,14 +6,19 @@ const useGetFiltersProducts = () => {
   const { isSortDESC, sortBy, search, multiply, ranges } = useAppSelector((state) => state.filters)
   const getFilters = (): ProductsState => {
     const sortProductMultiply = productState.filter((product) => {
+      //беру продукт продукту и проверяю соответсвует ли он каждому из фильтров
       const isProductValid = multiply.every((rule) => {
+        // отсортирую только активные значения чекбоксов для текущего правила
         const activeFilters = rule.value.filter((r) => r.isCheck).map((r) => r.option)
+        // получу значение поля по котором проверка проверяемого поля
         const filterParam = product[rule.name as keyof typeof product].toString()
+        // если значение активно или фильтров нету значит обэкт подходит
         if (activeFilters.includes(filterParam) || activeFilters.length === 0) {
           return true
         }
         return false
       })
+      // если соответствует возвращаю продукт
       return isProductValid ? product : null
     })
 
@@ -45,7 +50,7 @@ const useGetFiltersProducts = () => {
 
     const sortProductSearch = sortProductDirection.filter((product) => {
       const sortFelds = [
-        'human',
+        'sex',
         'brand',
         'price',
         'title',

@@ -11,26 +11,33 @@ const Header = () => {
   const dispatch = useAppDispatch()
   const { cart } = useAppSelector((state) => state)
   const filtersState = useAppSelector((state) =>
-    state.filters.multiply.find((f) => f.name === 'human')
+    state.filters.multiply.find((f) => f.name === 'sex')
   )
   const filtersOption = filtersState ? filtersState.value : []
 
+  const [navClass, setNavClass] = useState('header__navigation')
   const [isClicked, setIsClicked] = useState(false)
+  const [styleTopSpan, setStyleTopSpan] = useState('header__span')
+  const [styleMiddleSpan, setStyleMiddleSpan] = useState('header__span')
+  const [styleBottomSpan, setStyleBottomSpan] = useState('header__span')
   const [fixedBurger, setFixedBurger] = useState('header__burger')
-
-  const topSpan = !isClicked ? 'header__span' : 'header__span top-span'
-  const middleSpan = !isClicked ? 'header__span' : 'header__span middle-span'
-  const bottomSpan = !isClicked ? 'header__span' : 'header__span bottom-span'
-  const navClass = isClicked ? 'header__navigation open' : 'header__navigation'
 
   const updateMenu = () => {
     if (!isClicked) {
+      setNavClass('header__navigation open')
       setIsClicked(true)
+      setStyleTopSpan('header__span top-span')
+      setStyleMiddleSpan('header__span middle-span')
+      setStyleBottomSpan('header__span bottom-span')
       setTimeout(() => {
         setFixedBurger('header__burger fixed-burger')
       }, 500)
     } else {
+      setNavClass('header__navigation')
       setIsClicked(false)
+      setStyleTopSpan('header__span')
+      setStyleMiddleSpan('header__span')
+      setStyleBottomSpan('header__span')
       setFixedBurger('header__burger')
     }
   }
@@ -51,7 +58,7 @@ const Header = () => {
     })
     dispatch(
       setFilterMultiply({
-        key: 'human',
+        key: 'sex',
         params: values,
       })
     )
@@ -65,9 +72,6 @@ const Header = () => {
         </Link>
         <nav className={navClass}>
           <ul className="header__list">
-            <Link rel="stylesheet" to="/store" className="header__link">
-              Home
-            </Link>
             <Link
               onClick={() => handleSetFilter('')}
               rel="stylesheet"
@@ -100,12 +104,15 @@ const Header = () => {
             >
               Kids
             </Link>
+            <Link rel="stylesheet" to="/store" className="header__link">
+              Home
+            </Link>
           </ul>
         </nav>
         <div onClick={updateMenu} className={fixedBurger}>
-          <div className={topSpan}></div>
-          <div className={middleSpan}></div>
-          <div className={bottomSpan}></div>
+          <div className={styleTopSpan}></div>
+          <div className={styleMiddleSpan}></div>
+          <div className={styleBottomSpan}></div>
         </div>
         <div className="header__icons">
           <PriceProductsInCart />

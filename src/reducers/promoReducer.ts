@@ -12,22 +12,18 @@ const initialState: PromoCodeState = {
       discount: 5
     },
     {
-      code: 'EPM',
-      discount: 10
-    },
-    {
       code: 'TEST',
-      discount: 25
+      discount: 50
     },
   ],
   promoCodeUse: [
     {
       code: 'TEST',
-      discount: 25
+      discount: 50
     },
     {
       code: 'EPM',
-      discount: 10
+      discount: 5
     },
   ]
 }
@@ -36,7 +32,7 @@ const promoCodeSlice = createSlice({
   name: 'cart',
   initialState,
   reducers: {
-    addPromoCode(state, action: {
+    addPromocode(state, action: {
       payload: string; type: string;
     }): PromoCodeState {
       const codeWrite = action.payload
@@ -49,7 +45,7 @@ const promoCodeSlice = createSlice({
       return state
     },
 
-    removePromoCode(state, action: {
+    remuvePromoCode(state, action: {
       payload: string; type: string;
     }): PromoCodeState {
       const codeDelete = action.payload
@@ -58,7 +54,7 @@ const promoCodeSlice = createSlice({
 
     },
 
-    clearPromoCode(state): PromoCodeState {
+    clearPromocode(state): PromoCodeState {
         return { ...state, promoCodeUse: [] }
     },
 
@@ -66,5 +62,5 @@ const promoCodeSlice = createSlice({
 }
 )
 
-export const { addPromoCode , clearPromoCode, removePromoCode} = promoCodeSlice.actions
+export const { addPromocode , clearPromocode, remuvePromoCode} = promoCodeSlice.actions
 export default promoCodeSlice.reducer
