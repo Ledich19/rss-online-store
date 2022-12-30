@@ -1,10 +1,11 @@
 .filters {
-  height: 100px;
   max-width: 255px;
   flex: 1 0 255px;
+
 }
 @media(max-width:976px){
   .filters{
     max-width: 100%;
+    margin-bottom: 20px;
   }
 }
