@@ -59,6 +59,7 @@ function App() {
     setSearchParams(params)
   }, [isSortDESC, sortBy, search, multiply, ranges])
 
+
   return (
     <div className="App">
       <Header />
