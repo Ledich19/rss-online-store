@@ -16,14 +16,14 @@ export type SortByType = "price" | "discountPercentage" | 'rating' | ''
 export type FiltersState = {
   multiply: Multiply[],
   ranges: Range[]
-  "isSortDESC": boolean | null
+  "isSortDESC": boolean
   'sortBy': SortByType
   "search": string
 }
 
 export type Product = {
   "id": string,
-  "human": "woman" | "man" | "kids",
+  "sex": "woman" | "man" | "kids",
   "brand": string,
   "color": string,
   "price": number,
@@ -36,19 +36,17 @@ export type Product = {
   "description": string,
   "discountPercentage": number
 }
-export type SizeType = "XS" | "S" | "M" | "L" | "Xl" | "XXl" | "3XL" | ''
 export interface ProductInDb extends Product {
   "size": {
-    "size": SizeType ,
+    "size": "XS" | "S" | "M" | "L" | "Xl" | "XXl" | "3XL",
     "stock": number
   }[],
 }
 export interface ProductInCart extends Product {
   amount: number,
   amountAll: number,
-  "size": SizeType
+  "size": "XS" | "S" | "M" | "L" | "Xl" | "XXl" | "3XL"
 }
-
 
 export type ProductsState = ProductInDb[]
 

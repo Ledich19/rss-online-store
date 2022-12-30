@@ -4,6 +4,11 @@ import { CartState, ProductInCart } from '../app/types'
 const initialState: CartState = [
 ]
 
+const addLocalstorege = (sate: CartState) => {
+  window.localStorage.setItem(
+  'shoppingCartContents', JSON.stringify(sate)
+  )
+}
 
 const cartSlice = createSlice({
   name: 'cart',
@@ -13,6 +18,7 @@ const cartSlice = createSlice({
       payload: ProductInCart ; type: string;
     }): CartState {
       const newState = state.concat(action.payload)
+      addLocalstorege(newState)
       return newState
     },
 
@@ -20,11 +26,12 @@ const cartSlice = createSlice({
       payload: string;
     }): CartState {
       const newState = state.filter((product) => product.id !== action.payload)
+      addLocalstorege(newState)
       return newState
     },
 
     clearCart(): CartState {
-      window.localStorage.removeItem('shoppingCartContents')
+     window.localStorage.removeItem('shoppingCartContents')
       return []
     },
 
@@ -38,6 +45,7 @@ const cartSlice = createSlice({
         }
         return product
       })
+      addLocalstorege(newState)
       return newState
     },
 
@@ -51,6 +59,7 @@ const cartSlice = createSlice({
         return product
       }).filter(product => product.amount !== 0)
 
+      addLocalstorege(newState)
       return newState
     },
   },

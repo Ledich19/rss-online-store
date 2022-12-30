@@ -13,8 +13,8 @@ const SortRange = ({ min, max, title , step}: { min: number; max: number; title:
     (state) => state.filters.ranges.find((f) => f.name === title)
   )
  
-  const minVal = filtersState ? filtersState.value.min : min
-  const maxVal = filtersState ? filtersState.value.max : max
+  const minVal = filtersState ? filtersState.value.min : 0
+  const maxVal = filtersState ? filtersState.value.max : 0
 
   const getPercent = useCallback(
     (value: number) => Math.round(((value - min) / (max - min)) * 100),
@@ -49,6 +49,10 @@ const SortRange = ({ min, max, title , step}: { min: number; max: number; title:
       range.current.style.width = `${maxPercent - minPercent}%`
     }
   }, [maxVal, getPercent])
+
+  useEffect(() => {
+    setRangeParams(min, max, title)
+  }, [])
 
   const handleLeftValue = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = parseInt(e.target.value)

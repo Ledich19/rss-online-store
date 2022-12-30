@@ -8,7 +8,7 @@ import { useAppDispatch } from '../../../app/hooks'
 import { setIsOpenForm, setOpenOrderFinish } from '../../../reducers/modalsReducer'
 import { useNavigate } from 'react-router-dom'
 import { clearCart } from '../../../reducers/cartReducer'
-import { clearPromoCode } from '../../../reducers/promoReducer'
+import { clearPromocode } from '../../../reducers/promoReducer'
 
 const DataForm = () => {
   const navigate = useNavigate()
@@ -239,11 +239,10 @@ const DataForm = () => {
         setIsDirty(false)
         dispatch(clearCart())
         navigate('/store')
-        clearPromoCode()
+        clearPromocode()
       }, 5000)
 
      window.localStorage.removeItem('shoppingCartContents')
-     
     }
   }
   return (

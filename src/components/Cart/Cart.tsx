@@ -4,82 +4,66 @@ import DataForm from './DataForm/DataForm'
 import { useAppDispatch, useAppSelector } from '../../app/hooks'
 import OrderFinish from './OrderFinish/OrderFinish'
 import CartFooter from './CartFooter/CartFooter'
-import { useNavigate, useSearchParams } from 'react-router-dom'
-import {
-  setCartPage,
-  setIsOpenForm,
-  setLimit,
-  setOpenOrderFinish,
-} from '../../reducers/modalsReducer'
-import { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { setIsOpenForm, setOpenOrderFinish } from '../../reducers/modalsReducer'
+import { useState, useEffect } from 'react'
 import { AiOutlineCaretLeft } from 'react-icons/ai'
 import { AiOutlineCaretRight } from 'react-icons/ai'
 import PriceProductsInCart from './PriceProductsInCart/PriceProductsInCart'
 
 const Cart = () => {
+  const [page, setPage] = useState(0)
+  const [limit, setLimit] = useState(0)
   const navigate = useNavigate()
   const dispatch = useAppDispatch()
-  const { modals } = useAppSelector((state) => state)
-  const { limit, page } = useAppSelector((state) => state.modals)
+  const modalState = useAppSelector((state) => state.modals)
   const cartContent = useAppSelector((state) => state.cart)
-  const [searchParams, setSearchParams] = useSearchParams()
-
   const showCartContent =
-    limit === 0 ? cartContent : cartContent.slice(((page- 1) * limit) , ((page - 1) * limit + limit) )
+    limit === 0 ? cartContent : cartContent.slice(page * limit, page * limit + limit)
 
   useEffect(() => {
-    dispatch(setCartPage(1))
     const paginationCartJSON = window.localStorage.getItem('paginationCart')
     if (paginationCartJSON) {
       const paginationCart = JSON.parse(paginationCartJSON)
-      dispatch(setLimit(paginationCart.limit))
-      dispatch(setCartPage(paginationCart.page))
+      setPage(paginationCart.page)
+      setLimit(paginationCart.limit)
     }
   }, [])
 
   useEffect(() => {
-    const params = new URLSearchParams()
-    params.append('page', (page).toString())
-    params.append('limit', limit.toString())
-    setSearchParams(params)
-
     const length = limit === 0 ? 1 : Math.ceil(cartContent.length / limit)
-    if (page > length) {
-      const newCartPage = length - 1 <= 1 ? 1 :  length - 1
-      dispatch(setCartPage(newCartPage))
+    if (page + 1 > length) {
+      setPage(length - 1)
     }
+    navigate(`/cart?page=${page + 1}&limit=${limit}`)
   }, [cartContent.length, limit, page])
-  
-  useEffect(() => {
-    window.localStorage.setItem('paginationCart', JSON.stringify({ limit, page }))
-    if (modals.page === 1 && modals.limit=== 0) {
-      window.localStorage.removeItem('paginationCart')
-    }
-  }, [limit, modals])
 
   const clickHandle = () => {
     navigate('/store')
     dispatch(setIsOpenForm(false))
     dispatch(setOpenOrderFinish(false))
   }
-
+  
   const handleLimit = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault()
     const value = parseInt(e.target.value)
-    dispatch(setLimit(value))
+    setLimit(value)
+    window.localStorage.setItem('paginationCart', JSON.stringify({ page: page, limit: value }))
   }
   const handlePrev = (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault()
-    if (page !== 1) {
-      const newPage = page - 1      
-      dispatch(setCartPage(newPage))
+    if (page !== 0) {
+      const newPage = page - 1
+      setPage(newPage)
+      window.localStorage.setItem('paginationCart', JSON.stringify({ page: newPage, limit: limit }))
     }
   }
   const handleNext = (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault()
-    if (page !== Math.ceil(cartContent.length / limit) && limit !== 0) {
+    if (page + 1 !== Math.ceil(cartContent.length / limit) && limit !== 0) {
       const newPage = page + 1
-      dispatch(setCartPage(newPage))
+      setPage(newPage)
+      window.localStorage.setItem('paginationCart', JSON.stringify({ page: newPage, limit: limit }))
     }
   }
 
@@ -109,7 +93,7 @@ const Cart = () => {
                   <AiOutlineCaretLeft />
                 </div>
                 <div className="page__value">
-                  {page} from {limit === 0? 1 : Math.ceil(cartContent.length / limit)}
+                  {page + 1} from {limit === 0 ? 1 : Math.ceil(cartContent.length / limit)}
                 </div>
                 <div className="page__next" onClick={handleNext}>
                   <AiOutlineCaretRight />
@@ -120,14 +104,13 @@ const Cart = () => {
 
           <PriceProductsInCart />
         </div>
-        {modals.isOderFinish ? (
+        {modalState.isOderFinish ? (
           <OrderFinish />
-        ) : modals.isForm ? (
+        ) : modalState.isForm ? (
           <DataForm />
         ) : (
           <OrderForm showCartContent={showCartContent} />
         )}
-        
         <CartFooter />
       </div>
     </div>

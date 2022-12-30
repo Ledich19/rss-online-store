@@ -11,6 +11,7 @@ export const Card = ({ card, style }: { card: ProductInDb; style: object }) => {
   const [UrlIcon, setUrlIcon] = useState(toCart)
   const [inCart, setInCart] = useState(false)
 
+
   const changeUrl = () => {
     if (!inCart) {
       setUrlIcon(onCart)
@@ -23,7 +24,9 @@ export const Card = ({ card, style }: { card: ProductInDb; style: object }) => {
 
   return (
     <div className="shop__card card-item" style={style}>
+
       <Link to={`/product/${card.id}`} className="card-item__picture">
+
         <img src={card.thumbnail} alt="image card" className="card-item__img" />
       </Link>
       <h4 className="card-item__title">{card.title}</h4>

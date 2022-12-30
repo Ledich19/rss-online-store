@@ -50,6 +50,7 @@ const StoreShop = () => {
       {buttonThree}
     </div >
     {showProduct.map((card) =><Card style={view} key={card.id} card={card} />)}
+
   </div>
   )
 };
