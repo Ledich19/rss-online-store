@@ -1,28 +1,28 @@
-import React ,{useState}from "react";
-import toFavorite from "../../../../images/addToFavorite.svg";
-import toCart from "../../../../images/addToCart.svg";
-import onCart from "../../../../images/inCart.png";
-import { Link } from "react-router-dom";
+import React, { useState } from 'react'
+import toFavorite from '../../../../images/addToFavorite.svg'
+import toCart from '../../../../images/addToCart.svg'
+import onCart from '../../../../images/inCart.png'
+import { Link } from 'react-router-dom'
 
-import "./Card.scss";
-import { ProductInDb } from "../../../../app/types";
+import './Card.scss'
+import { ProductInDb } from '../../../../app/types'
 
-export const Card = ({ card }: {card: ProductInDb}) => {
-  const [UrlIcon, setUrlIcon] = useState(toCart);
-  const [inCart, setInCart] = useState(false);
+export const Card = ({ card, style }: { card: ProductInDb; style: object }) => {
+  const [UrlIcon, setUrlIcon] = useState(toCart)
+  const [inCart, setInCart] = useState(false)
 
-  const changeUrl = () =>{
-    if(!inCart){
-      setUrlIcon(onCart);
+  const changeUrl = () => {
+    if (!inCart) {
+      setUrlIcon(onCart)
       setInCart(true)
     } else {
-      setUrlIcon(toCart);
-      setInCart(false);
+      setUrlIcon(toCart)
+      setInCart(false)
     }
   }
-  
+
   return (
-    <div className="shop__card card-item">
+    <div className="shop__card card-item" style={style}>
       <Link to={`/product/${card.id}`} className="card-item__picture">
         <img src={card.thumbnail} alt="image card" className="card-item__img" />
       </Link>
@@ -37,7 +37,6 @@ export const Card = ({ card }: {card: ProductInDb}) => {
       </div>
     </div>
   )
-  
 }
 
 export default Card

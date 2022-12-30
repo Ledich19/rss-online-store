@@ -17,6 +17,8 @@ function App() {
   useEffect(() => {
     const shoppingCartContentsJSON = window.localStorage.getItem('shoppingCartContents')
     if (shoppingCartContentsJSON) {
+      console.log();
+      
       const shoppingCartContents = JSON.parse(shoppingCartContentsJSON)
       shoppingCartContents.forEach((product: ProductInCart) => {
         dispatch(addProductToCart(product))

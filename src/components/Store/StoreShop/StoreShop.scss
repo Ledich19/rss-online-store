@@ -5,9 +5,39 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  position: relative;
+  &__buttons{
+    position: absolute;
+    top: -30px;
+    right: -50px;
+    display: flex;
+    gap: 10px;
+  }
+  &__button{
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    transition: all 3s ease;
+    cursor: pointer;
+    &:hover{
+      outline: 1px solid #000;
+    }
+    &_two{
+      background: url(../../../images/two.png)center / 13px no-repeat;
+    }
+    &_three{
+      background: url(../../../images/three.png)center / 18px no-repeat;
+    }
+  }
 }
 @media(max-width:976px){
   .shop{
     max-width: 100%;
   };
+}
+.two{
+  flex: 1 1 48%;
+}
+.active{
+  outline: 1px solid #000;
 }
