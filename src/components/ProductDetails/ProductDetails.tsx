@@ -36,6 +36,7 @@ const ProductDetails = () => {
     return currentObj
   }
 
+  
   const addToCart = () => {
     if (itemInCart()) {
       dispatch(removeProductFromCart(product.id))

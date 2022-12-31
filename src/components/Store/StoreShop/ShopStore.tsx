@@ -11,11 +11,11 @@ const StoreShop = () => {
   const buttons = document.querySelectorAll('.shop__button');
   const changeToBig = (e:React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
+
     const params = searchParams
     params.set('view', 'big')
     setSearchParams(params);
 
-    
     cards.forEach(i => i.classList.remove('two'));
     localStorage.removeItem('view');
     buttons.forEach(i => i.classList.remove('active'))
@@ -27,7 +27,6 @@ const StoreShop = () => {
     const params = searchParams
     params.set('view', 'small')
     setSearchParams(params);
-
 
     cards.forEach(i => i.classList.add('two'));
     localStorage.setItem('view' , 'two');
@@ -58,6 +57,7 @@ const StoreShop = () => {
     <div className="shop__buttons">
       {buttonTwo}
       {buttonThree}
+      <button onClick={()=>{localStorage.clear()}}>clear</button>
     </div >
     {showProduct.map((card) =><Card style={view} key={card.id} card={card} />)}
   </div>
