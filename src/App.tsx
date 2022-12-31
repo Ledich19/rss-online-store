@@ -7,14 +7,25 @@ import { useAppDispatch, useAppSelector } from './app/hooks'
 import { addProductToCart } from './reducers/cartReducer'
 import { ProductInCart } from './app/types'
 import { useSearchParams } from 'react-router-dom'
+import { setAllFilters } from './reducers/filterReducer'
 
 function App() {
   const dispatch = useAppDispatch()
   const [searchParams, setSearchParams] = useSearchParams()
   const { isSortDESC, sortBy, search, multiply, ranges } = useAppSelector((state) => state.filters)
+  const { filters } = useAppSelector((state) => state)
   const { cart } = useAppSelector((state) => state)
 
   useEffect(() => {
+
+    // const filtersForShopJSON = window.localStorage.getItem('filtersForShop')
+    // if (filtersForShopJSON) {
+    //   const filtersForShop = JSON.parse(filtersForShopJSON)
+    //   console.log(filtersForShop);
+    //   dispatch(setAllFilters(filtersForShop))
+    // }
+
+
     const shoppingCartContentsJSON = window.localStorage.getItem('shoppingCartContents')
     if (shoppingCartContentsJSON) {
       console.log();
@@ -34,30 +45,42 @@ function App() {
   }, [cart])
 
   useEffect(() => {
-    const params = new URLSearchParams()
+    const params = searchParams
     multiply.forEach((rule) => {
       const key = rule.name
       const value = rule.value.filter((r) => r.isCheck).map((r) => r.option)
       if (value.length > 0) {
-        params.append(key, value.join('↕'))
+        params.set(key, value.join('↕'))
+      }else {
+        params.delete(key)
       }
     })
 
     ranges.forEach((rule) => {
       const key = rule.name
       const value = [rule.value.min, rule.value.max]
-      params.append(key, value.join('↕'))
+      params.set(key, value.join('↕'))
     })
 
     if (isSortDESC !== null && sortBy) {
       const param = isSortDESC ? 'DESC' : 'ASC'
-      params.append('sort', [sortBy, param].join('-'))
+      params.set('sort', [sortBy, param].join('-'))
+    } else {
+      params.delete('sort')
     }
+
     if (search) {
-      params.append('search', search)
+      params.set('search', search)
+    }else {
+      params.delete('search')
     }
     setSearchParams(params)
-  }, [isSortDESC, sortBy, search, multiply, ranges])
+
+    // window.localStorage.setItem('filtersForShop', JSON.stringify({isSortDESC, sortBy, search, multiply, ranges}))
+    // if (length === 0) {
+    //   window.localStorage.removeItem('filtersForShop')
+    // }
+  }, [isSortDESC, sortBy, search, multiply, ranges, filters])
 
 
   return (

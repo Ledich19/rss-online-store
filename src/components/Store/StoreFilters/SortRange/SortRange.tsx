@@ -3,16 +3,24 @@ import { useAppDispatch, useAppSelector } from '../../../../app/hooks'
 import { setFilterRange } from '../../../../reducers/filterReducer'
 import './SortRange.scss'
 
-const SortRange = ({ min, max, title , step}: { min: number; max: number; title: string, step: number }) => {
+const SortRange = ({
+  min,
+  max,
+  title,
+  step,
+}: {
+  min: number
+  max: number
+  title: string
+  step: number
+}) => {
   const minValRef = useRef(min)
   const maxValRef = useRef(max)
   const range = useRef<HTMLInputElement>(null)
   const dispatch = useAppDispatch()
 
-  const filtersState = useAppSelector(
-    (state) => state.filters.ranges.find((f) => f.name === title)
-  )
- 
+  const filtersState = useAppSelector((state) => state.filters.ranges.find((f) => f.name === title))
+
   const minVal = filtersState ? filtersState.value.min : min
   const maxVal = filtersState ? filtersState.value.max : max
 
@@ -34,8 +42,20 @@ const SortRange = ({ min, max, title , step}: { min: number; max: number; title:
   }
 
   useEffect(() => {
+    const filtersJSON = window.localStorage.getItem(`filtersFor${title}`)
+    if (filtersJSON) {
+      const filters = JSON.parse(filtersJSON)
+      dispatch(setFilterRange(filters))
+      maxValRef.current = filters.params.max
+      minValRef.current = filters.params.min
+    }
+  }, [])
+
+  useEffect(() => {
     const minPercent = getPercent(minVal)
     const maxPercent = getPercent(maxValRef.current)
+    console.log(title,maxPercent);
+    
     if (range.current) {
       range.current.style.left = `${minPercent}%`
       range.current.style.width = `${maxPercent - minPercent}%`
@@ -45,6 +65,7 @@ const SortRange = ({ min, max, title , step}: { min: number; max: number; title:
   useEffect(() => {
     const minPercent = getPercent(minValRef.current)
     const maxPercent = getPercent(maxVal)
+    console.log(title,minPercent);
     if (range.current) {
       range.current.style.width = `${maxPercent - minPercent}%`
     }
@@ -100,6 +121,18 @@ const SortRange = ({ min, max, title , step}: { min: number; max: number; title:
           onChange={(event) => {
             const value = Math.min(Number(event.target.value), maxVal - step)
             setRangeParams(value, maxVal, title)
+
+            window.localStorage.setItem(
+              `filtersFor${title}`,
+              JSON.stringify({
+                key: title,
+                params: {
+                  min: value,
+                  max: maxVal,
+                },
+              })
+            )
+
             minValRef.current = value
           }}
           className="thumb thumb--left"
@@ -113,6 +146,18 @@ const SortRange = ({ min, max, title , step}: { min: number; max: number; title:
           onChange={(event) => {
             const value = Math.max(Number(event.target.value), minVal + step)
             setRangeParams(minVal, value, title)
+
+            window.localStorage.setItem(
+              `filtersFor${title}`,
+              JSON.stringify({
+                key: title,
+                params: {
+                  min: minVal,
+                  max: value,
+                },
+              })
+            )
+
             maxValRef.current = value
           }}
           className="thumb thumb--right"
