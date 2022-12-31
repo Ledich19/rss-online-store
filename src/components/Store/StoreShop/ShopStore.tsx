@@ -11,7 +11,11 @@ const StoreShop = () => {
   const buttons = document.querySelectorAll('.shop__button');
   const changeToBig = (e:React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
-    setSearchParams({view: 'big'});
+    const params = searchParams
+    params.set('view', 'big')
+    setSearchParams(params);
+
+    
     cards.forEach(i => i.classList.remove('two'));
     localStorage.removeItem('view');
     buttons.forEach(i => i.classList.remove('active'))
@@ -20,13 +24,19 @@ const StoreShop = () => {
   }
   const changeToSmall = (e:React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
-    setSearchParams({view: 'small'});
+    const params = searchParams
+    params.set('view', 'small')
+    setSearchParams(params);
+
+
     cards.forEach(i => i.classList.add('two'));
     localStorage.setItem('view' , 'two');
     buttons.forEach(i => i.classList.remove('active'))
     const button = e.target as HTMLElement
     button.classList.add('active');
   }
+
+
   let buttonTwo = <button className="shop__button shop__button_two" onClick={changeToSmall}></button>;
   let buttonThree = <button className="shop__button shop__button_three active" onClick={changeToBig}></button>;
   const view = {flex:'1 1 30%'}
