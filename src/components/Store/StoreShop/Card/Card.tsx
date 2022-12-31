@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import toFavorite from '../../../../images/addToFavorite.svg'
 import toCart from '../../../../images/addToCart.svg'
 import onCart from '../../../../images/inCart.png'
@@ -10,35 +10,34 @@ import { ProductInDb } from '../../../../app/types'
 import { ProductInCart } from '../../../../app/types'
 
 export const Card = ({ card, style }: { card: ProductInDb; style: object }) => {
-  const [UrlIcon, setUrlIcon] = useState(toCart)
+  const [icon, setIcon] = useState(toCart)
   const dispatch = useAppDispatch()
   const cartContent = useAppSelector((state) => state.cart)
 
   const createObject = () => {
     const currentObj: ProductInCart = JSON.parse(JSON.stringify(card))
     currentObj.amount = 1
-    currentObj.size = "S"
+    currentObj.size = 'S'
     currentObj.amountAll = 10
     return currentObj
   }
-  const itemInCart = () => {
-    for(let i = 0 ; i < cartContent.length; i++){
-      if(createObject().id === cartContent[i].id){
-        return true
-      } else return false
-    }
-  }
-  let icon ;
-  itemInCart() ? icon = onCart : icon = toCart;
-  const changeUrl = () => {
-    if (!itemInCart()) {
-      //setUrlIcon(onCart)
-      icon = onCart
-      dispatch(addProductToCart(createObject()))
+
+  useEffect(() => {
+    const isCart = cartContent.find((e) => e.id === card.id)
+    if (isCart) {
+      setIcon(onCart)
     } else {
-      // setUrlIcon(toCart)
-      icon = toCart;
+      setIcon(toCart)
+    }
+  }, [cartContent])
+
+  const changeUrl = () => {
+    if (cartContent.find((e) => e.id === card.id)) {
+      setIcon(toCart)
       dispatch(removeProductFromCart(card.id))
+    } else {
+      setIcon(onCart)
+      dispatch(addProductToCart(createObject()))
     }
   }
 
