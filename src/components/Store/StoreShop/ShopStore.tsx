@@ -57,6 +57,7 @@ const StoreShop = () => {
     <div className="shop__buttons">
       {buttonTwo}
       {buttonThree}
+      <button onClick={()=>{localStorage.clear()}}>clear</button>
     </div >
     {showProduct.map((card) =><Card style={view} key={card.id} card={card} />)}
   </div>
