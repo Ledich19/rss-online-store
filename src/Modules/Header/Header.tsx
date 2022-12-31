@@ -61,7 +61,7 @@ const Header = () => {
     <div className="header">
       <div className="header__container">
         <Link to="/" rel="stylesheet" className="header__picture">
-          <img src={headerLogo} alt="" className="header__logo" />
+          <img onClick={() =>  localStorage.clear()} src={headerLogo} alt="" className="header__logo" />
         </Link>
         <nav className={navClass}>
           <ul className="header__list">
