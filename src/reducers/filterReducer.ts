@@ -36,6 +36,11 @@ const filterSlice = createSlice({
   name: 'filters',
   initialState,
   reducers: {
+    setAllFilters(state, action: {
+      payload: FiltersState; type: string;
+    }): FiltersState {
+      return {...state, isSortDESC: action.payload.isSortDESC, sortBy: action.payload.sortBy, search: action.payload.search, multiply: action.payload.multiply, ranges: action.payload.ranges,}
+    },
     setSearch(state, action: {
       payload: string; type: string;
     }): FiltersState {
@@ -107,7 +112,7 @@ const filterSlice = createSlice({
 }
 )
 
-export const { setSearch, setFilterMultiply, setFilterRange , setSortDirection} = filterSlice.actions
+export const { setSearch, setFilterMultiply, setFilterRange , setSortDirection, setAllFilters} = filterSlice.actions
 export default filterSlice.reducer
 
 

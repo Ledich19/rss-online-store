@@ -41,21 +41,32 @@ const SortItem = ({ filters, title }: FilterItemState) => {
         params: values,
       })
     )
+    window.localStorage.setItem(`filtersFor${title}`, JSON.stringify({
+      key: title,
+      params: values,
+    }))
   }
 
   useEffect(() => {
-    const newParams = filters.map((e) => {
-      return {
-        option: e,
-        isCheck: false,
-      }
-    })
-    dispatch(
-      setFilterMultiply({
-        key: title,
-        params: newParams,
+    const filtersJSON = window.localStorage.getItem(`filtersFor${title}`)
+    if (filtersJSON) {
+      const filters = JSON.parse(filtersJSON)
+      console.log(filters)
+      dispatch(setFilterMultiply(filters))
+    } else {
+      const newParams = filters.map((e) => {
+        return {
+          option: e,
+          isCheck: false,
+        }
       })
-    )
+      dispatch(
+        setFilterMultiply({
+          key: title,
+          params: newParams,
+        })
+      )
+    }
   }, [])
 
   return (
