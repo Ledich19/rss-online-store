@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useAppDispatch, useAppSelector } from '../../app/hooks'
-import { Link } from 'react-router-dom'
+import { Link, useSearchParams } from 'react-router-dom'
 
 import PriceProductsInCart from '../../components/Cart/PriceProductsInCart/PriceProductsInCart'
 import headerLogo from '../../images/logo.svg'
@@ -8,6 +8,8 @@ import { setFilterMultiply } from '../../reducers/filterReducer'
 import './Header.scss'
 
 const Header = () => {
+  const [searchParams, setSearchParams] = useSearchParams()
+
   const dispatch = useAppDispatch()
   const { cart } = useAppSelector((state) => state)
   const filtersState = useAppSelector((state) =>
@@ -60,18 +62,18 @@ const Header = () => {
   return (
     <div className="header">
       <div className="header__container">
-        <Link to="/" rel="stylesheet" className="header__picture">
+        <Link to="/home" rel="stylesheet" className="header__picture">
           <img onClick={() =>  localStorage.clear()} src={headerLogo} alt="" className="header__logo" />
         </Link>
         <nav className={navClass}>
           <ul className="header__list">
-            <Link rel="stylesheet" to="/store" className="header__link">
+            <Link rel="stylesheet" to="/home" className="header__link">
               Home
             </Link>
             <Link
               onClick={() => handleSetFilter('')}
               rel="stylesheet"
-              to="/store"
+              to={`/store${ searchParams ? '?' : ''}${searchParams}`}
               className="header__link"
             >
               All
@@ -79,7 +81,7 @@ const Header = () => {
             <Link
               onClick={() => handleSetFilter('woman')}
               rel="stylesheet"
-              to="/store"
+              to={`/store${ searchParams ? '?' : ''}${searchParams}`}
               className="header__link"
             >
               Woman
@@ -87,7 +89,7 @@ const Header = () => {
             <Link
               onClick={() => handleSetFilter('man')}
               rel="stylesheet"
-              to="/store"
+              to={`/store${ searchParams ? '?' : ''}${searchParams}`}
               className="header__link"
             >
               Man
@@ -95,7 +97,7 @@ const Header = () => {
             <Link
               onClick={() => handleSetFilter('kids')}
               rel="stylesheet"
-              to="/store"
+              to={`/store${ searchParams ? '?' : ''}${searchParams}`}
               className="header__link"
             >
               Kids
