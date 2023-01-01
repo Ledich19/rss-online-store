@@ -135,9 +135,6 @@ const SortRange = ({
                 },
               })
             )
-            // if (value === min && maxVal === max) {
-            //   window.localStorage.removeItem(`filtersFor${title}`)
-            // }
 
             minValRef.current = value
           }}
@@ -163,9 +160,6 @@ const SortRange = ({
                 },
               })
             )
-            // if (minVal === min && maxVal === value) {
-            //   window.localStorage.removeItem(`filtersFor${title}`)
-            // }
 
             maxValRef.current = value
           }}

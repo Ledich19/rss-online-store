@@ -51,7 +51,6 @@ const SortItem = ({ filters, title }: FilterItemState) => {
     const filtersJSON = window.localStorage.getItem(`filtersFor${title}`)
     if (filtersJSON) {
       const filters = JSON.parse(filtersJSON)
-      console.log(filters)
       dispatch(setFilterMultiply(filters))
     } else {
       const newParams = filters.map((e) => {

@@ -46,7 +46,7 @@ const useGetFiltersProducts = () => {
     })
 
     const sortProductSearch = sortProductDirection.filter((product) => {
-      const sortFelds = [
+      const sortFields = [
         'human',
         'brand',
         'price',
@@ -56,8 +56,8 @@ const useGetFiltersProducts = () => {
         'description',
         'discountPercentage',
       ]
-      const result = sortFelds.some((feld) => {
-        const researchProduct = product[feld as keyof typeof product]
+      const result = sortFields.some((field) => {
+        const researchProduct = product[field as keyof typeof product]
         if (typeof researchProduct === 'string') {
           return researchProduct.toUpperCase().includes(search.toUpperCase())
         }

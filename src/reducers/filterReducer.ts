@@ -60,8 +60,6 @@ const filterSlice = createSlice({
     setSortView(state, action: {
       payload: ViewType; type: string;
     }): FiltersState {
-      console.log('state',action.payload );
-      
       return { ...state, view: action.payload }
     },
 

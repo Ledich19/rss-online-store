@@ -7,21 +7,17 @@ import { useAppDispatch, useAppSelector } from './app/hooks'
 import { addProductToCart } from './reducers/cartReducer'
 import { ProductInCart } from './app/types'
 import { useSearchParams } from 'react-router-dom'
-import { setAllFilters } from './reducers/filterReducer'
 
 function App() {
   const dispatch = useAppDispatch()
   const [searchParams, setSearchParams] = useSearchParams()
   const { isSortDESC, sortBy, search, multiply, ranges, view } = useAppSelector((state) => state.filters)
-  const { filters } = useAppSelector((state) => state)
   const { cart } = useAppSelector((state) => state)
 
   useEffect(() => {
   
     const shoppingCartContentsJSON = window.localStorage.getItem('shoppingCartContents')
     if (shoppingCartContentsJSON) {
-      console.log()
-
       const shoppingCartContents = JSON.parse(shoppingCartContentsJSON)
       shoppingCartContents.forEach((product: ProductInCart) => {
         dispatch(addProductToCart(product))
