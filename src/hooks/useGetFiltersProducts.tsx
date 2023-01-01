@@ -22,7 +22,9 @@ const useGetFiltersProducts = () => {
         const min = rule.value.min
         const max = rule.value.max
         const productValue = product[rule.name as keyof typeof product]
-        if (productValue > min && productValue < max) {
+        if (min === null && max === null) {
+          return true
+        } else if (min !== null && max !== null && productValue > min && productValue < max) {
           return true
         }
         return false

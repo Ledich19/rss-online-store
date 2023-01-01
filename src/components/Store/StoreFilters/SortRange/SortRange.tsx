@@ -23,15 +23,15 @@ const SortRange = ({
   const filtersState = useAppSelector((state) => state.filters.ranges.find((f) => f.name === title))
   const {filters} = useAppSelector((state) => state)
 
-  const minVal = filtersState ? filtersState.value.min : min
-  const maxVal = filtersState ? filtersState.value.max : max
+  const minVal = filtersState && filtersState.value.min !== null ? filtersState.value.min : min
+  const maxVal = filtersState && filtersState.value.max !== null ? filtersState.value.max : max
 
   const getPercent = useCallback(
     (value: number) => Math.round(((value - min) / (max - min)) * 100),
     [min, max]
   )
 
-  const setRangeParams = (minVal: number, maxVal: number, title: string) => {
+  const setRangeParams = (minVal: number | null, maxVal: number | null, title: string) => {
     dispatch(
       setFilterRange({
         key: title,
@@ -51,21 +51,11 @@ const SortRange = ({
       maxValRef.current = filters.params.max
       minValRef.current = filters.params.min
     } else {
-      setRangeParams(min, max, title)
+      setRangeParams(null, null, title)
       maxValRef.current = max
       minValRef.current = min
     }
   }, [])
-
-  useEffect(() => {
-    if (filtersState) {
-      const params = searchParams
-      const key = filtersState.name
-      const value = [filtersState.value.min, filtersState.value.max]
-      params.set(key, value.join('↕'))
-      setSearchParams(params)
-    }
-  }, [filtersState])
 
   useEffect(() => {
     const minPercent = getPercent(minVal)

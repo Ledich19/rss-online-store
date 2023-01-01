@@ -2,7 +2,7 @@ export interface Checkbox {
   option: string
   isCheck: boolean
 }
-export type RangeValue = { min: number, max: number }
+export type RangeValue = { min: number | null, max: number | null }
 export interface Range {
   name: string,
   value: RangeValue

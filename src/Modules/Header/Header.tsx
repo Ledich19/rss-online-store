@@ -57,17 +57,21 @@ const Header = () => {
         params: values,
       })
     )
+    window.localStorage.setItem(`filtersForhuman`, JSON.stringify({
+      key: 'human',
+      params: values,
+    }))
   }
 
   return (
     <div className="header">
       <div className="header__container">
-        <Link to="/home" rel="stylesheet" className="header__picture">
-          <img onClick={() =>  localStorage.clear()} src={headerLogo} alt="" className="header__logo" />
+        <Link to='/home' rel="stylesheet" className="header__picture">
+          <img onClick={() =>  { localStorage.clear(); document.location.reload();}} src={headerLogo} alt="" className="header__logo" />
         </Link>
         <nav className={navClass}>
           <ul className="header__list">
-            <Link rel="stylesheet" to="/home" className="header__link">
+            <Link rel="stylesheet" to={`/home${ searchParams ? '?' : ''}${searchParams}`} className="header__link">
               Home
             </Link>
             <Link

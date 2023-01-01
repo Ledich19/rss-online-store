@@ -17,7 +17,6 @@ function App() {
   const { cart } = useAppSelector((state) => state)
 
   useEffect(() => {
-
     // const filtersForShopJSON = window.localStorage.getItem('filtersForShop')
     // if (filtersForShopJSON) {
     //   const filtersForShop = JSON.parse(filtersForShopJSON)
@@ -25,11 +24,10 @@ function App() {
     //   dispatch(setAllFilters(filtersForShop))
     // }
 
-
     const shoppingCartContentsJSON = window.localStorage.getItem('shoppingCartContents')
     if (shoppingCartContentsJSON) {
-      console.log();
-      
+      console.log()
+
       const shoppingCartContents = JSON.parse(shoppingCartContentsJSON)
       shoppingCartContents.forEach((product: ProductInCart) => {
         dispatch(addProductToCart(product))
@@ -51,16 +49,21 @@ function App() {
       const value = rule.value.filter((r) => r.isCheck).map((r) => r.option)
       if (value.length > 0) {
         params.set(key, value.join('↕'))
-      }else {
+      } else {
         params.delete(key)
       }
     })
 
-    // ranges.forEach((rule) => {
-    //   const key = rule.name
-    //   const value = [rule.value.min, rule.value.max]
-    //   params.set(key, value.join('↕'))
-    // })
+    ranges.forEach((rule) => {
+      const key = rule.name
+      const value = [rule.value.min, rule.value.max]
+      
+      if (rule.value.min && rule.value.max ) {
+        params.set(key, value.join('↕'))
+      } else {
+        params.delete(key)
+      }
+    })
 
     if (isSortDESC !== null && sortBy) {
       const param = isSortDESC ? 'DESC' : 'ASC'
@@ -71,17 +74,12 @@ function App() {
 
     if (search) {
       params.set('search', search)
-    }else {
+    } else {
       params.delete('search')
     }
     setSearchParams(params)
 
-    // window.localStorage.setItem('filtersForShop', JSON.stringify({isSortDESC, sortBy, search, multiply, ranges}))
-    // if (length === 0) {
-    //   window.localStorage.removeItem('filtersForShop')
-    // }
-  }, [isSortDESC, sortBy, search, multiply])
-
+  }, [isSortDESC, sortBy, search, multiply, ranges])
 
   return (
     <div className="App">
