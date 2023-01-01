@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useRef } from 'react'
+import { useSearchParams } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../../../../app/hooks'
 import { setFilterRange } from '../../../../reducers/filterReducer'
 import './SortRange.scss'
@@ -18,7 +19,7 @@ const SortRange = ({
   const maxValRef = useRef(max)
   const range = useRef<HTMLInputElement>(null)
   const dispatch = useAppDispatch()
-
+  const [searchParams, setSearchParams] = useSearchParams()
   const filtersState = useAppSelector((state) => state.filters.ranges.find((f) => f.name === title))
 
   const minVal = filtersState ? filtersState.value.min : min
@@ -48,14 +49,28 @@ const SortRange = ({
       dispatch(setFilterRange(filters))
       maxValRef.current = filters.params.max
       minValRef.current = filters.params.min
+    } else {
+      setRangeParams(min, max, title)
+      maxValRef.current = max
+      minValRef.current = min
     }
   }, [])
 
   useEffect(() => {
+    if (filtersState) {
+      const params = searchParams
+      const key = filtersState.name
+      const value = [filtersState.value.min, filtersState.value.max]
+      params.set(key, value.join('↕'))
+      setSearchParams(params)
+    }
+  }, [filtersState])
+
+  useEffect(() => {
     const minPercent = getPercent(minVal)
     const maxPercent = getPercent(maxValRef.current)
-    console.log(title,maxPercent);
-    
+    console.log(title, maxPercent)
+
     if (range.current) {
       range.current.style.left = `${minPercent}%`
       range.current.style.width = `${maxPercent - minPercent}%`
@@ -65,7 +80,7 @@ const SortRange = ({
   useEffect(() => {
     const minPercent = getPercent(minValRef.current)
     const maxPercent = getPercent(maxVal)
-    console.log(title,minPercent);
+    console.log(title, minPercent)
     if (range.current) {
       range.current.style.width = `${maxPercent - minPercent}%`
     }
@@ -132,6 +147,9 @@ const SortRange = ({
                 },
               })
             )
+            // if (value === min && maxVal === max) {
+            //   window.localStorage.removeItem(`filtersFor${title}`)
+            // }
 
             minValRef.current = value
           }}
@@ -157,6 +175,9 @@ const SortRange = ({
                 },
               })
             )
+            // if (minVal === min && maxVal === value) {
+            //   window.localStorage.removeItem(`filtersFor${title}`)
+            // }
 
             maxValRef.current = value
           }}

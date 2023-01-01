@@ -56,11 +56,11 @@ function App() {
       }
     })
 
-    ranges.forEach((rule) => {
-      const key = rule.name
-      const value = [rule.value.min, rule.value.max]
-      params.set(key, value.join('↕'))
-    })
+    // ranges.forEach((rule) => {
+    //   const key = rule.name
+    //   const value = [rule.value.min, rule.value.max]
+    //   params.set(key, value.join('↕'))
+    // })
 
     if (isSortDESC !== null && sortBy) {
       const param = isSortDESC ? 'DESC' : 'ASC'
@@ -80,7 +80,7 @@ function App() {
     // if (length === 0) {
     //   window.localStorage.removeItem('filtersForShop')
     // }
-  }, [isSortDESC, sortBy, search, multiply, ranges, filters])
+  }, [isSortDESC, sortBy, search, multiply])
 
 
   return (
