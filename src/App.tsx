@@ -12,18 +12,12 @@ import { setAllFilters } from './reducers/filterReducer'
 function App() {
   const dispatch = useAppDispatch()
   const [searchParams, setSearchParams] = useSearchParams()
-  const { isSortDESC, sortBy, search, multiply, ranges } = useAppSelector((state) => state.filters)
+  const { isSortDESC, sortBy, search, multiply, ranges, view } = useAppSelector((state) => state.filters)
   const { filters } = useAppSelector((state) => state)
   const { cart } = useAppSelector((state) => state)
 
   useEffect(() => {
-    // const filtersForShopJSON = window.localStorage.getItem('filtersForShop')
-    // if (filtersForShopJSON) {
-    //   const filtersForShop = JSON.parse(filtersForShopJSON)
-    //   console.log(filtersForShop);
-    //   dispatch(setAllFilters(filtersForShop))
-    // }
-
+  
     const shoppingCartContentsJSON = window.localStorage.getItem('shoppingCartContents')
     if (shoppingCartContentsJSON) {
       console.log()
@@ -77,9 +71,17 @@ function App() {
     } else {
       params.delete('search')
     }
+
+    if (view) {
+      params.set('view', view)
+    } else {
+      params.delete('view')
+    }
+  
+
     setSearchParams(params)
 
-  }, [isSortDESC, sortBy, search, multiply, ranges])
+  }, [isSortDESC, sortBy, search, multiply, ranges, view])
 
   return (
     <div className="App">
