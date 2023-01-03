@@ -49,13 +49,13 @@ const StoreShop = () => {
     <button className="shop__button shop__button_three active" onClick={changeToBig}></button>
   )
   const view = { flex: '1 1 30%' }
-  if (!searchParams.get('view')) {
+  if (localStorage.getItem('view') === 'big' || localStorage.getItem('view') === undefined) {
     buttonTwo = <button className="shop__button shop__button_two" onClick={changeToSmall}></button>
     buttonThree = (
       <button className="shop__button shop__button_three active" onClick={changeToBig}></button>
     )
   }
-  if (localStorage.getItem('view')) {
+  if (localStorage.getItem('view') === 'small') {
     view.flex = '1 1 48%'
     buttonTwo = (
       <button className="shop__button shop__button_two active" onClick={changeToSmall}></button>
