@@ -19,11 +19,13 @@ const StoreFilters = () => {
   
   const brands = unique(products.map((p) => p.brand))
   const categories = unique(products.map((p) => p.category))
+  const human = unique(products.map((p) => p.human))
+console.log(human);
 
   return (
     <div className="store__filters filters">
       <Search/>
-      <SortItem filters={['man', 'woman', 'kids']} title="human" />
+      <SortItem filters={human} title="human" />
       <SortItem filters={categories} title="category" />
       <SortItem filters={brands} title="brand" />
       <SortRange min={1} max={5000} step={1} title="price" />

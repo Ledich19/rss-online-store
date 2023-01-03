@@ -11,11 +11,12 @@ import { useSearchParams } from 'react-router-dom'
 function App() {
   const dispatch = useAppDispatch()
   const [searchParams, setSearchParams] = useSearchParams()
-  const { isSortDESC, sortBy, search, multiply, ranges, view } = useAppSelector((state) => state.filters)
+  const { isSortDESC, sortBy, search, multiply, ranges, view } = useAppSelector(
+    (state) => state.filters
+  )
   const { cart } = useAppSelector((state) => state)
 
   useEffect(() => {
-  
     const shoppingCartContentsJSON = window.localStorage.getItem('shoppingCartContents')
     if (shoppingCartContentsJSON) {
       const shoppingCartContents = JSON.parse(shoppingCartContentsJSON)
@@ -47,8 +48,8 @@ function App() {
     ranges.forEach((rule) => {
       const key = rule.name
       const value = [rule.value.min, rule.value.max]
-      
-      if (rule.value.min && rule.value.max ) {
+
+      if (rule.value.min && rule.value.max) {
         params.set(key, value.join('↕'))
       } else {
         params.delete(key)
@@ -73,7 +74,7 @@ function App() {
     } else {
       params.delete('view')
     }
-  
+
     setSearchParams(params)
   }, [isSortDESC, sortBy, search, multiply, ranges, view])
 
