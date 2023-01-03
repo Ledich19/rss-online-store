@@ -10,6 +10,7 @@ const Search = () => {
   const input = document.querySelector('input') as HTMLInputElement;
   const clipboard = useClipboard();
   const dispatch = useAppDispatch();
+
   const {search} = useAppSelector((state) => state.filters)
 
   const [buttonState, setButtonState] = useState('Copy filtres');
@@ -37,6 +38,7 @@ const Search = () => {
     params.set('search' , input.value);
     setSearchParams(params);
     localStorage.setItem('filtersForSearch' , input.value);
+
     dispatch(setSearch(input.value));
   }
   

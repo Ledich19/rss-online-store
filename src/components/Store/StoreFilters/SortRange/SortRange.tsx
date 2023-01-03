@@ -24,7 +24,6 @@ const SortRange = ({
   const minVal = filtersState && filtersState.value.min !== null ? filtersState.value.min : min
   const maxVal = filtersState && filtersState.value.max !== null ? filtersState.value.max : max
 
-
   const getPercent = useCallback(
     (value: number) => Math.round(((value - min) / (max - min)) * 100),
     [min, max]
