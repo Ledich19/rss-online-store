@@ -20,7 +20,7 @@ const SortRange = ({
   const dispatch = useAppDispatch()
 
   const filtersState = useAppSelector((state) => state.filters.ranges.find((f) => f.name === title))
-
+  
   const minVal = filtersState ? filtersState.value.min : min
   const maxVal = filtersState ? filtersState.value.max : max
 
@@ -54,8 +54,6 @@ const SortRange = ({
   useEffect(() => {
     const minPercent = getPercent(minVal)
     const maxPercent = getPercent(maxValRef.current)
-    console.log(title,maxPercent);
-    
     if (range.current) {
       range.current.style.left = `${minPercent}%`
       range.current.style.width = `${maxPercent - minPercent}%`
@@ -65,7 +63,6 @@ const SortRange = ({
   useEffect(() => {
     const minPercent = getPercent(minValRef.current)
     const maxPercent = getPercent(maxVal)
-    console.log(title,minPercent);
     if (range.current) {
       range.current.style.width = `${maxPercent - minPercent}%`
     }

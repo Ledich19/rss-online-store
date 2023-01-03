@@ -14,6 +14,7 @@ const SortItem = ({ filters, title }: FilterItemState) => {
   const filtersState = useAppSelector((state) =>
     state.filters.multiply.find((f) => f.name === title)
   )
+
   const filtersOption = filtersState ? filtersState.value : []
   const productState = useAppSelector((state) => state.products)
 
@@ -51,7 +52,6 @@ const SortItem = ({ filters, title }: FilterItemState) => {
     const filtersJSON = window.localStorage.getItem(`filtersFor${title}`)
     if (filtersJSON) {
       const filters = JSON.parse(filtersJSON)
-      console.log(filters)
       dispatch(setFilterMultiply(filters))
     } else {
       const newParams = filters.map((e) => {
