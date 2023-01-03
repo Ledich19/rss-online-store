@@ -23,12 +23,7 @@ const Search = () => {
   }
   
   const clearFiltres = () => {
-    if(localStorage.getItem('filtersForSearch'))localStorage.removeItem('filtersForSearch');
-    if(localStorage.getItem('filtersForbrand'))localStorage.removeItem('filtersForbrand');
-    if(localStorage.getItem('filtersForprice'))localStorage.removeItem('filtersForprice');
-    if(localStorage.getItem('filtersForhuman'))localStorage.removeItem('filtersForhuman');
-    if(localStorage.getItem('filtersForcategory'))localStorage.removeItem('filtersForcategory');
-    if(localStorage.getItem('filtersForrating'))localStorage.removeItem('filtersForrating');
+    localStorage.clear()
     setSearchParams('');
     window.location.reload();
   }

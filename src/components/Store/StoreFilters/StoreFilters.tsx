@@ -20,7 +20,6 @@ const StoreFilters = () => {
   const brands = unique(products.map((p) => p.brand))
   const categories = unique(products.map((p) => p.category))
   const human = unique(products.map((p) => p.human))
-console.log(human);
 
   return (
     <div className="store__filters filters">

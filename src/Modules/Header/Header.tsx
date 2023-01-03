@@ -57,13 +57,13 @@ const Header = () => {
         params: values,
       })
     )
-    window.localStorage.setItem(
-      `filtersForhuman`,
-      JSON.stringify({
-        key: 'human',
-        params: values,
-      })
-    )
+    // window.localStorage.setItem(
+    //   `filtersForhuman`,
+    //   JSON.stringify({
+    //     key: 'human',
+    //     params: values,
+    //   })
+    // )
   }
 
   return (
