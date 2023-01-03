@@ -1,6 +1,6 @@
 import {useState} from 'react';
 import { useSearchParams } from "react-router-dom";
-import { useAppDispatch} from '../../../../app/hooks';
+import { useAppDispatch, useAppSelector} from '../../../../app/hooks';
 import { useClipboard } from 'use-clipboard-copy';
 import { setSearch } from '../../../../reducers/filterReducer';
 import './Search.scss';
@@ -10,9 +10,11 @@ const Search = () => {
   const input = document.querySelector('input') as HTMLInputElement;
   const clipboard = useClipboard();
   const dispatch = useAppDispatch();
+
+  const {search} = useAppSelector((state) => state.filters)
+
   const [buttonState, setButtonState] = useState('Copy filtres');
   const [searchParams, setSearchParams] = useSearchParams();
-  const [value, setValue] = useState('');
 
   const copy = () =>{
     clipboard.copy(window.location.href);
@@ -36,7 +38,7 @@ const Search = () => {
     params.set('search' , input.value);
     setSearchParams(params);
     localStorage.setItem('filtersForSearch' , input.value);
-    setValue(event.target.value);
+
     dispatch(setSearch(input.value));
   }
   
@@ -50,7 +52,7 @@ const Search = () => {
             onChange={setParams} 
             placeholder='Search...'  
             className="search__input" 
-            value={value}
+            value={search}
       />
     </div>
   )

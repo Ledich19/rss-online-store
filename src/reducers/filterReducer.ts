@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { Checkbox, FiltersState, RangeValue, SortByType } from '../app/types'
+import { Checkbox, FiltersState, RangeValue, SortByType, ViewType } from '../app/types'
 
 const initialState: FiltersState = {
   multiply: [
@@ -30,6 +30,7 @@ const initialState: FiltersState = {
   "isSortDESC": null,
   'sortBy': '',
   "search": '',
+  'view': null
 }
 
 const filterSlice = createSlice({
@@ -55,6 +56,11 @@ const filterSlice = createSlice({
       payload: boolean; type: string;
     }): FiltersState {
       return { ...state, isSortDESC: action.payload }
+    },
+    setSortView(state, action: {
+      payload: ViewType; type: string;
+    }): FiltersState {
+      return { ...state, view: action.payload }
     },
 
     setFilterMultiply(state, action: {
@@ -112,7 +118,7 @@ const filterSlice = createSlice({
 }
 )
 
-export const { setSearch, setFilterMultiply, setFilterRange , setSortDirection, setAllFilters} = filterSlice.actions
+export const { setSearch, setFilterMultiply, setFilterRange , setSortDirection, setAllFilters, setSortView} = filterSlice.actions
 export default filterSlice.reducer
 
 
