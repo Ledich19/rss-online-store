@@ -14,6 +14,7 @@ const SortItem = ({ filters, title }: FilterItemState) => {
   const filtersState = useAppSelector((state) =>
     state.filters.multiply.find((f) => f.name === title)
   )
+
   const filtersOption = filtersState ? filtersState.value : []
   const productState = useAppSelector((state) => state.products)
 

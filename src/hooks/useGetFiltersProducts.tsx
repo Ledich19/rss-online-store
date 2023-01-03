@@ -58,9 +58,9 @@ const useGetFiltersProducts = () => {
       ]
       const result = sortFields.some((field) => {
         const researchProduct = product[field as keyof typeof product]
-        if (typeof researchProduct === 'string') {
-          return researchProduct.toUpperCase().includes(search.toUpperCase())
-        }
+        // if (typeof researchProduct === 'string') {
+          return researchProduct.toString().toUpperCase().includes(search.toUpperCase())
+        // }
       })
       return result ? product : null
     })

@@ -2,6 +2,7 @@ import { useAppSelector } from '../../../app/hooks'
 import SortItem from './SortItem/SortItem'
 import SortRange from './SortRange/SortRange'
 import './StoreFilters.scss'
+import Search from './SearchInput/Search'
 
 function unique<T>(arr: T[]): T[] {
   const result: T[] = []
@@ -21,6 +22,7 @@ const StoreFilters = () => {
 
   return (
     <div className="store__filters filters">
+      <Search/>
       <SortItem filters={['man', 'woman', 'kids']} title="human" />
       <SortItem filters={categories} title="category" />
       <SortItem filters={brands} title="brand" />

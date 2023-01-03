@@ -19,12 +19,11 @@ const SortRange = ({
   const maxValRef = useRef(max)
   const range = useRef<HTMLInputElement>(null)
   const dispatch = useAppDispatch()
-  const [searchParams, setSearchParams] = useSearchParams()
   const filtersState = useAppSelector((state) => state.filters.ranges.find((f) => f.name === title))
-  const {filters} = useAppSelector((state) => state)
 
   const minVal = filtersState && filtersState.value.min !== null ? filtersState.value.min : min
   const maxVal = filtersState && filtersState.value.max !== null ? filtersState.value.max : max
+
 
   const getPercent = useCallback(
     (value: number) => Math.round(((value - min) / (max - min)) * 100),

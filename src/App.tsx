@@ -74,9 +74,7 @@ function App() {
       params.delete('view')
     }
   
-
     setSearchParams(params)
-
   }, [isSortDESC, sortBy, search, multiply, ranges, view])
 
   return (

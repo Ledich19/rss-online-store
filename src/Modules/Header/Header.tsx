@@ -57,27 +57,42 @@ const Header = () => {
         params: values,
       })
     )
-    window.localStorage.setItem(`filtersForhuman`, JSON.stringify({
-      key: 'human',
-      params: values,
-    }))
+    window.localStorage.setItem(
+      `filtersForhuman`,
+      JSON.stringify({
+        key: 'human',
+        params: values,
+      })
+    )
   }
 
   return (
     <div className="header">
       <div className="header__container">
-        <Link to='/home' rel="stylesheet" className="header__picture">
-          <img onClick={() =>  { localStorage.clear(); document.location.reload();}} src={headerLogo} alt="" className="header__logo" />
+        <Link to="/home" rel="stylesheet" className="header__picture">
+          <img
+            onClick={() => {
+              localStorage.clear()
+              document.location.reload()
+            }}
+            src={headerLogo}
+            alt=""
+            className="header__logo"
+          />
         </Link>
         <nav className={navClass}>
           <ul className="header__list">
-            <Link rel="stylesheet" to={`/home${ searchParams ? '?' : ''}${searchParams}`} className="header__link">
+            <Link
+              rel="stylesheet"
+              to={`/home${searchParams ? '?' : ''}${searchParams}`}
+              className="header__link"
+            >
               Home
             </Link>
             <Link
               onClick={() => handleSetFilter('')}
               rel="stylesheet"
-              to={`/store${ searchParams ? '?' : ''}${searchParams}`}
+              to={`/store${searchParams ? '?' : ''}${searchParams}`}
               className="header__link"
             >
               All
@@ -85,7 +100,7 @@ const Header = () => {
             <Link
               onClick={() => handleSetFilter('woman')}
               rel="stylesheet"
-              to={`/store${ searchParams ? '?' : ''}${searchParams}`}
+              to={`/store${searchParams ? '?' : ''}${searchParams}`}
               className="header__link"
             >
               Woman
@@ -93,7 +108,7 @@ const Header = () => {
             <Link
               onClick={() => handleSetFilter('man')}
               rel="stylesheet"
-              to={`/store${ searchParams ? '?' : ''}${searchParams}`}
+              to={`/store${searchParams ? '?' : ''}${searchParams}`}
               className="header__link"
             >
               Man
@@ -101,7 +116,7 @@ const Header = () => {
             <Link
               onClick={() => handleSetFilter('kids')}
               rel="stylesheet"
-              to={`/store${ searchParams ? '?' : ''}${searchParams}`}
+              to={`/store${searchParams ? '?' : ''}${searchParams}`}
               className="header__link"
             >
               Kids
