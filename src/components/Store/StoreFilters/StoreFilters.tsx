@@ -3,6 +3,7 @@ import SortItem from './SortItem/SortItem'
 import SortRange from './SortRange/SortRange'
 import './StoreFilters.scss'
 import Search from './SearchInput/Search'
+import SortBy from './SortBy/SortBy'
 
 function unique<T>(arr: T[]): T[] {
   const result: T[] = []
@@ -23,6 +24,7 @@ const StoreFilters = () => {
 
   return (
     <div className="store__filters filters">
+      <SortBy/>
       <Search/>
       <SortItem filters={human} title="human" />
       <SortItem filters={categories} title="category" />

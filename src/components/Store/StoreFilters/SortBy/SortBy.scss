@@ -1,0 +1,15 @@
+.sort{
+  margin-bottom: 20px;
+  &__select{
+    font-size: 16px;
+    width: 100%;
+    cursor: pointer;
+    border: 1px solid #000;
+    padding: 5px 15px;
+    border-radius: 10px;
+  }
+  &__option{
+    font-size: 16px;
+    cursor: pointer;
+  }
+}

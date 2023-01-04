@@ -57,7 +57,7 @@ function App() {
     })
 
     if (isSortDESC !== null && sortBy) {
-      const param = isSortDESC ? 'DESC' : 'ASC'
+      const param = isSortDESC ? 'ASC' : 'DESC'
       params.set('sort', [sortBy, param].join('-'))
     } else {
       params.delete('sort')

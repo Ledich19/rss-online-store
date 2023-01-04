@@ -54,7 +54,6 @@ const SortItem = ({ filters, title }: FilterItemState) => {
       const filters = JSON.parse(filtersJSON)
       dispatch(setFilterMultiply(filters))
     } else {
-      console.log(filters);
       const newParams = filters.map((e) => {
         return {
           option: e,
