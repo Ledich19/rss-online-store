@@ -1,4 +1,4 @@
-import { useState} from 'react';
+import { useEffect, useState} from 'react';
 import { useSearchParams } from "react-router-dom";
 import { useAppDispatch, useAppSelector} from '../../../../app/hooks';
 import { useClipboard } from 'use-clipboard-copy';
@@ -15,6 +15,13 @@ const Search = () => {
 
   const [buttonState, setButtonState] = useState('Copy filtres');
   const [searchParams, setSearchParams] = useSearchParams();
+
+  useEffect(() => {
+    const filtersForSearchJSON = window.localStorage.getItem('filtersForSearch')
+    if (filtersForSearchJSON) {
+      dispatch(setSearch(filtersForSearchJSON));
+    }
+  }, [])
 
   const copy = () =>{
     clipboard.copy(window.location.href);
