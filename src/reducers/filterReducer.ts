@@ -118,7 +118,7 @@ const filterSlice = createSlice({
 }
 )
 
-export const { setSearch, setFilterMultiply, setFilterRange , setSortDirection, setAllFilters, setSortView} = filterSlice.actions
+export const { setSearch, setFilterMultiply, setFilterRange , setSortDirection, setAllFilters, setSortView, setSortBy} = filterSlice.actions
 export default filterSlice.reducer
 
 
