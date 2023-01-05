@@ -22,7 +22,9 @@ const useGetFiltersProducts = () => {
         const min = rule.value.min
         const max = rule.value.max
         const productValue = product[rule.name as keyof typeof product]
-        if (productValue > min && productValue < max) {
+        if (min === null && max === null) {
+          return true
+        } else if (min !== null && max !== null && productValue > min && productValue < max) {
           return true
         }
         return false
@@ -44,7 +46,7 @@ const useGetFiltersProducts = () => {
     })
 
     const sortProductSearch = sortProductDirection.filter((product) => {
-      const sortFelds = [
+      const sortFields = [
         'human',
         'brand',
         'price',
@@ -54,11 +56,11 @@ const useGetFiltersProducts = () => {
         'description',
         'discountPercentage',
       ]
-      const result = sortFelds.some((feld) => {
-        const researchProduct = product[feld as keyof typeof product]
-        if (typeof researchProduct === 'string') {
-          return researchProduct.toUpperCase().includes(search.toUpperCase())
-        }
+      const result = sortFields.some((field) => {
+        const researchProduct = product[field as keyof typeof product]
+        // if (typeof researchProduct === 'string') {
+          return researchProduct.toString().toUpperCase().includes(search.toUpperCase())
+        // }
       })
       return result ? product : null
     })

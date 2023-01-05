@@ -2,7 +2,7 @@ export interface Checkbox {
   option: string
   isCheck: boolean
 }
-export type RangeValue = { min: number, max: number }
+export type RangeValue = { min: number | null, max: number | null }
 export interface Range {
   name: string,
   value: RangeValue
@@ -12,6 +12,7 @@ export interface Multiply {
   value: Checkbox[]
 }
 export type SortByType = "price" | "discountPercentage" | 'rating' | ''
+export type ViewType = 'small' | 'big' | null
 
 export type FiltersState = {
   multiply: Multiply[],
@@ -19,6 +20,7 @@ export type FiltersState = {
   "isSortDESC": boolean | null
   'sortBy': SortByType
   "search": string
+  "view": ViewType
 }
 
 export type Product = {

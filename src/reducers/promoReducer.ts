@@ -54,17 +54,17 @@ const promoCodeSlice = createSlice({
     }): PromoCodeState {
       const codeDelete = action.payload
 
-        return { ...state, promoCodeUse: state.promoCodeUse.filter((code) => code.code !== codeDelete  ) }
+      return { ...state, promoCodeUse: state.promoCodeUse.filter((code) => code.code !== codeDelete) }
 
     },
 
     clearPromoCode(state): PromoCodeState {
-        return { ...state, promoCodeUse: [] }
+      return { ...state, promoCodeUse: [] }
     },
 
   },
 }
 )
 
-export const { addPromoCode , clearPromoCode, removePromoCode} = promoCodeSlice.actions
+export const { addPromoCode, clearPromoCode, removePromoCode } = promoCodeSlice.actions
 export default promoCodeSlice.reducer

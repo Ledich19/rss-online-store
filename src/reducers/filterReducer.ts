@@ -1,20 +1,20 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { Checkbox, FiltersState, RangeValue, SortByType } from '../app/types'
+import { Checkbox, FiltersState, RangeValue, SortByType, ViewType } from '../app/types'
 
 const initialState: FiltersState = {
   multiply: [
-    {
-      name: "human",
-      value: []
-    },
-    {
-      name: "category",
-      value: []
-    },
-    {
-      name: "brand",
-      value: []
-    }
+    // {
+    //   name: "human",
+    //   value: []
+    // },
+    // {
+    //   name: "category",
+    //   value: []
+    // },
+    // {
+    //   name: "brand",
+    //   value: []
+    // }
   ]
   ,
   ranges: [
@@ -30,6 +30,7 @@ const initialState: FiltersState = {
   "isSortDESC": null,
   'sortBy': '',
   "search": '',
+  'view': null
 }
 
 const filterSlice = createSlice({
@@ -39,7 +40,7 @@ const filterSlice = createSlice({
     setAllFilters(state, action: {
       payload: FiltersState; type: string;
     }): FiltersState {
-      return {...state, isSortDESC: action.payload.isSortDESC, sortBy: action.payload.sortBy, search: action.payload.search, multiply: action.payload.multiply, ranges: action.payload.ranges,}
+      return { ...state, isSortDESC: action.payload.isSortDESC, sortBy: action.payload.sortBy, search: action.payload.search, multiply: action.payload.multiply, ranges: action.payload.ranges, }
     },
     setSearch(state, action: {
       payload: string; type: string;
@@ -47,7 +48,7 @@ const filterSlice = createSlice({
       return { ...state, search: action.payload }
     },
     setSortBy(state, action: {
-      payload: SortByType ; type: string;
+      payload: SortByType; type: string;
     }): FiltersState {
       return { ...state, sortBy: action.payload }
     },
@@ -55,6 +56,11 @@ const filterSlice = createSlice({
       payload: boolean; type: string;
     }): FiltersState {
       return { ...state, isSortDESC: action.payload }
+    },
+    setSortView(state, action: {
+      payload: ViewType; type: string;
+    }): FiltersState {
+      return { ...state, view: action.payload }
     },
 
     setFilterMultiply(state, action: {
@@ -66,14 +72,14 @@ const filterSlice = createSlice({
 
       const isFilter = state.multiply.find((f) => f.name === action.payload.key)
       let newMultiply = state.multiply
-  
+
       const newFilter = {
         name: action.payload.key,
         value: action.payload.params
       }
-      
+
       if (isFilter) {
-        newMultiply = state.multiply.map((f) => f.name === action.payload.key ? newFilter : f )
+        newMultiply = state.multiply.map((f) => f.name === action.payload.key ? newFilter : f)
       } else {
         newMultiply = newMultiply.concat(newFilter)
       }
@@ -97,7 +103,7 @@ const filterSlice = createSlice({
       }
 
       if (isFilter) {
-        newRange = state.ranges.map((f) => f.name === action.payload.key ? newFilter : f )
+        newRange = state.ranges.map((f) => f.name === action.payload.key ? newFilter : f)
       } else {
         newRange = newRange.concat(newFilter)
       }
@@ -105,14 +111,15 @@ const filterSlice = createSlice({
       return {
         ...state, ranges: newRange
       }
-  
+
     },
 
   },
 }
 )
 
-export const { setSearch, setFilterMultiply, setFilterRange , setSortDirection, setAllFilters} = filterSlice.actions
+export const { setSearch, setFilterMultiply, setFilterRange , setSortDirection, setAllFilters, setSortView, setSortBy} = filterSlice.actions
+
 export default filterSlice.reducer
 
 

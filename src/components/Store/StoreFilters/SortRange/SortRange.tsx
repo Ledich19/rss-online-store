@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useRef } from 'react'
+import { useSearchParams } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../../../../app/hooks'
 import { setFilterRange } from '../../../../reducers/filterReducer'
 import './SortRange.scss'
@@ -18,18 +19,17 @@ const SortRange = ({
   const maxValRef = useRef(max)
   const range = useRef<HTMLInputElement>(null)
   const dispatch = useAppDispatch()
-
   const filtersState = useAppSelector((state) => state.filters.ranges.find((f) => f.name === title))
 
-  const minVal = filtersState ? filtersState.value.min : min
-  const maxVal = filtersState ? filtersState.value.max : max
+  const minVal = filtersState && filtersState.value.min !== null ? filtersState.value.min : min
+  const maxVal = filtersState && filtersState.value.max !== null ? filtersState.value.max : max
 
   const getPercent = useCallback(
     (value: number) => Math.round(((value - min) / (max - min)) * 100),
     [min, max]
   )
 
-  const setRangeParams = (minVal: number, maxVal: number, title: string) => {
+  const setRangeParams = (minVal: number | null, maxVal: number | null, title: string) => {
     dispatch(
       setFilterRange({
         key: title,
@@ -48,14 +48,16 @@ const SortRange = ({
       dispatch(setFilterRange(filters))
       maxValRef.current = filters.params.max
       minValRef.current = filters.params.min
+    } else {
+      setRangeParams(null, null, title)
+      maxValRef.current = max
+      minValRef.current = min
     }
   }, [])
 
   useEffect(() => {
     const minPercent = getPercent(minVal)
     const maxPercent = getPercent(maxValRef.current)
-    console.log(title,maxPercent);
-    
     if (range.current) {
       range.current.style.left = `${minPercent}%`
       range.current.style.width = `${maxPercent - minPercent}%`
@@ -65,7 +67,6 @@ const SortRange = ({
   useEffect(() => {
     const minPercent = getPercent(minValRef.current)
     const maxPercent = getPercent(maxVal)
-    console.log(title,minPercent);
     if (range.current) {
       range.current.style.width = `${maxPercent - minPercent}%`
     }
