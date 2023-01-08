@@ -8,5 +8,8 @@
 @media(max-width:976px){
   .store{
     flex-wrap: wrap;
+    &__filters{
+      margin-bottom: 40px;
+    }
   }
 }

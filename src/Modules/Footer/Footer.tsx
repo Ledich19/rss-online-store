@@ -84,13 +84,16 @@ const Footer = () => {
       </div>
       <div className="footer__down">
           <div className="footer__down-container">
-            <div className="footer__span">©2021 Silbon. All rights reserved.</div>
+            <div className="footer__span">©2023 Silbon. All rights reserved.</div>
             <div className="footer__icons">
+              <a href="https://github.com/pedanmax" title="max" rel="noreferrer" target="_blank" className="footer__social footer__social_alex"></a>
+              <a href="https://github.com/Ledich19" title="alex" rel="noreferrer" target="_blank" className="footer__social footer__social_max"></a>
+              <a href="https://rs.school/js/" rel="noreferrer" target="_blank" className="footer__social footer__social_rss"></a>
               <a href="#" target="_blank" className="footer__social footer__social_instagram"></a>
               <a href="#" target="_blank" className="footer__social footer__social_facebook"></a>
             </div>
           </div >
-        </div>
+      </div>
     </div>
     );
 };
