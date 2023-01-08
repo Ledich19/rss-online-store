@@ -1,6 +1,15 @@
 .filters {
   max-width: 255px;
   flex: 1 0 255px;
+  &__find{
+    position: relative;
+    top: -35px;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 19px;
+    color: #3C3F40;
+    text-transform: uppercase;
+  }
 }
 @media(max-width:976px){
   .filters{

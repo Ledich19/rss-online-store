@@ -6,10 +6,11 @@ import PriceProductsInCart from '../../components/Cart/PriceProductsInCart/Price
 import headerLogo from '../../images/logo.svg'
 import { setFilterMultiply } from '../../reducers/filterReducer'
 import './Header.scss'
+import useGetFiltersProducts from '../../hooks/useGetFiltersProducts'
 
 const Header = () => {
   const [searchParams, setSearchParams] = useSearchParams()
-
+  const showProduct = useGetFiltersProducts()
   const dispatch = useAppDispatch()
   const { cart } = useAppSelector((state) => state)
   const filtersState = useAppSelector((state) =>

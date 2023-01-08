@@ -4,6 +4,7 @@ import SortRange from './SortRange/SortRange'
 import './StoreFilters.scss'
 import Search from './SearchInput/Search'
 import SortBy from './SortBy/SortBy'
+import useGetFiltersProducts from '../../../hooks/useGetFiltersProducts'
 
 function unique<T>(arr: T[]): T[] {
   const result: T[] = []
@@ -17,7 +18,7 @@ function unique<T>(arr: T[]): T[] {
 
 const StoreFilters = () => {
   const { products } = useAppSelector((state) => state)
-
+  const showProduct = useGetFiltersProducts()
   const brands = unique(products.map((p) => p.brand))
   const categories = unique(products.map((p) => p.category))
   const human = unique(products.map((p) => p.human))
@@ -26,6 +27,7 @@ const StoreFilters = () => {
 
   return (
     <div className="store__filters filters">
+       <div className="filters__find">products found:{showProduct.length}</div>
       <SortBy />
       <Search />
       <SortItem filters={human} title="human" />

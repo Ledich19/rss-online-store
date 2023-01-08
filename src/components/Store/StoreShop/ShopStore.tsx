@@ -9,7 +9,6 @@ import { ViewType } from '../../../app/types'
 const StoreShop = () => {
   const dispatch = useAppDispatch()
   const showProduct = useGetFiltersProducts()
-  //const showProduct = getProducts()
 
   const cards = document.querySelectorAll('.shop__card')
   const buttons = document.querySelectorAll('.shop__button')
@@ -69,9 +68,15 @@ const StoreShop = () => {
         {buttonTwo}
         {buttonThree}
       </div>
-      {showProduct.map((card) => (
-        <Card style={view} key={card.id} card={card} />
-      ))}
+{
+  showProduct.length === 0 ? <div className='shop__empty'>
+  no products match search
+  </div> : 
+  showProduct.map((card) => (
+    <Card style={view} key={card.id} card={card} />
+  ))
+}
+
     </div>
   )
 }

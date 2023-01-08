@@ -18,7 +18,6 @@ const SortItem = ({ filters, title }: FilterItemState) => {
   const filtersOption = filtersState ? filtersState.value : []
   const productState = useAppSelector((state) => state.products)
 
-  // const showProduct = getProducts()
 
   const toggleVisible = () => {
     setVisible(!visible)
