@@ -233,13 +233,14 @@ const DataForm = () => {
       cardCvvValidate(cardCvv)
     ) {
       dispatch(setOpenOrderFinish(true))
+      setIsDirty(false)
+      dispatch(clearCart())
+      dispatch(clearPromoCode())
       window.setTimeout(() => {
         dispatch(setIsOpenForm(false))
         dispatch(setOpenOrderFinish(false))
-        setIsDirty(false)
-        dispatch(clearCart())
+        
         navigate('/store')
-        clearPromoCode()
       }, 5000)
 
      window.localStorage.removeItem('shoppingCartContents')
