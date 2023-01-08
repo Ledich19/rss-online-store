@@ -128,8 +128,11 @@ $widthContainer: 1100px;
     &_rss{
       background: url(../../images/rss.svg)center /35px 35px no-repeat, #fff;
     }
-    &_max, &_alex{
-      background: url(../../images/github.svg)center /30px 30px no-repeat, #fff;
+    &_alex{
+      background: url(../../images/github2.svg)center /40px 40px no-repeat, #fff;
+    }
+    &_max{
+      background: url(../../images/github1.svg)center /40px 40px no-repeat, #fff;
     }
     &:hover{
       background-color: #ffffff9b;
