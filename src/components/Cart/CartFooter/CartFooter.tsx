@@ -5,7 +5,7 @@ import Promo from '../Promo/Promo'
 
 const CartFooter = () => {
   const dispatch = useAppDispatch()
-  const { modals } = useAppSelector((state) => state)
+  const { modals, cart } = useAppSelector((state) => state)
 
   const handleOrderMenu = (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault()
@@ -22,13 +22,13 @@ const CartFooter = () => {
       {modals.isOderFinish ? (
         <></>
       ) : modals.isForm ? (
-        <div className="cart__button" onClick={handleBeak}>
+        <button className="cart__button" onClick={handleBeak}>
           BACK TO CART
-        </div>
+        </button>
       ) : (
-        <div className="cart__button" onClick={handleOrderMenu}>
+        <button disabled={ cart.length > 0 ? false : true} className="cart__button" onClick={handleOrderMenu}>
           MAKE A PURCHASE
-        </div>
+        </button>
       )}
     </div>
   )
