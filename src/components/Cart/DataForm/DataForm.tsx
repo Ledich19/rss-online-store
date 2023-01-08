@@ -239,8 +239,7 @@ const DataForm = () => {
       window.setTimeout(() => {
         dispatch(setIsOpenForm(false))
         dispatch(setOpenOrderFinish(false))
-        
-        navigate('/store')
+        navigate('/home')
       }, 5000)
 
      window.localStorage.removeItem('shoppingCartContents')
