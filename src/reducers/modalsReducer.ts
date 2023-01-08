@@ -36,6 +36,8 @@ const modalsSlice = createSlice({
     setCartPage(state, action: {
       payload: number; type: string;
     }) {
+      console.log(action.payload);
+      
       return { ...state, page: action.payload }
     },
   },

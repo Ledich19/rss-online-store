@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useAppDispatch, useAppSelector } from '../../app/hooks'
-import { Link, useSearchParams } from 'react-router-dom'
+import { Link, useNavigate, useSearchParams } from 'react-router-dom'
 
 import PriceProductsInCart from '../../components/Cart/PriceProductsInCart/PriceProductsInCart'
 import headerLogo from '../../images/logo.svg'
@@ -9,14 +9,13 @@ import './Header.scss'
 
 const Header = () => {
   const [searchParams, setSearchParams] = useSearchParams()
-
   const dispatch = useAppDispatch()
   const { cart } = useAppSelector((state) => state)
   const filtersState = useAppSelector((state) =>
     state.filters.multiply.find((f) => f.name === 'human')
   )
   const filtersOption = filtersState ? filtersState.value : []
-
+  const navigate = useNavigate()
   const [isClicked, setIsClicked] = useState(false)
   const [fixedBurger, setFixedBurger] = useState('header__burger')
 
@@ -57,13 +56,6 @@ const Header = () => {
         params: values,
       })
     )
-    // window.localStorage.setItem(
-    //   `filtersForhuman`,
-    //   JSON.stringify({
-    //     key: 'human',
-    //     params: values,
-    //   })
-    // )
   }
 
   return (
@@ -72,6 +64,7 @@ const Header = () => {
         <Link to="/home" rel="stylesheet" className="header__picture">
           <img
             onClick={() => {
+              navigate('/home')
               localStorage.clear()
               document.location.reload()
             }}

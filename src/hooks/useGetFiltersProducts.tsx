@@ -1,10 +1,15 @@
 import { useAppSelector } from '../app/hooks'
-import { ProductsState } from '../app/types'
+import { ProductInDb, ProductsState } from '../app/types'
+import React, { useEffect, useState } from 'react'
+
 
 const useGetFiltersProducts = () => {
   const productState = useAppSelector((state) => state.products)
   const { isSortDESC, sortBy, search, multiply, ranges } = useAppSelector((state) => state.filters)
-  const getFilters = (): ProductsState => {
+  const { products } = useAppSelector((state) => state)
+  const [value, setValue] = useState<ProductInDb[]>(products)
+  
+  useEffect(() => {
     const sortProductMultiply = productState.filter((product) => {
       const isProductValid = multiply.every((rule) => {
         const activeFilters = rule.value.filter((r) => r.isCheck).map((r) => r.option)
@@ -16,7 +21,7 @@ const useGetFiltersProducts = () => {
       })
       return isProductValid ? product : null
     })
-
+  
     const sortProductRanges = sortProductMultiply.filter((product) => {
       const isProductValid = ranges.every((rule) => {
         const min = rule.value.min
@@ -31,7 +36,7 @@ const useGetFiltersProducts = () => {
       })
       return isProductValid ? product : null
     })
-
+  
     const sortProductDirection = sortProductRanges.sort((productA, productB) => {
       const param = sortBy as keyof typeof productA
       const valueA = productA[param]
@@ -44,7 +49,7 @@ const useGetFiltersProducts = () => {
       }
       return 0
     })
-
+  
     const sortProductSearch = sortProductDirection.filter((product) => {
       const sortFields = [
         'human',
@@ -64,10 +69,10 @@ const useGetFiltersProducts = () => {
       })
       return result ? product : null
     })
+    setValue(sortProductSearch)
+  }, [isSortDESC, sortBy, search, multiply, ranges])
+  
+  return value
 
-    return sortProductSearch
-  }
-
-  return getFilters
 }
 export default useGetFiltersProducts

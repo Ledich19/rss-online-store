@@ -2,16 +2,13 @@ import React, { useEffect } from 'react'
 import Card from './Card/Card'
 import './StoreShop.scss'
 import useGetFiltersProducts from '../../../hooks/useGetFiltersProducts'
-import { useSearchParams } from 'react-router-dom'
 import { useAppDispatch } from '../../../app/hooks'
 import { setSortView } from '../../../reducers/filterReducer'
 import { ViewType } from '../../../app/types'
 
 const StoreShop = () => {
   const dispatch = useAppDispatch()
-  const getProducts = useGetFiltersProducts()
-  const showProduct = getProducts()
-  const [searchParams, setSearchParams] = useSearchParams()
+  const showProduct = useGetFiltersProducts()
 
   const cards = document.querySelectorAll('.shop__card')
   const buttons = document.querySelectorAll('.shop__button')
@@ -71,9 +68,15 @@ const StoreShop = () => {
         {buttonTwo}
         {buttonThree}
       </div>
-      {showProduct.map((card) => (
-        <Card style={view} key={card.id} card={card} />
-      ))}
+{
+  showProduct.length === 0 ? <div className='shop__empty'>
+  no products match search
+  </div> : 
+  showProduct.map((card) => (
+    <Card style={view} key={card.id} card={card} />
+  ))
+}
+
     </div>
   )
 }

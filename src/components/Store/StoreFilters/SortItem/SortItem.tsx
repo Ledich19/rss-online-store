@@ -8,7 +8,7 @@ import useGetFiltersProducts from '../../../../hooks/useGetFiltersProducts'
 
 const SortItem = ({ filters, title }: FilterItemState) => {
   const dispatch = useAppDispatch()
-  const getProducts = useGetFiltersProducts()
+  const showProduct = useGetFiltersProducts()
   const [visible, setVisible] = useState(false)
 
   const filtersState = useAppSelector((state) =>
@@ -18,7 +18,6 @@ const SortItem = ({ filters, title }: FilterItemState) => {
   const filtersOption = filtersState ? filtersState.value : []
   const productState = useAppSelector((state) => state.products)
 
-  const showProduct = getProducts()
 
   const toggleVisible = () => {
     setVisible(!visible)
