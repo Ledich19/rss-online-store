@@ -1,20 +1,16 @@
 import './SortBy.scss'
 import { setSortDirection, setSortBy } from '../../../../reducers/filterReducer'
 import { useEffect, useState } from 'react'
-import { useSearchParams } from 'react-router-dom'
-import { useAppDispatch, useAppSelector } from '../../../../app/hooks'
+import { useAppDispatch } from '../../../../app/hooks'
 import { SortByType } from '../../../../app/types'
 
 const SortBy = () => {
-  const { sortBy } = useAppSelector((state) => state.filters)
-  const { isSortDESC } = useAppSelector((state) => state.filters)
   const dispatch = useAppDispatch()
   const [value, setValue] = useState('options')
 
   useEffect(() => {
     const sortOptionsJSON = window.localStorage.getItem('sortOptions')
     if (sortOptionsJSON) {
-      console.log(sortOptionsJSON);
       const sortOptions = JSON.parse(sortOptionsJSON)
       dispatch(setSortBy(sortOptions.sortBy))
       dispatch(setSortDirection(sortOptions.sortDirection))

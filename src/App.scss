@@ -1,6 +1,5 @@
 .App {
   text-align: center;
-  
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -9,14 +8,13 @@
   }
 }
 
-
 *[data-tooltip]:hover:after {
   position: absolute;
-  transform: translate(0%,-100%);
+  transform: translate(0%, -100%);
   content: attr(data-tooltip);
   color: #916e62;
   border-radius: 15px;
   border: solid 1px #916e62;
-  background-color: #D8D9CC;
+  background-color: #d8d9cc;
   padding: 5px;
 }

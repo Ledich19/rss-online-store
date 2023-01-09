@@ -53,8 +53,6 @@
     font-size: 24px;
     line-height: 28px;
   }
-  &__icon {
-  }
 
   &__limit {
     width: 100px;
@@ -127,64 +125,23 @@
 
 @media (max-width: 600px) {
   .cart {
-    &__main {
-      
-    }
-    &__header {
-
-    }
-    &__body {
-    }
-
     &__title {
       display: none;
     }
     &__icon {
       display: none;
-    }
-
-    &__cost {
-    }
-
-    &__total {
-    }
-    &__limit {
-    }
-  }
-
-  .page {
-    &__prev {
-    }
-    &__value {
-    }
-    &__next {
     }
   }
 }
 
 @media (max-width: 450px) {
   .cart {
-    &__main {
-    }
-    &__header {
-    }
     &__body {
       gap: 40px;
     }
 
-    &__title {
-    }
-    &__icon {
-    }
-    &__limit{
+    &__limit {
       display: none;
-    }
-    &__cost {
-    }
-
-    &__total {
-    }
-    &__button {
     }
   }
 }

@@ -2,12 +2,12 @@ import { createSlice } from '@reduxjs/toolkit'
 
 type InitialState = {
   limit: number,
-  page:  number,
+  page: number,
   isForm: boolean,
   isOderFinish: boolean,
 }
 
-const initialState: InitialState= {
+const initialState: InitialState = {
   limit: 0,
   page: 1,
   isForm: false,
@@ -36,13 +36,11 @@ const modalsSlice = createSlice({
     setCartPage(state, action: {
       payload: number; type: string;
     }) {
-      console.log(action.payload);
-      
       return { ...state, page: action.payload }
     },
   },
 }
 )
 
-export const { setIsOpenForm, setOpenOrderFinish,setLimit,setCartPage} = modalsSlice.actions
+export const { setIsOpenForm, setOpenOrderFinish, setLimit, setCartPage } = modalsSlice.actions
 export default modalsSlice.reducer
