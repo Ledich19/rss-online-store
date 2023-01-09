@@ -1,0 +1,27 @@
+{
+  "files": {
+    "main.css": "/static/css/main.a61f1420.css",
+    "main.js": "/static/js/main.614ca779.js",
+    "static/js/787.f51830ae.chunk.js": "/static/js/787.f51830ae.chunk.js",
+    "static/media/home-banner.png": "/static/media/home-banner.ad17a3b73034fb2f5367.png",
+    "static/media/logo.svg": "/static/media/logo.b17dc0a1c1a30c02db171ab88750675b.svg",
+    "static/media/rss.svg": "/static/media/rss.ad178c0df28bc133be34.svg",
+    "static/media/github2.svg": "/static/media/github2.be5d33e3da58101fbff3.svg",
+    "static/media/github1.svg": "/static/media/github1.7d74eea38a667f87b812.svg",
+    "static/media/addToCart.svg": "/static/media/addToCart.fe681355bab2e358344fa53910a5b18a.svg",
+    "static/media/cart.svg": "/static/media/cart.9d7adb825db051e05106.svg",
+    "static/media/instagram.svg": "/static/media/instagram.4f201f9006021509f5cc.svg",
+    "index.html": "/index.html",
+    "static/media/addToFavorite.svg": "/static/media/addToFavorite.796c848fc4febd61a230a50483500d6a.svg",
+    "static/media/facebook.svg": "/static/media/facebook.94a680d831f44eda9179.svg",
+    "static/media/favorite.svg": "/static/media/favorite.e1d8acfa17321797c1c3.svg",
+    "static/media/arrow.svg": "/static/media/arrow.5a89633dbb91a39a833b.svg",
+    "main.a61f1420.css.map": "/static/css/main.a61f1420.css.map",
+    "main.614ca779.js.map": "/static/js/main.614ca779.js.map",
+    "787.f51830ae.chunk.js.map": "/static/js/787.f51830ae.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.a61f1420.css",
+    "static/js/main.614ca779.js"
+  ]
+}
