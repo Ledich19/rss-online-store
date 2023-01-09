@@ -3,29 +3,9 @@ import { Checkbox, FiltersState, RangeValue, SortByType, ViewType } from '../app
 
 const initialState: FiltersState = {
   multiply: [
-    // {
-    //   name: "human",
-    //   value: []
-    // },
-    // {
-    //   name: "category",
-    //   value: []
-    // },
-    // {
-    //   name: "brand",
-    //   value: []
-    // }
   ]
   ,
   ranges: [
-    // {
-    //   name: "price",
-    //   value: { min: 0, max: 0 }
-    // },
-    // {
-    //   name: "rating",
-    //   value: { min: 0, max: 0 }
-    // }
   ],
   "isSortDESC": null,
   'sortBy': '',
@@ -118,7 +98,7 @@ const filterSlice = createSlice({
 }
 )
 
-export const { setSearch, setFilterMultiply, setFilterRange , setSortDirection, setAllFilters, setSortView, setSortBy} = filterSlice.actions
+export const { setSearch, setFilterMultiply, setFilterRange, setSortDirection, setAllFilters, setSortView, setSortBy } = filterSlice.actions
 
 export default filterSlice.reducer
 

@@ -2,7 +2,7 @@ import { useAppSelector } from '../../../app/hooks'
 import './PriceProductsInCart.scss'
 
 const PriceProductsInCart = () => {
-  const {cart, promoCodes} = useAppSelector((state) => state)
+  const { cart, promoCodes } = useAppSelector((state) => state)
   const isPromoCodes = promoCodes.promoCodeUse.length > 0 ? true : false
   const isCartContent = cart.length > 0 ? true : false
 
@@ -25,9 +25,7 @@ const PriceProductsInCart = () => {
           {costCount()}
           &euro;
         </div>
-      ) : (
-        null
-      )}
+      ) : null}
     </div>
   )
 }

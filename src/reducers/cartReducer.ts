@@ -10,7 +10,7 @@ const cartSlice = createSlice({
   initialState,
   reducers: {
     addProductToCart(state, action: {
-      payload: ProductInCart ; type: string;
+      payload: ProductInCart; type: string;
     }): CartState {
       const newState = state.concat(action.payload)
       return newState
@@ -31,7 +31,7 @@ const cartSlice = createSlice({
     plusAmount(state, action: {
       payload: string;
     }) {
-  
+
       const newState = state.map((product) => {
         if (product.id === action.payload && product.amount !== product.amountAll) {
           return { ...product, amount: product.amount + 1, }

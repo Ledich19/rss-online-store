@@ -21,14 +21,6 @@ const initialState: PromoCodeState = {
     },
   ],
   promoCodeUse: [
-    // {
-    //   code: 'TEST',
-    //   discount: 25
-    // },
-    // {
-    //   code: 'EPM',
-    //   discount: 10
-    // },
   ]
 }
 
