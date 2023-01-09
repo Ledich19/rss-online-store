@@ -1,7 +1,5 @@
 import { useCallback, useEffect, useRef } from 'react'
-import { useSearchParams } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../../../../app/hooks'
-import useGetFiltersProducts from '../../../../hooks/useGetFiltersProducts'
 import { setFilterRange } from '../../../../reducers/filterReducer'
 import './SortRange.scss'
 
@@ -21,12 +19,7 @@ const SortRange = ({
   const range = useRef<HTMLInputElement>(null)
   const dispatch = useAppDispatch()
   const filtersState = useAppSelector((state) => state.filters.ranges.find((f) => f.name === title))
-  const showProduct = useGetFiltersProducts()
-  //const showProduct = getProducts()
 
-  const { isSortDESC, sortBy, search, multiply, ranges, view } = useAppSelector(
-    (state) => state.filters
-  )
   const minVal = filtersState && filtersState.value.min !== null ? filtersState.value.min : min
   const maxVal = filtersState && filtersState.value.max !== null ? filtersState.value.max : max
 
@@ -46,31 +39,6 @@ const SortRange = ({
       })
     )
   }
-
-  // useEffect(() => {
-  //   const value = showProduct.map((p) => p[title as keyof typeof p]).sort((a,b) => {
-  //     const valueA = typeof a === 'number' ? a : parseFloat(a.toString())
-  //     const valueB = typeof b === 'number' ? b : parseFloat(b.toString())
-  //     return valueA - valueB
-  //   })
-  //   const min = value[0]
-  //   const max =value[value.length - 1]
-  //   // console.log(showProduct.map((p) => p[title as keyof typeof p]));
-  //   // console.log(value);
-  //   console.log(min ,max);
-    
-  //   dispatch(
-  //     setFilterRange({
-  //       key: title,
-  //       params: {
-  //         min: min as number,
-  //         max: max as number,
-  //       },
-  //     })
-  //   )
-  //   value[0]
-  //   value[value.length -1 ]
-  // }, [ sortBy, search, multiply ])
 
   useEffect(() => {
     const filtersJSON = window.localStorage.getItem(`filtersFor${title}`)

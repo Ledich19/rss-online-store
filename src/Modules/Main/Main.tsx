@@ -1,12 +1,12 @@
-import "./Main.scss";
+import './Main.scss'
 
-import { Routes, Route } from "react-router-dom";
-import Error404 from "../../components/Error404/Error404";
-import Favorite from "../../components/Favorite/Favorite";
-import Home from "../../components/Home/Home";
-import Cart from "../../components/Cart/Cart";
-import ProductDetails from "../../components/ProductDetails/ProductDetails";
-import Store from "../../components/Store/Store";
+import { Routes, Route } from 'react-router-dom'
+import Error404 from '../../components/Error404/Error404'
+import Favorite from '../../components/Favorite/Favorite'
+import Home from '../../components/Home/Home'
+import Cart from '../../components/Cart/Cart'
+import ProductDetails from '../../components/ProductDetails/ProductDetails'
+import Store from '../../components/Store/Store'
 
 const Main = () => {
   return (
@@ -22,8 +22,7 @@ const Main = () => {
         <Route path="/*" element={<Error404 />} />
       </Routes>
     </div>
-  );
-};
+  )
+}
 
-export default Main;
-
+export default Main

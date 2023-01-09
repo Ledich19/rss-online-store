@@ -1,14 +1,13 @@
 import { useAppSelector } from '../app/hooks'
-import { ProductInDb, ProductsState } from '../app/types'
-import React, { useEffect, useState } from 'react'
-
+import { ProductInDb } from '../app/types'
+import { useEffect, useState } from 'react'
 
 const useGetFiltersProducts = () => {
   const productState = useAppSelector((state) => state.products)
   const { isSortDESC, sortBy, search, multiply, ranges } = useAppSelector((state) => state.filters)
   const { products } = useAppSelector((state) => state)
   const [value, setValue] = useState<ProductInDb[]>(products)
-  
+
   useEffect(() => {
     const sortProductMultiply = productState.filter((product) => {
       const isProductValid = multiply.every((rule) => {
@@ -21,7 +20,7 @@ const useGetFiltersProducts = () => {
       })
       return isProductValid ? product : null
     })
-  
+
     const sortProductRanges = sortProductMultiply.filter((product) => {
       const isProductValid = ranges.every((rule) => {
         const min = rule.value.min
@@ -36,7 +35,7 @@ const useGetFiltersProducts = () => {
       })
       return isProductValid ? product : null
     })
-  
+
     const sortProductDirection = sortProductRanges.sort((productA, productB) => {
       const param = sortBy as keyof typeof productA
       const valueA = productA[param]
@@ -49,7 +48,7 @@ const useGetFiltersProducts = () => {
       }
       return 0
     })
-  
+
     const sortProductSearch = sortProductDirection.filter((product) => {
       const sortFields = [
         'human',
@@ -63,16 +62,13 @@ const useGetFiltersProducts = () => {
       ]
       const result = sortFields.some((field) => {
         const researchProduct = product[field as keyof typeof product]
-        // if (typeof researchProduct === 'string') {
-          return researchProduct.toString().toUpperCase().includes(search.toUpperCase())
-        // }
+        return researchProduct.toString().toUpperCase().includes(search.toUpperCase())
       })
       return result ? product : null
     })
     setValue(sortProductSearch)
   }, [isSortDESC, sortBy, search, multiply, ranges])
-  
-  return value
 
+  return value
 }
 export default useGetFiltersProducts
