@@ -1,0 +1,117 @@
+.order {
+  padding: 25px 0;
+  overflow: auto;
+  &__address {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    row-gap: 10px;
+    column-gap: 30px;
+  }
+  &__address-item {
+    flex: 1 1 auto;
+    box-sizing: border-box;
+    border: 0.5px solid #d8d9cc;
+    border-radius: 20px;
+    padding: 12px 32px;
+    height: 40px;
+    background: #ffffff;
+    width: 100%;
+    outline: 0;
+    outline-offset: 0;
+    &:active,
+    &:hover,
+    &:focus {
+      border: 0.5px solid #bf9180;
+    }
+  }
+  &__btn{
+    width: 100%;
+    max-width: 392px;
+    cursor: pointer;
+    margin: 0 auto;
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 56px;
+    background: #d8d9cc;
+    border-radius: 20px;
+    cursor: pointer;
+    &:hover,
+    &:focus {
+      background: #bf9180;
+    }
+  }
+  &__valid-error{
+    top: -5px;left: 15px;
+    position: absolute;
+    color: red;
+  }
+  
+  &__label{
+    position: relative;
+    &_wide{
+      white-space: nowrap;
+      width: 100%;
+    }
+  }
+}
+.card {
+  max-width: 350px;
+  min-height: 225px;
+  border: solid 1px #d8d9cc;
+  border-radius: 20px;
+  margin: 0 auto;
+  padding: 20px;
+  margin-top: 20px;
+  background-repeat: no-repeat;
+  background-position: 95% 95%;
+  &__card-number-label{
+    width: 100%;
+
+  }
+  &__card-valid-label{
+    max-width: 50%;
+
+  }
+  &__card-cvv-label{
+    max-width: 30%;
+
+  }
+  &__number,
+  &__valid,
+  &__cv {
+    width: 100%;
+    flex: 1 1 auto;
+    box-sizing: border-box;
+    border: 0.5px solid #d8d9cc;
+    border-radius: 20px;
+    padding: 12px 32px;
+    height: 40px;
+    background: #ffffff;
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+    outline: 0;
+    outline-offset: 0;
+    &:active,
+    &:hover,
+    &:focus {
+      border: 0.5px solid #bf9180;
+    }
+  }
+&__valid-error{
+margin-top: 10px;
+    color: red;
+}
+
+  &__box {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+}

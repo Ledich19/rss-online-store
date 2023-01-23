@@ -1,0 +1,15 @@
+.store {
+  display: flex;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 45px 15px;
+  gap: 30px;
+}
+@media(max-width:976px){
+  .store{
+    flex-wrap: wrap;
+    &__filters{
+      margin-bottom: 40px;
+    }
+  }
+}

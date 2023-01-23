@@ -1,0 +1,191 @@
+// variables
+$mainBg: #e5e5e5;
+$mainFont: 'Roboto';
+$mainColor: #000000;
+$hoverColor: #72736E;
+$widthContainer: 1100px;
+
+
+.footer{
+  background-color: $mainBg;
+  font-family: $mainFont;
+  color: $mainColor;
+  &__container{
+    max-width: $widthContainer;
+    padding: 0 30px;
+    margin: 0 auto;
+  }
+  &__body{
+    padding-top: 72px;
+    padding-bottom: 13px;
+    position: relative;
+  }
+  &__content{
+    display: flex;
+    justify-content: space-between;
+    gap: 15%;
+  }
+  &__picture{
+    flex: 0 0 200px;
+  }
+  &__logo{
+    width: 100%;
+    object-fit: cover;
+  }
+  &__lists{
+    display: flex;
+    justify-content: space-between;
+    flex: 1 1 auto;
+  }
+  &__list{
+    text-align: left;
+  }
+  &__item{
+    &:not(:last-child){
+      margin-bottom: 8px;
+    }
+  }
+  &__title-list{
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 19px;
+    margin-bottom: 16px;
+  }
+  &__link{
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 16px;
+    color: $mainColor;
+    transition: all 0.3s ease;
+    &:hover{
+      color: $hoverColor;
+    }
+  }
+  &__selects{
+    display: flex;
+    gap: 40px;
+  }
+  &__select{
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    color: #3C3F40;
+    position: relative;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    &::after{
+      content: '';
+      width: 10px;
+      height: 10px;
+      background: url(../../images/arrow.svg)0 0 no-repeat;
+      position: absolute;
+      top: 8px;
+      right: -15px;
+    }
+    &:hover{
+      color: $hoverColor;
+    }
+  }
+  &__down{
+    padding-top: 53px;
+    padding-bottom: 35px;
+    border-top: 1px solid #00000020;
+  }
+  &__down-container{
+    max-width: $widthContainer;
+    padding: 0 30px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  &__icons{
+    display: flex;
+    gap: 16px;
+  }
+  &__authors{
+    display: flex;
+  }
+  &__author{
+    &_max{
+
+    }
+    &_alex{
+
+    }
+  }
+  &__social{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    &_facebook{
+      background: url(../../images/facebook.svg)center /18px 18px no-repeat, #fff;
+    }
+    &_instagram{
+      background: url(../../images/instagram.svg)center /18px 18px no-repeat, #fff;
+    }
+    &_rss{
+      background: url(../../images/rss.svg)center /35px 35px no-repeat, #fff;
+    }
+    &_alex{
+      background: url(../../images/github2.svg)center /40px 40px no-repeat, #fff;
+    }
+    &_max{
+      background: url(../../images/github1.svg)center /40px 40px no-repeat, #fff;
+    }
+    &:hover{
+      background-color: #ffffff9b;
+    }
+  }
+}
+
+@media(max-width:930px){
+  .footer{
+    &__lists{
+      flex-wrap: wrap;
+      row-gap: 96px;
+    }
+    &__list{
+      flex: 1 1 50%;
+    }
+  }
+}
+
+@media(max-width:630px){
+  .footer{
+    &__body{
+      padding-top: 35px;
+    }
+    &__content{
+      display: block;
+      
+    }
+    &__picture{
+      max-width: 200px;
+      margin: 0 auto;
+      margin-bottom: 57px;
+    }
+    &__lists{
+      display: block;
+      margin-bottom: 30px;
+    }
+    &__item{
+      &:not(:first-child){
+        display: none;
+      }
+    }
+    &__down{
+      padding-top: 20px;
+      padding-bottom: 20px;
+    }
+    &__down-container{
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    &__span{
+      order: 2;
+      margin-top: 10px;
+    }
+  }
+}
